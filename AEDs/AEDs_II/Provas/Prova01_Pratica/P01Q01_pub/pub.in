@@ -1,0 +1,26 @@
+7
+frances
+Joyeux Noel
+ingles
+Merry Christmas
+alemao
+Frohe Weihnachten
+espanhol
+Feliz Navidade
+italiano
+buon natale
+polones
+Wesotych Swiat
+portugues
+Feliz Natal
+5
+Joao Paulo Silva
+portugues
+Pedro Guerra
+portugues
+Pietro Gonsalez
+espanhol
+Karol Kosinski
+polones
+John Smith
+ingles

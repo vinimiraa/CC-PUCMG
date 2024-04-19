@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce</title>
+    <!--Scrpit JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <!--Link CSS-->
+    <link rel="stylesheet" href="style.css">
+    <!--Link Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <!--Cabeçalho-->
+    <header>
+        <span class="d-flex justify-content-center align-items-lg-center fw-medium bg-primary-subtle fs-4 pt-3">Vinícius Miranda de Araújo - Ciência da Computação - 812839</span>
+        <nav class="navbar navbar-expand-xl bg-primary-subtle p-5">
+            <div class=" container-fluid">
+                <!--Logo e Nome-->
+                <a class="navbar-brand" href="#">
+                    <img src="imagens/logo.png" alt="Logo da Empresa" height="80px" width="80px">
+                    <span class="m-lg-2">VM Games</span>
+                </a>
+                <!--Frase de efeito-->
+                <span class="navbar-text fw-medium">Aqui você encontra diversos jogos nos melhores
+                    preço!</span>
+                <!--Barra de Pesquisa-->
+                <div class="container-fluid">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" id="search-input" placeholder="Buscar por ..." aria-label="Search">
+                        <button class="btn btn-primary" type="submit">Pesquisar</button>
+                    </form>
+                </div>
+                <!--Itens de Nav-->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="20"
+                                fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cadastrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Entrar </a>
+                    </li>
+                </ul>
+                <!--Fim Itens de Nav-->
+            </div>
+            <!--Fim da Div-->
+        </nav>
+        <!--Fim do Nav-->
+    </header>
+    <!--FIm do Cabeçalho-->
+    <!--Conteúdo do Site-->
+    <main class="container">
+        <!--Div com Carrosel e Filtros-->
+        <div class="row">
+            <!--Carrosel de Imagens-->
+            <div class="col-md-8 col-sm-12 p-5">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="imagens/img1.jpg" height="372px" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imagens/img2.png" height="372px" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imagens/img3.jpg" height="372px" class="d-block w-100">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <!--Fim Carrosel de Imagens-->
+            <!--Menu de Filtros-->
+            <div class="col-md-4 col-sm-12 d-flex justify-content-center p-5">
+                <form>
+                    <div class="border border-dark filter-products p-3 bg-white">
+                        <h4>Filtrar Produtos</h4>
+                        <form>
+                            <div class="form-group">
+                                <label for="marca">Gênero:</label>
+                                <select class="form-control" id="marca">
+                                    <option>Todas os Gêneros</option>
+                                    <option>FPS</option>
+                                    <option>Battle Royale</option>
+                                    <option>FPA</option>
+                                    <option>PVP</option>
+                                    <option>RTS</option>
+                                    <option>MOBA</option>
+                                    <option>RPG</option>
+                                    <option>MMORPG</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tamanho">Plataformas:</label>
+                                <select class="form-control" id="tamanho">
+                                    <option>Todas as Plataformas</option>
+                                    <option>Steam</option>
+                                    <option>Epic Games</option>
+                                    <option>Battle Net</option>
+                                    <option>Origin</option>
+                                    <option>Desura</option>
+                                    <option>Xbox</option>
+                                    <option>PLaystation</option>
+                                    <option>Nintendo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="precoMin">Preço Mínimo:</label>
+                                <input type="number" class="form-control" id="precoMin">
+                            </div>
+                            <div class="form-group">
+                                <label for="precoMax">Preço Máximo:</label>
+                                <input type="number" class="form-control" id="precoMax">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block mt-3">Filtrar</button>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+            <!--Fim Menu de Filtros-->
+        </div>
+        <!--Fim Div com Carrosel e Filtros-->
+        <!--Lista de Produtos e Resultados de Pesquisa-->
+        <!--Título-->
+        <div class="d-flex justify-content-center align-items-lg-center my-4">
+            <h1>Produtos</h1>
+        </div>
+        <!--Produtos-->
+        <div id="games-list" class="row">
+
+        </div>
+            <!--
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game1.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Kart Rider: Drift</h5>
+                        <p class="card-text">R$ 11,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game2.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Snap</h5>
+                        <p class="card-text">R$ 76,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game3.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Yu Gi Oh: Master Duel</h5>
+                        <p class="card-text">R$ 36,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game4.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Forza Horizon 5</h5>
+                        <p class="card-text">R$ 257,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game5.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Halo Infinite</h5>
+                        <p class="card-text">R$ 188,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game6.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Red Dead Redemption II</h5>
+                        <p class="card-text">R$ 199,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game7.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Resident Evil: Village</h5>
+                        <p class="card-text">R$ 229,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game8.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">It Takes Two</h5>
+                        <p class="card-text">R$ 129,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game9.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">PyschoNauts 2 </h5>
+                        <p class="card-text">R$ 141,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    -->
+        <!--Fim Produtos-->
+        <!--Mais Vendidos-->
+        <!--Título-->
+        <div class="d-flex justify-content-center align-items-center m-3">
+            <h1 class="text-center ">Itens mais vendidos</h1>
+        </div>
+        <!--Produtos Mais Vendidos-->
+        <div id="games-list2" class="row">
+
+        </div>
+        <!--
+        <div class="row p-3">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game7.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Resident Evil: Village</h5>
+                        <p class="card-text">R$ 229,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game6.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Red Dead Redemption II</h5>
+                        <p class="card-text">R$ 199,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="imagens/game4.jpg" alt="Jersey Buccaneers">
+                    <div class="card-body">
+                        <h5 class="card-title">Forza Horizon 5</h5>
+                        <p class="card-text">R$ 257,99</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    -->
+        <!--Fim Produtos Mais Vendidos-->
+        <!--NewsLetter-->
+        <div class="m-5 border p-4 bg-white">
+            <h3 class="ml-2 text-center">Nóticias</h3>
+            <form>
+                <div class="form-row align-items-center justify-content-center d-flex ">
+                    <div class="col-auto p-3">
+                        <label class="sr-only" for="inlineFormInput">Entre para receber notícias!</label>
+                        <input type="text" class="form-control mb-4" id="inlineFormInput"
+                            placeholder="Faça seu cadastro...">
+                    </div>
+                    <div class="col-auto ">
+                        <button type="submit" class="btn btn-primary ml-2 mb-2">Entrar Agora!</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--Fim Newsletter-->
+    </main>
+    <!--Fim Conteúdo do Site-->
+    <!--Rodapé-->
+    <footer class="bg-primary-subtle p-5">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="mb-3">Métodos de pagamento</h5>
+                    <!--Visa-->
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
+                        viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M470.1 231.3s7.6 37.2 9.3 45H446c3.3-8.9 16-43.5 16-43.5-.2.3 3.3-9.1 5.3-14.9l2.8 13.4zM576 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM152.5 331.2L215.7 176h-42.5l-39.3 106-4.3-21.5-14-71.4c-2.3-9.9-9.4-12.7-18.2-13.1H32.7l-.7 3.1c15.8 4 29.9 9.8 42.2 17.1l35.8 135h42.5zm94.4.2L272.1 176h-40.2l-25.1 155.4h40.1zm139.9-50.8c.2-17.7-10.6-31.2-33.7-42.3-14.1-7.1-22.7-11.9-22.7-19.2.2-6.6 7.3-13.4 23.1-13.4 13.1-.3 22.7 2.8 29.9 5.9l3.6 1.7 5.5-33.6c-7.9-3.1-20.5-6.6-36-6.6-39.7 0-67.6 21.2-67.8 51.4-.3 22.3 20 34.7 35.2 42.2 15.5 7.6 20.8 12.6 20.8 19.3-.2 10.4-12.6 15.2-24.1 15.2-16 0-24.6-2.5-37.7-8.3l-5.3-2.5-5.6 34.9c9.4 4.3 26.8 8.1 44.8 8.3 42.2.1 69.7-20.8 70-53zM528 331.4L495.6 176h-31.1c-9.6 0-16.9 2.8-21 12.9l-59.7 142.5H426s6.9-19.2 8.4-23.3H486c1.2 5.5 4.8 23.3 4.8 23.3H528z" />
+                    </svg>
+                    <!--Master-->
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
+                        viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M482.9 410.3c0 6.8-4.6 11.7-11.2 11.7-6.8 0-11.2-5.2-11.2-11.7 0-6.5 4.4-11.7 11.2-11.7 6.6 0 11.2 5.2 11.2 11.7zm-310.8-11.7c-7.1 0-11.2 5.2-11.2 11.7 0 6.5 4.1 11.7 11.2 11.7 6.5 0 10.9-4.9 10.9-11.7-.1-6.5-4.4-11.7-10.9-11.7zm117.5-.3c-5.4 0-8.7 3.5-9.5 8.7h19.1c-.9-5.7-4.4-8.7-9.6-8.7zm107.8.3c-6.8 0-10.9 5.2-10.9 11.7 0 6.5 4.1 11.7 10.9 11.7 6.8 0 11.2-4.9 11.2-11.7 0-6.5-4.4-11.7-11.2-11.7zm105.9 26.1c0 .3.3.5.3 1.1 0 .3-.3.5-.3 1.1-.3.3-.3.5-.5.8-.3.3-.5.5-1.1.5-.3.3-.5.3-1.1.3-.3 0-.5 0-1.1-.3-.3 0-.5-.3-.8-.5-.3-.3-.5-.5-.5-.8-.3-.5-.3-.8-.3-1.1 0-.5 0-.8.3-1.1 0-.5.3-.8.5-1.1.3-.3.5-.3.8-.5.5-.3.8-.3 1.1-.3.5 0 .8 0 1.1.3.5.3.8.3 1.1.5s.2.6.5 1.1zm-2.2 1.4c.5 0 .5-.3.8-.3.3-.3.3-.5.3-.8 0-.3 0-.5-.3-.8-.3 0-.5-.3-1.1-.3h-1.6v3.5h.8V426h.3l1.1 1.4h.8l-1.1-1.3zM576 81v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V81c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM64 220.6c0 76.5 62.1 138.5 138.5 138.5 27.2 0 53.9-8.2 76.5-23.1-72.9-59.3-72.4-171.2 0-230.5-22.6-15-49.3-23.1-76.5-23.1-76.4-.1-138.5 62-138.5 138.2zm224 108.8c70.5-55 70.2-162.2 0-217.5-70.2 55.3-70.5 162.6 0 217.5zm-142.3 76.3c0-8.7-5.7-14.4-14.7-14.7-4.6 0-9.5 1.4-12.8 6.5-2.4-4.1-6.5-6.5-12.2-6.5-3.8 0-7.6 1.4-10.6 5.4V392h-8.2v36.7h8.2c0-18.9-2.5-30.2 9-30.2 10.2 0 8.2 10.2 8.2 30.2h7.9c0-18.3-2.5-30.2 9-30.2 10.2 0 8.2 10 8.2 30.2h8.2v-23zm44.9-13.7h-7.9v4.4c-2.7-3.3-6.5-5.4-11.7-5.4-10.3 0-18.2 8.2-18.2 19.3 0 11.2 7.9 19.3 18.2 19.3 5.2 0 9-1.9 11.7-5.4v4.6h7.9V392zm40.5 25.6c0-15-22.9-8.2-22.9-15.2 0-5.7 11.9-4.8 18.5-1.1l3.3-6.5c-9.4-6.1-30.2-6-30.2 8.2 0 14.3 22.9 8.3 22.9 15 0 6.3-13.5 5.8-20.7.8l-3.5 6.3c11.2 7.6 32.6 6 32.6-7.5zm35.4 9.3l-2.2-6.8c-3.8 2.1-12.2 4.4-12.2-4.1v-16.6h13.1V392h-13.1v-11.2h-8.2V392h-7.6v7.3h7.6V416c0 17.6 17.3 14.4 22.6 10.9zm13.3-13.4h27.5c0-16.2-7.4-22.6-17.4-22.6-10.6 0-18.2 7.9-18.2 19.3 0 20.5 22.6 23.9 33.8 14.2l-3.8-6c-7.8 6.4-19.6 5.8-21.9-4.9zm59.1-21.5c-4.6-2-11.6-1.8-15.2 4.4V392h-8.2v36.7h8.2V408c0-11.6 9.5-10.1 12.8-8.4l2.4-7.6zm10.6 18.3c0-11.4 11.6-15.1 20.7-8.4l3.8-6.5c-11.6-9.1-32.7-4.1-32.7 15 0 19.8 22.4 23.8 32.7 15l-3.8-6.5c-9.2 6.5-20.7 2.6-20.7-8.6zm66.7-18.3H408v4.4c-8.3-11-29.9-4.8-29.9 13.9 0 19.2 22.4 24.7 29.9 13.9v4.6h8.2V392zm33.7 0c-2.4-1.2-11-2.9-15.2 4.4V392h-7.9v36.7h7.9V408c0-11 9-10.3 12.8-8.4l2.4-7.6zm40.3-14.9h-7.9v19.3c-8.2-10.9-29.9-5.1-29.9 13.9 0 19.4 22.5 24.6 29.9 13.9v4.6h7.9v-51.7zm7.6-75.1v4.6h.8V302h1.9v-.8h-4.6v.8h1.9zm6.6 123.8c0-.5 0-1.1-.3-1.6-.3-.3-.5-.8-.8-1.1-.3-.3-.8-.5-1.1-.8-.5 0-1.1-.3-1.6-.3-.3 0-.8.3-1.4.3-.5.3-.8.5-1.1.8-.5.3-.8.8-.8 1.1-.3.5-.3 1.1-.3 1.6 0 .3 0 .8.3 1.4 0 .3.3.8.8 1.1.3.3.5.5 1.1.8.5.3 1.1.3 1.4.3.5 0 1.1 0 1.6-.3.3-.3.8-.5 1.1-.8.3-.3.5-.8.8-1.1.3-.6.3-1.1.3-1.4zm3.2-124.7h-1.4l-1.6 3.5-1.6-3.5h-1.4v5.4h.8v-4.1l1.6 3.5h1.1l1.4-3.5v4.1h1.1v-5.4zm4.4-80.5c0-76.2-62.1-138.3-138.5-138.3-27.2 0-53.9 8.2-76.5 23.1 72.1 59.3 73.2 171.5 0 230.5 22.6 15 49.5 23.1 76.5 23.1 76.4.1 138.5-61.9 138.5-138.4z" />
+                    </svg>
+                    <!--PayPal-->
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
+                        viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M186.3 258.2c0 12.2-9.7 21.5-22 21.5-9.2 0-16-5.2-16-15 0-12.2 9.5-22 21.7-22 9.3 0 16.3 5.7 16.3 15.5zM80.5 209.7h-4.7c-1.5 0-3 1-3.2 2.7l-4.3 26.7 8.2-.3c11 0 19.5-1.5 21.5-14.2 2.3-13.4-6.2-14.9-17.5-14.9zm284 0H360c-1.8 0-3 1-3.2 2.7l-4.2 26.7 8-.3c13 0 22-3 22-18-.1-10.6-9.6-11.1-18.1-11.1zM576 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM128.3 215.4c0-21-16.2-28-34.7-28h-40c-2.5 0-5 2-5.2 4.7L32 294.2c-.3 2 1.2 4 3.2 4h19c2.7 0 5.2-2.9 5.5-5.7l4.5-26.6c1-7.2 13.2-4.7 18-4.7 28.6 0 46.1-17 46.1-45.8zm84.2 8.8h-19c-3.8 0-4 5.5-4.2 8.2-5.8-8.5-14.2-10-23.7-10-24.5 0-43.2 21.5-43.2 45.2 0 19.5 12.2 32.2 31.7 32.2 9 0 20.2-4.9 26.5-11.9-.5 1.5-1 4.7-1 6.2 0 2.3 1 4 3.2 4H200c2.7 0 5-2.9 5.5-5.7l10.2-64.3c.3-1.9-1.2-3.9-3.2-3.9zm40.5 97.9l63.7-92.6c.5-.5.5-1 .5-1.7 0-1.7-1.5-3.5-3.2-3.5h-19.2c-1.7 0-3.5 1-4.5 2.5l-26.5 39-11-37.5c-.8-2.2-3-4-5.5-4h-18.7c-1.7 0-3.2 1.8-3.2 3.5 0 1.2 19.5 56.8 21.2 62.1-2.7 3.8-20.5 28.6-20.5 31.6 0 1.8 1.5 3.2 3.2 3.2h19.2c1.8-.1 3.5-1.1 4.5-2.6zm159.3-106.7c0-21-16.2-28-34.7-28h-39.7c-2.7 0-5.2 2-5.5 4.7l-16.2 102c-.2 2 1.3 4 3.2 4h20.5c2 0 3.5-1.5 4-3.2l4.5-29c1-7.2 13.2-4.7 18-4.7 28.4 0 45.9-17 45.9-45.8zm84.2 8.8h-19c-3.8 0-4 5.5-4.3 8.2-5.5-8.5-14-10-23.7-10-24.5 0-43.2 21.5-43.2 45.2 0 19.5 12.2 32.2 31.7 32.2 9.3 0 20.5-4.9 26.5-11.9-.3 1.5-1 4.7-1 6.2 0 2.3 1 4 3.2 4H484c2.7 0 5-2.9 5.5-5.7l10.2-64.3c.3-1.9-1.2-3.9-3.2-3.9zm47.5-33.3c0-2-1.5-3.5-3.2-3.5h-18.5c-1.5 0-3 1.2-3.2 2.7l-16.2 104-.3.5c0 1.8 1.5 3.5 3.5 3.5h16.5c2.5 0 5-2.9 5.2-5.7L544 191.2v-.3zm-90 51.8c-12.2 0-21.7 9.7-21.7 22 0 9.7 7 15 16.2 15 12 0 21.7-9.2 21.7-21.5.1-9.8-6.9-15.5-16.2-15.5z" />
+                    </svg>
+                    <!--Pix-->
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
+                        viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.76C231.1-7.586 280.3-7.586 310.6 22.76L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.78L22.76 310.6C-7.586 280.3-7.586 231.1 22.76 200.8L80.78 142.7H112.6z" />
+                    </svg>
+                </div>
+                <div class="col-md-3">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-dark">Ajuda</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Política de Entrega</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Cancelamentos e Retornos</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">FAQ</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Política de Responsabilidade</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Redes sociais</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="text-decoration-none text-dark" href="https://pt-br.facebook.com">Facebook</a>
+                        </li>
+                        <li><a class="text-decoration-none text-dark" href="https://www.instagram.com">Instagram</a>
+                        </li>
+                        <li><a class="text-decoration-none text-dark" href="https://twitter.com">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Informações de contato</h5>
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-signpost-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M7.293.707A1 1 0 0 0 7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414A1 1 0 0 0 7.293.707z" />
+                        </svg>Av. Dom José Gaspar, 500 Coração Eucarístico,
+                        Belo Horizonte, Brasil<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                        </svg>+55 (31) 4002-8922<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2H2Zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671Z" />
+                            <path
+                                d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034v.21Zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z" />
+                        </svg>contato@vmgames.com.br
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Fim Rodapé-->
+
+    <!--SCRIPTS-->
+
+    <!--Script Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <!--API Rawg.io-->
+    <!--JS para os Produtos-->
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "https://api.rawg.io/api/games?key=7163ae9d592e45e890c44e64c20b5548", 
+                method: "GET",
+                success: function(response) {
+                    var games = response.results;
+                    var gamesList = $("#games-list");
+        
+                    for (var i = 0; i < games.length; i++) {
+                        var game = games[i];
+                        var gameCard = `
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="${game.background_image}" alt="${game.name}" height="230px">
+                                <div class="card-body">
+                                    <h5 class="card-title">${game.name}</h5>
+                                    <p class="card-text">Plataformas: ${game.platforms.map(platform => platform.platform.name).join(", ")}</p>
+                                    <p class="card-text">Data de Lançamento: ${game.released}</p>
+                                    <p class="card-text">Avaliação: ${game.rating}</p>
+                                    <a href="https://rawg.io/games/${game.slug}?key=7163ae9d592e45e890c44e64c20b5548" target="_blank" class="btn btn-primary">Mais detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                        gamesList.append(gameCard);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+    <!--JS para os Mais Vendidos-->
+    <script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "https://api.rawg.io/api/games?key=7163ae9d592e45e890c44e64c20b5548",
+            method: "GET",
+            success: function(response) {
+                var games = response.results;
+                var gamesList2 = $("#games-list2");
+
+                for (var i = 0; i < 3; i++) {
+                    var game = games[i];
+                    var gameCard = `
+                    <div class="col-md-4">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="${game.background_image}" alt="${game.name}" height="230px">
+                                <div class="card-body">
+                                    <h5 class="card-title">${game.name}</h5>
+                                    <p class="card-text">PLataformas: ${game.platforms.map(platform => platform.platform.name).join(", ")}</p>
+                                    <p class="card-text">Data de Lançamento: ${game.released}</p>
+                                    <p class="card-text">Avaliação: ${game.rating}</p>
+                                    <a href="https://rawg.io/games/${game.slug}?key=7163ae9d592e45e890c44e64c20b5548" target="_blank" class="btn btn-primary">Mais detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    gamesList2.append(gameCard);
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+    </script>
+    <!--JS para Barra de Pesquisa-->
+    <script>
+        $(document).ready(function() {
+            var searchInput = $("#search-input");
+            var gamesList = $("#games-list");
+
+            searchInput.on("input", function() {
+                var query = $(this).val();
+
+                if (query.length >= 3) {
+                    searchGames(query);
+                } else {
+                    gamesList.empty();
+                }
+            });
+
+            function searchGames(query) {
+                var apiKey = "7163ae9d592e45e890c44e64c20b5548";
+                var searchUrl = "https://api.rawg.io/api/games?key=" + apiKey + "&search=" + query;
+
+                $.ajax({
+                    url: searchUrl,
+                    method: "GET",
+                    success: function(response) {
+                        var games = response.results;
+                        gamesList.empty();
+
+                        if (games.length > 0) {
+                            $.each(games, function(index, game) {
+                                var gameCard = `
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="${game.background_image}" alt="${game.name}" height="230px">
+                                <div class="card-body">
+                                    <h5 class="card-title">${game.name}</h5>
+                                    <p class="card-text">${game.platforms.map(platform => platform.platform.name).join(", ")}</p>
+                                    <p class="card-text">Data de Lançamento: ${game.released}</p>
+                                    <p class="card-text">Avaliação: ${game.rating}</p>
+                                    <a href="https://rawg.io/games/${game.slug}?key=7163ae9d592e45e890c44e64c20b5548" target="_blank" class="btn btn-primary">Mais detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                                gamesList.append(gameCard);
+                            });
+
+                            $(".game-card").fadeIn();
+                        } else {
+                            gamesList.html("<p>Nenhum jogo encontrado.</p>");
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+</body>
+
+</html>

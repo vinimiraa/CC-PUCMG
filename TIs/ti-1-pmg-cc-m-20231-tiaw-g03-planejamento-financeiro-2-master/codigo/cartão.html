@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<!--BS Icons-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <title>Gerenciar de Cartões de Crédito</title>
+</head>
+
+<body>
+  <h1 class="text-center py-3">Gerenciar de Cartões de Crédito</h1>
+
+  <div id="form">
+    <label class="form-label" for="nome">Nome do Titular:</label>
+    <input class="form-control" type="text" id="nome" placeholder="Rodrigo C Pereira" required><br>
+
+    <label class="form-label" for="numero">Número do Cartão:</label>
+    <input class="form-control" type="text" id="numero" placeholder="1234 5678 9101 1120" required><br>
+
+    <label class="form-label" for="validade">Validade:</label>
+    <input class="form-control" type="text" id="validade" placeholder="0832" required><br>
+
+    <label class="form-label" for="bandeira">Bandeira:</label>
+    <select class="form-select" id="bandeira" required>
+      <option selected>Selecione</option>
+      <option value="Mastercard">Mastercard</option>
+      <option value="Visa">Visa</option>
+      <option value="Elo">Elo</option>
+      <option value="American Express">American Express</option>
+      <option value="Hipercard">Hipercard</option>
+      <option value="Alelo">Alelo</option>
+    </select><br>
+
+    <button class="btn btn-outline-success" onclick="adicionarCartao()">Adicionar Cartão</button>
+  </div>
+
+  <h2 class="py-3">Cartões de Crédito:</h2>
+  <div id="cartoes"></div>
+
+  <!--Script-->
+  <script src="cartâo.js"></script>
+  <!--Bootsrap-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+  crossorigin="anonymous"></script>
+</body>
+
+</html>

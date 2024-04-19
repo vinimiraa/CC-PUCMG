@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!--BS Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Home - VY Finanças</title>
+</head>
+
+<body>
+    <header class="bg-info-subtle">
+        <div>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-lg mt-3">
+                    <!--Logo-->
+                    <a class="navbar-brand" href="home.html">
+                        <img src="/imagens/logo.png" alt="VY Finanças" width="99px" height="100px">
+                    </a>
+                    <!--Nav Itens-->
+                    <ul class="navbar-nav">
+                        <li class="nav-link px-3">
+                            <div class="dropdown">
+                                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Opções
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                    <li><a class="dropdown-item" href="#">Editar dados</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </naV>
+        </div>
+
+    </header>
+
+    <main>
+        <div class="row">
+            <!--Seleçao de Artefatos-->
+            <div class="col-lg-3">
+                <div class="bg-info-subtle rounded-2 m-4 p-5">
+                    <h5 class="p-3 text-center">Recursos disponíveis:</h5>
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <hr>
+                        <li class="nav-item">
+                            <a id="linkCarregar1" class="nav-link py-5" href="grafico.html">Visão Geral</a>
+                        </li>
+                        <hr>
+                        <li class="nav-item">
+                            <a id="linkCarregar2" class="nav-link py-5" href="tabela.html">Despesas x Receitas</a>
+                        </li>
+                        <hr>
+                        <li class="nav-item">
+                            <a id="linkCarregar3" class="nav-link py-5" href="cartão.html">Gerenciar Cartão</a>
+                        </li>
+                        <hr>
+                        <li class="nav-item">
+                            <a id="linkCarregar4" class="nav-link py-5" href="notificacoes.html">Alertas de despesas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col m-5">
+                <div id="conteudo1"></div>
+                <div id="conteudo2"></div>
+                <div id="conteudo3"></div>
+                <div id="conteudo4"></div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-info-subtle">
+        <div class="container p-5">
+            <!--Links-->
+            <div class="d-flex justify-content-center align-content-center">
+                <div class="mx-lg-5">
+                    <a style="color: black; text-decoration-color: black;" href="#" target="_blank"
+                        class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Quem
+                        somos</a>
+                </div>
+                <div class="mx-lg-5">
+                    <a style="color: black; text-decoration-color: black;" href="#" target="_blank"
+                        class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Termos
+                        de Uso</a>
+                </div>
+                <div class="mx-lg-5">
+                    <a style="color: black; text-decoration-color: black;" href="#" target="_blank"
+                        class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Política
+                        de Privacidade</a>
+                </div>
+                <div class="mx-lg-5">
+                    <a style="color: black; text-decoration-color: black;" href="#" target="_blank"
+                        class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Fale
+                        conosco</a>
+                </div>
+                <div class="mx-lg-5">
+                    <a style="color: black; text-decoration-color: black;" href="#" target="_blank"
+                        class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Manual</a>
+                </div>
+            </div>
+            <!--Redes Sociais-->
+            <div class="d-flex justify-content-center align-content-center">
+                <div class="fs-2 m-lg-5"><a style="color: black;" href="#" target="_blank"><i
+                            class="bi bi-facebook"></i></a></div>
+                <div class="fs-2 m-lg-5"><a style="color: black;" href="#" target="_blank"><i
+                            class="bi bi-instagram"></i></a></i></div>
+                <div class="fs-2 m-lg-5"><a style="color: black;" href="#" target="_blank"><i
+                            class="bi bi-send-fill"></i></a></div>
+                <div class="fs-2 m-lg-5"><a style="color: black;" href="#" target="_blank"><i
+                            class="bi bi-linkedin"></i></a></div>
+            </div>
+            <!--Direitos Autorais-->
+            <div class="text-center fs-5">
+                <p>VY Finanças © 2023</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="home.js"></script>
+    <!--Bootsrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

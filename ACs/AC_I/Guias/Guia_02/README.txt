@@ -1,0 +1,1 @@
+Em relação às atividades em Verilog, senti dificuldades em realizá-las. Além disso, os códigos referentes às questões 1b e 2b apresentaram problemas que não consegui corrigir ao compilar o código. Quanto à questão 3b, não consegui realizar as conversões necessárias por meio da linguagem.

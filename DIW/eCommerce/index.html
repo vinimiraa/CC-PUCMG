@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Veja todos os jogos disponíveis para venda, promoções, exclusivos e muitos mais!">
+    <title>Portal eCommerce - Jogos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+</head>
+
+<body id="site">
+    <header class="background_hd">
+        <div>
+            <img class="logo" src="imagens/logo.png" alt="Logo" width="180px" height="">
+            <h3>Bem vindo ao VM Games!</h3>
+            <p>Aqui você encontra diversos jogos e cartões de presente no melhor preço!</p>
+        </div>
+
+        <div class="search_box">
+            <input type="text" class="search_txt" placeholder="Pesquisar">
+            <img class="search_btn" src="imagens/lupa.png" alt="lupa" width="20" height="20">
+        </div>
+        <div class="hd_info">
+            <nav type="submit">
+                <a>Entrar |</a>
+                <a>Cadastre-se |</a>
+                <a>Minha Conta |</a>
+                <a>Ver pedidos |</a>
+                <img class="my_cart" src="imagens/mycart.png" alt="Meu Carrinho" width="60px" height="50px">
+            </nav>
+            <div>
+                <p><br><br>Seu dinheiro de volta | Até 30 dias!<br>
+                    Serviço disponível 24h, todos os dias!<br>
+                    Telefone para contato:<strong> +55 (31) 4002 8922</strong></p>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section id="quick_search">
+            <div class="quick_search">
+                <p>Pesquisa Rápida:<br><br> Encontre o jogo ou cartão do seu interesse:<br><br></p>
+                <form method="get" autocomplete="on">
+                    <input list="style" name="style" placeholder="Gênero">
+                    <datalist id="style">
+                        <option value="FPS">
+                        <option value="Battle Royale">
+                        <option value="FPA">
+                        <option value="PVP">
+                        <option value="RTS">
+                        <option value="MOBA">
+                        <option value="RPG">
+                        <option value="MMORPG">
+                    </datalist>
+                    <p class="hidden">aaaaaaaaaaaaaaaaaaaaa<br></p>
+                    <input list="plataforma" name="plataforma" placeholder="Plataformas">
+                    <datalist id="plataforma">
+                        <option value="Steam">
+                        <option value="Epic Games">
+                        <option value="Battle Net">
+                        <option value="Origin">
+                        <option value="Desura">
+                        <option value="Xbox">
+                        <option value="Playstation">
+                        <option value="Nintendo">
+                    </datalist>
+                    <p class="hidden">aaaaaaaaaaaaaaaaaaaaa<br></p>
+                    <input list="giftcard" name="giftcard" placeholder="GiftCard">
+                    <datalist id="giftcard">
+                        <option value="PSN">
+                        <option value="Microsoft">
+                        <option value="Nintendo">
+                        <option value="Spotify">
+                        <option value="Netflix">
+                        <option value="Free Fire">
+                        <option value="League of Legends">
+                        <option value="Play Store">
+                    </datalist><br><br><br><br>
+                    <input type="submit" value="Filtrar">
+                </form>
+            </div>
+        </section>
+        <section id="carousel">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="imagens/img1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imagens/img2.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imagens/img3.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+        <section id="product">
+            <div class="games1">
+                <div class="game" type="submit">
+                    <img src="imagens/game1.jpg" width="250px" height="220px">
+                    <h6><strong> Kart Rider: Drift</strong></h6>
+                    <h6>R$11.99</h6>
+                    <img src="imagens/star.png" width="200x" height="33px">
+                </div>
+                <div class="game" type="submit">
+                    <img src="imagens/game2.jpg" width="250px" height="220px">
+                    <h6><strong> Snap</strong></h6>
+                    <h6>R$76.96</h6>
+                    <img src="imagens/star.png" width="200x" height="33px">
+                </div>
+                <div class="game" type="submit">
+                    <img src="imagens/game3.jpg" width="250px" height="220px">
+                    <h6><strong> Yu Gi Oh! Master Duel</strong></h6>
+                    <h6>R$36.47</h6>
+                    <img src="imagens/star.png" width="200x" height="33px">
+                </div>
+            </div>
+            <div class="games2">
+                <div class="game" type="submit">
+                    <img src="imagens/game4.jpg" width="250px" height="220px">
+                    <h6><strong> Forza Horzion 5</strong></h6>
+                    <h6>R$247.57</h6>
+                    <img src="imagens/star.png" width="200x" height="33px">
+                </div>
+                <div class="game" type="submit">
+                    <img src="imagens/game5.jpg" width="250px" height="220px">
+                    <h6><strong> Halo Infinite</strong></h6>
+                    <h6>R$188.12</h6>
+                    <img src="imagens/star.png" width="200x" height="33px"">
+            </div>
+            <div class=" game" type="submit">
+                    <img src="imagens/game6.jpg" width="250px" height="220px">
+                    <h6><strong> Red Dead Redemption II</strong></h6>
+                    <h6>R$199.90</h6>
+                    <img src="imagens/star.png" width="200x" height="33px">
+                </div>
+            </div>
+            <div class="games3">
+                <div class="game" type="submit">
+                    <img src="imagens/game7.jpg" width="250px" height="220px">
+                    <h6><strong> Resident evil: Village</strong></h6>
+                    <h6>R$229.90</h6>
+                    <img src="imagens/star.png" width="200x" height="33px"">
+            </div>
+            <div class=" game" type="submit">
+                    <img src="imagens/game8.jpg" width="250px" height="220px">
+                    <h6><strong> It Takes Two</strong></h6>
+                    <h6>R$129.89</h6>
+                    <img src="imagens/star.png" width="200x" height="33px">
+                </div>
+                <div class="game" type="submit">
+                    <img src="imagens/game9.jpg" width="250px" height="220px">
+                    <h6><strong> PsychoNauts 2</strong></h6>
+                    <h6>R$141.92</h6>
+                    <img src="imagens/star.png" width="200x" height="33px">
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="most_review">
+                <h5>Produtos mais vendidos:</h5><br>
+                    <div type="submit">
+                        <img src="imagens/game6.jpg" width="250px" height="220px">
+                        <h6><strong> Red Dead Redemption II</strong></h6>
+                        <h6>R$199.90</h6>
+                        <img src="imagens/star.png" width="200x" height="33px">
+                    </div>
+                    <hr size="10">
+                    <div type="submit">
+                        <img src="imagens/game4.jpg" width="250px" height="220px">
+                        <h6><strong> Forza Horzion 5</strong></h6>
+                        <h6>R$247.57</h6>
+                        <img src="imagens/star.png" width="200x" height="33px">
+                    </div>
+                    <hr size="10">
+                    <div type="submit">
+                        <img src="imagens/game10.jpg" width="250px" height="220px">
+                        <h6><strong> Elden Ring</strong></h6>
+                        <h6>R$249.90</h6>
+                        <img src="imagens/star.png" width="200x" height="33px">
+                    </div><br> <br> 
+                    <input type="submit" value="Veja mais">
+                </div>
+            </div>
+        </section>
+        </article>
+    </main>
+
+    <footer id="footer">
+        <div class="footer_inf">
+            <div class="payment">
+                <h6>Métodos de Pagamento</h6>
+                <img src="imagens/payment.png" alt="Métodos de Pagamento" width="200" height="250">
+            </div>
+            <div class="other_info">
+                <h6>Outras Informações:</h6>
+                <ul>
+                    <li>Ajuda</li>
+                    <li>Política de Privacidade</li>
+                    <li>Cancelamento e Retorno</li>
+                    <li>FAQ</li>
+                    <li>Política de Envio</li>
+                </ul>
+            </div>
+            <img src="imagens/social links.png" alt="" width="600" height="300">
+            <div class="contact">
+                <h6>Entre em contato:</h6>
+                <ul>
+                    <li>Av: Dom José Gaspar, 500 Coração Eucarístico<br>Belo Horizonte - MG-30535-901, Brasil</li>
+                    <li>Telefone: (31) 4002 8922</li>
+                    <li>vmgames@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

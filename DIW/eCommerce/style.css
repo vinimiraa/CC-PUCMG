@@ -1,0 +1,131 @@
+/*Site*/
+#site {
+    background-color:#2d4e72;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:white;
+    height: 100%;
+    width: 100%;
+}
+
+/*Cabeçalho*/
+.background_hd {
+    background-color: #0f3053;
+    padding: 1%;
+    margin: 1%;
+    border-radius: 40px;
+}
+.logo{
+    float: left;
+    margin-top: 5px;
+}
+.hd_info {
+    text-align: end;
+}
+.my_cart {
+    float: right;
+    width: 35px;
+    height: 25px;
+}
+
+/*Barra de Pesquisa*/
+.search_box {
+    float:unset;
+    position: absolute;
+    transform: translate(100%, 100%);
+    background:white;
+    height: 50px;
+    padding: 20px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search_txt {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 10;
+    color: black;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+/*Corpo do Site*/
+#main {
+    padding: 1%;
+}
+.quick_search {
+    height: 500px;
+    width: 300px;
+    background:  #0f3053;
+    border-radius: 4%;
+    text-align: center;
+    padding: 1%;
+    float: left;
+    margin-left: 5%;
+    margin-bottom: 50px;
+}
+.hidden {
+    color: #0f3053;
+}
+#carousel {
+    background:#0f3053;
+    width: 1280px;
+    height: 500px;
+    float: right;
+    margin-right: 5%;
+    margin-bottom: 50px;
+}
+.game {
+   padding: 1%;
+   margin: 1%;
+   background:#052647;
+   height: 330px;
+   width: 300px;
+   text-align: center;
+   margin-right: 50px;
+   margin-bottom: 50px;
+   border-radius: 20px;
+   float: left;
+   justify-content: space-between;
+}
+.most_review {
+    translate: 480%;
+    transform: translateY(44%);
+    padding: 1%;
+    margin: 50px;
+    background:#0f3053;
+    height: 1180px;
+    width: 300px;
+    float: left;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+}
+/*Rodapé*/
+#footer {
+    padding: 2%;
+    margin: 1%;
+    width: 98%;
+    height: 400px;
+    border-radius: 40px;
+    display: inline-block;
+    background: #0f3053;
+}
+.footer_info {
+    padding: 1%;
+    display: block;
+}
+.payment {
+    float: left;
+    margin: 2%;
+}
+.other_info {
+    float: left;
+    margin: 2%;
+}
+.contact {
+    float: left;
+    margin: 2%;
+}
+/*FIm*/

@@ -13,7 +13,3 @@ Arquitetura de Computadores - [AC I](AC/AC_I) / [AC II](AC/AC_II)
 ## 📁 DIW
 
 Desenvolvimento de Interfaces Web - [DIW](DIW)
-
-## 📁 TI
-
-Trabalho Interdisciplinar - [TI I](TIs/ti-1-pmg-cc-m-20231-tiaw-g03-planejamento-financeiro-2-master/) 

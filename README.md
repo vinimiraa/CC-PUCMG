@@ -8,7 +8,7 @@ Repositório de algumas matérias do curso de Ciência da Computação.
 Algoritmos e Estruturas de Dados - [AEDs I](AEDs/AEDs-I) / [AEDs II](/AEDs/AEDs-II/) /
 
 ## 📁 AC
-Arquitetura de Computadores - [AC I](AC/AC_I) /
+Arquitetura de Computadores - [AC I](/ACs/AC_I/) /
 
 ## 📁 DIW
 

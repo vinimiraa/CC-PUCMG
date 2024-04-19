@@ -1,0 +1,106 @@
+                            PONTíFICIE UNIVERSIDADE CATÓLICA DE MINAS GERAIS
+                                Instituto de Ciências Exatas e Informática
+
+
+                                    Três tipos lógicos de Pesquisa
+                                    Three logical types of Search
+
+
+                                                                     Vinícius Miranda de Araújo
+
+
+                                                Resumo:
+            Este artigo explora a importância das hipóteses na pesquisa científica, enfatizando o
+            papel delas em orientar o processo de pesquisa. O autor destaca que as hipóteses nem 
+            sempre são essenciais e discute seu uso prático em diferentes cenários de pesquisa. São
+            examinadas duas questões de pesquisa distintas para ilustrar os diferentes papéis das
+            hipóteses, esclarecendo quando são necessárias e quando são apenas ornamentos acadêmicos.
+
+
+                                                Abstract:
+            This article explores the importance of hypotheses in scientific research, emphasizing their
+            role in guiding the research process. The author highlights that hypotheses are not always 
+            essential and discusses their practical use in different research scenarios. Two distinct 
+            research questions are examined to illustrate the different roles of hypotheses, clarifying
+            when they are necessary and when they are merely academic embellishments.
+
+
+1. INTRODUÇÃO
+
+    A pesquisa científica engloba diversos tipos e classificações, que podem variar em diferentes áreas. No entanto,
+    em sua essência, a pesquisa pode ser reduzida a três tipos fundamentais que servem como base para a estrutura lógica
+    de qualquer investigação científica. Este artigo aborda o papel crítico das hipóteses nesses três tipos de pesquisa e
+    explora a distinção entre quando as hipóteses são essenciais e quando são meros enfeites acadêmicos.
+
+
+2. HIPÓTESES NAS PESQUISAS
+
+    2.1. Hipóteses como Respostas a Perguntas
+
+        A pesquisa científica frequentemente começa com uma pergunta. Essas perguntas podem surgir de diversas fontes,
+        incluindo observações de campo, revisões de literatura e discussões com especialistas. Uma hipótese, em sua essência,
+        é uma resposta preliminar a uma pergunta, mas ela permanece não testada até a verificação empírica. Ela serve como uma
+        afirmação inicial destinada a abordar a pergunta de pesquisa.
+
+    2.2. Quando as Hipóteses Não São Essenciais
+
+        A importância das hipóteses depende da natureza da pergunta de pesquisa. Por exemplo, no caso de perguntas que exigem
+        uma investigação empírica direta, como "Quantas espécies de aves ocorrem em uma região?", o papel da hipótese é mínimo.
+        A hipótese se torna um enfeite acadêmico nesse contexto, pois a pergunta pode ser respondida diretamente por meio da 
+        coleta e análise de dados, sem a necessidade de uma hipótese preliminar.
+
+        Além disso, como característica da pesquisa sem hipótese, ocorre a descrição, de estruturas, situações e ou ocorrências,
+        isto é, é o retrato de uma situação.
+
+
+3. EXEMPLOS PRÁTICOS
+
+    3.1. Cenário 1: Contagem de Espécies de Aves
+
+        Considere uma pergunta de pesquisa: "Quantas espécies de aves ocorrem nesta região?" Nesse caso, uma hipótese como
+        "Existem 20 espécies nesta região" pode ser proposta. No entanto, se a coleta de dados empíricos revelar apenas oito
+        espécies, a hipótese inicial é refutada. Nesse cenário, a hipótese se torna um exercício acadêmico supérfluo, pois a 
+        pergunta pode ser respondida diretamente por meio da análise de dados.
+
+    3.2. Cenário 2: Solução de Problemas em um Carro
+
+        Em outro cenário, a pergunta de pesquisa é "Por que esse carro não liga?" Uma hipótese, como "O carro está sem 
+        combustível", é formulada. Se a investigação revelar que há combustível no tanque, a hipótese é refutada. Aqui, 
+        a hipótese desempenha um papel crucial em orientar o processo de pesquisa. Ela leva a outras hipóteses e testes,
+        como verificar a bomba de combustível ou examinar a bateria, até que o problema seja resolvido.
+
+
+4. TIPOS DE PESQUISAS
+
+    4.1. Pesquisas sem hipótese
+
+        Tem por característica a descrição de estruturas, situações e ou ocorrências, isto é, são retratos de situções na
+        qual não é necessária a formulação de uma hipótese, pois o retrato sobre uma variável já diz o que precisa sobre a 
+        circusntância. A qualidade da pesquisa não é dita pelo tipo lógica da pesquisa, mas sim pela qualidade da informação.
+
+    4.2. Pesquisas com hipótese
+
+        É por essecência o estudo entre duas ou mais variáveis, ou seja, a relação entre as variáveis. Este tipo de pesquisa 
+        possui duas relações: associação e interferência. A primeira relação significa que as variáveis estão associadas entre 
+        si sem que uma interfira na outra, já a relação de interferência significa que elas se associam porque uma variável 
+        está interferinfo na outra.
+
+
+5. CONCLUSÃO
+
+    Na pesquisa científica, o papel das hipóteses varia com base na natureza da pergunta de pesquisa. Embora sejam essenciais 
+    para orientar investigações em que a resposta não é imediatamente óbvia, em cenários em que a pergunta de pesquisa pode 
+    ser abordada diretamente por meio da coleta e análise de dados, as hipóteses se tornam enfeites desnecessários. A escolha 
+    de empregar ou não uma hipótese deve ser orientada pelas necessidades práticas da pesquisa em questão, mantendo o princípio 
+    da parcimônia, favorecendo a hipótese mais simples para testes iniciais.
+
+
+REFERÊNCIAS
+
+    Volpato, Gilson. (14 de Outubro de 2023). AULA 20 de 42 - TRÊS TIPOS LÓGICOS DE PESQUISA [Vídeo]. Recuperado de 
+    https://youtu.be/XoTQo7fUf0s?si=tfKrV7QxNC3U3YUJ
+
+
+
+
+

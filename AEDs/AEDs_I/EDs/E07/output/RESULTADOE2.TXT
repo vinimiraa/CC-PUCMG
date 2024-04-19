@@ -1,0 +1,11 @@
+Deixar   1 OK
+osmose   2
+desculpa 3 OK
+Vinicius 4 OK
+dar      5
+Dados    6 OK
+Legal    7
+Theldo   8 
+Daniel   9 OK
+danado  10 OK
+danado  11 OK

@@ -17,8 +17,8 @@ Ano : 2024
   - [Codificadores e Decodificadores](#codificadores-e-decodificadores)
     - [Código BCD](#código-bcd)
     - [Código de Gray](#código-de-gray)
-  - [Multiplexadores](#multiplexador--mux)
-  - [Demultiplexadores](#demultiplexador--demux)
+  - [Multiplexadores](#multiplexador)
+  - [Demultiplexadores](#demultiplexador)
   - [Aplicações Aritméticas](#aplicações-aritméticas)
 - [Fim](#fim)
 
@@ -88,7 +88,7 @@ diferença (distância de Hamming = 1). Esse código também é conhecido com �
       | 6       | 110     | 101  |
       | 7       | 111     | 100  |
 
-## Multiplexador ( MUX )
+## Multiplexador
 
 Multiplexadores (ou seletores de dados) são circuitos lógicos capazes de atuar como chaves digitais: recebem várias
 entradas e selecionam uma delas, em certo instante, e realizam sua transferência para a saída, mediante um código de
@@ -120,7 +120,7 @@ chave de seleção
                                   | &  |---+        
       input_b --------------------|____|
 
-## Demultiplexador ( DEMUX )
+## Demultiplexador
 
 Demultiplexadores  (ou  distribuidores  de  dados)  são  circuitos  capazes  de  receber  um  sinal  de entrada e
 distribuí-lo  em  uma dentre  várias saídas, segundo um  código  de seleção. Podem ser  usados para distribuir um mesmo

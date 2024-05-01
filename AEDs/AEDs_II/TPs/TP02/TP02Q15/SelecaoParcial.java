@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP02Q18 - 22 / 04 / 2024
+ *  TP02Q15 - 21 / 04 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac Quick.java
- *       Windows: javac Quick.java
+ *       Linux : javac Selecao.java
+ *       Windows: javac Selecao.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java Quick
- *       Windows: java Quick
+ *       Linux : java Selecao
+ *       Windows: java Selecao
  *   
 */
 
@@ -71,7 +71,7 @@ class Log{
             writer.close();
         } // end try 
         catch( Exception e ) {
-            System.out.println( "Erro ao escrever o log no arquivo: " + e.getMessage( ) );
+            System.out.println("Erro ao escrever o log no arquivo: " + e.getMessage());
         } // end catch
     } // end registro ( )
 } // end class
@@ -417,72 +417,45 @@ class Personagem
         return ( perso );
     } // end ler ( )
 
-    public static void swap( int i, int j, List<Personagem> perso, Log log ) 
+    public static void swap( int i, int j, List<Personagem> perso ) 
     {
-        String temp = perso.get(i).getHouse( );
-        // perso.set( i, perso.get(j) );
-        // perso.set( j, temp );
-        perso.get(i).setHouse( perso.get(j).getHouse( ) );
-        perso.get(j).setHouse( temp );
-        log.incrementarMov(); log.incrementarMov(); log.incrementarMov();
+        Personagem temp = perso.get(i);
+        perso.set( i, perso.get(j) );
+        perso.set( j, temp );
     } // end swap ( )
 
-    private static int compareHouse( Personagem perso1, Personagem perso2 )
+    public static void selectionSort( List<Personagem> perso, Log log )
     {
-        int result = 0;
-        String str1 = perso1.getHouse( );
-        String str2 = perso2.getHouse( );
-        if( str1.compareTo( str2 ) < 0 ) { 
-            result = -1;
-        } 
-        else if( str1.compareTo( str2 ) > 0  ) {
-            result = 1;
-        } 
-        else
+        int k = 10;
+        for( int i = 0; i < k; i = i + 1 ) 
         {
-            if( perso1.getName( ).compareTo( perso2.getName() ) > 0 ) { 
-                result = 1;
-            } 
-            else { 
-                result = -1;
-            } // end if
-        } // end if
-        return ( result );
-    } // end compareHouse ( )
+            int minIndex = i;
+            for( int j = i + 1; j < perso.size( ); j = j + 1 ) 
+            {
+                String strJ = perso.get(j).getName( );
+                String strM = perso.get(minIndex).getName( );
+                if ( strJ.compareTo(strM) < 0 ) {
+                    minIndex = j;
+                    log.incrementarComp( );
+                } // end if
+            } // end for
+            swap( i, minIndex, perso );
+            log.incrementarMov( ); log.incrementarMov( ); log.incrementarMov( );
+        } // end for
+    } // end selectionSort ( )
 
-    public static void callQuick( List<Personagem> perso, Log log ) 
-    {
-        quickSort( 0, perso.size( )-1, perso, log );
-    } // end callQuick ( )
-
-    public static void quickSort( int esq, int dir, List<Personagem> perso, Log log ) 
-    {
-        int i = esq, j = dir;
-        Personagem pivo = perso.get( (esq+dir)/2 );
-        while( i <= j ) {
-            while ( compareHouse( perso.get( i ), pivo ) < 0 ) { i++; log.incrementarComp( ); }
-            while ( compareHouse( perso.get( i ), pivo ) > 0 ) { j--; log.incrementarComp( ); }
-            if( i <= j ) { swap( i, j, perso, log ); i++; j--; }
-        } // end while
-        if( esq < j ) {
-            quickSort( esq, j, perso, log );
-        } // end if
-        if( i < 10 && i < dir ) {
-            quickSort( i, dir, perso, log );
-        } // end if
-    } // end quickSort ( )
 } // end class
 
 /**
- * Classe Quick : Teste
+ * Classe Selecao : Teste
  */
-public class Quick extends Personagem
+public class SelecaoParcial extends Personagem
 {
     public static void main ( String [] args )
     {
         Scanner scan = new Scanner( System.in );
         
-        Log log = new Log( "812839_quickparcial.txt" );
+        Log log = new Log( "812839_selecaoparcial.txt" );
         Personagem perso = new Personagem( );
         List<Personagem> arranjo = new ArrayList<>( );
 
@@ -494,9 +467,9 @@ public class Quick extends Personagem
             input = scan.nextLine( );
         } // end while
 
-        // calcular o tempo do insertionSort
+        // calcular o tempo do selectionSort
         long startTime = System.nanoTime();
-        callQuick( arranjo, log );
+        selectionSort( arranjo, log );
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
         double time = totalTime / 1_000_000.0;
@@ -505,9 +478,11 @@ public class Quick extends Personagem
         scan.close( );
 
         // imprimir os personagens
+        // imprimir os personagens
         for( int x = 0; x < 10; x = x + 1 ) 
         {
             arranjo.get(x).imprimir( );
         } // end for
     } // end main ( )
+
 } // end class 

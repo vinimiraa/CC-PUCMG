@@ -505,48 +505,49 @@ void swap ( int i, int j, Personagem **perso )
     perso[j] = temp;
 } // end swap ( )
 
-/**
- *  Insercao para ordenar por Name o arranjo já ordenado por HairColour de Personagem.
-*/
-void sortByName( Personagem** perso, int length, Log* log )
+int getMaxLen( Personagem** perso, int n ) 
 {
-    for( int i = 0; i < length; i = i + 1 )
+    int maxLen = strlen( getId( perso[0] ) );
+    for( int i = 1; i < n; i = i + 1 ) 
     {
-        int menor = i;
-        for( int j = i + 1; j < length; j = j + 1 )
-        {
-            if( strcmp( getHairColour(perso[menor]), getHairColour(perso[j]) ) == 0 &&
-                strcmp( getName(perso[menor]), getName(perso[j]) ) > 0 )
-            {
-                menor = j;
-                log->comparacoes++;
-            } // end if
-            log->comparacoes++;
-        } // end for
-        swap( menor, i, perso );
-        log->movimentacoes += 3;
+        int len = strlen( getId( perso[i] ) );
+        if( len > maxLen ) {
+            maxLen = len;
+        } // end if
     } // end for
-} // end sortByName ( )
+    return ( maxLen );
+} // end getMaxLen ( )
 
-void bubblesort( Personagem **perso, int length, Log* log )
+void radcountingSort(Personagem** perso, int n, int exp, Log* log) 
 {
-    bool swapped = true;
-    for( int i = 0; i < (length-1) && swapped; i = i + 1 )
-    {
-        swapped = false;
-        for( int j = 0; j < (length-i-1); j = j + 1 )
-        {
-            if( strcmp( getHairColour(perso[j]), getHairColour(perso[j+1]) ) > 0 )
-            {
-                swap( j, j+1, perso );
-                log->movimentacoes += 3;
-                swapped = true;
-                log->comparacoes++;
-            } // end if
-        } // end for
+    int count[256] = {0};
+    Personagem* output[n];
+    
+    for( int i = 0; i < n; i = i + 1 ) {
+        count[(unsigned char)perso[i]->id[exp]]++;
     } // end for
-    sortByName( perso, length, log );
-} // end bubblesort ( )
+
+    for( int i = 1; i < 256; i = i + 1 ) {
+        count[i] += count[i-1];
+    } // end for
+
+    for( int i = n - 1; i >= 0; i--) {
+        output[count[(unsigned char)perso[i]->id[exp]] - 1] = perso[i];
+        count[(unsigned char)perso[i]->id[exp]]--;
+    } // end for
+
+    for( int i = 0; i < n; i = i + 1 ) {
+        perso[i] = output[i];
+    } // end for
+} // end radcountingSort ( )
+
+void radixsort( Personagem** perso, int n, Log* log ) 
+{
+    int maxLen = getMaxLen( perso, n );
+    for( int exp = maxLen - 1; exp >= 0; exp = exp -1 ) {
+        radcountingSort( perso, n, exp, log );
+    } // end for
+} // end radixsort ( )
 
 /**
  *  Função Principal.
@@ -562,7 +563,6 @@ int main ( void )
     char id  [81] = { '\0' };
     char nome[81] = { '\0' };
     char* filename = "/tmp/characters.csv"; 
-    // filename = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP02\\characters.csv";
     
     scanf( "%s", id ); getchar( );
     int tam = 0;
@@ -574,9 +574,9 @@ int main ( void )
     } // end while
 
     start_Timer( &timer );
-    bubblesort( perso, tam, &log );
+    radixsort( perso, tam, &log );
     end_Timer( &timer );
-    registro( "812839_bolha.txt", &timer, &log );
+    registro( "812839_radixsort.txt", &timer, &log );
     
     for( int x = 0; x < tam; x = x + 1 ) {
         imprimir( perso[x] );

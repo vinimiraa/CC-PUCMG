@@ -471,7 +471,7 @@ class Personagem
 /**
  * Classe Insercao : Teste
  */
-public class Insercao extends Personagem
+public class InsercaoParcial extends Personagem
 {
     public static void main ( String [] args )
     {

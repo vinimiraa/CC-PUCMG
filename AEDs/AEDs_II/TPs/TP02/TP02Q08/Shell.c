@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP01Q02 - 10 / 04 / 2024
+ *  TP01Q02 - 01 / 05 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : gcc -o Personagem Personagem.c
- *       Windows: gcc -o Personagem Personagem.c
+ *       Linux : gcc -o Shell Shell.c
+ *       Windows: gcc -o Shell Shell.c
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : ./Personagem
- *       Windows: Personagem
+ *       Linux : ./Shell
+ *       Windows: Shell
  *   
 */
 

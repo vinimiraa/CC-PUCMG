@@ -9,12 +9,12 @@
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : gcc -o Personagem Personagem.c
- *       Windows: gcc -o Personagem Personagem.c
+ *       Linux : gcc -o PesquisaBinaria PesquisaBinaria.c
+ *       Windows: gcc -o PesquisaBinaria PesquisaBinaria.c
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : ./Personagem
- *       Windows: Personagem
+ *       Linux : ./PesquisaBinaria
+ *       Windows: PesquisaBinaria
  *   
 */
 

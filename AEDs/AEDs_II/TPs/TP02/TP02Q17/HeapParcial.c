@@ -9,12 +9,12 @@
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : gcc -o Personagem Personagem.c
- *       Windows: gcc -o Personagem Personagem.c
+ *       Linux : gcc -o HeapParcial HeapParcial.c
+ *       Windows: gcc -o HeapParcial HeapParcial.c
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : ./Personagem
- *       Windows: Personagem
+ *       Linux : ./HeapParcial
+ *       Windows: HeapParcial
  *   
 */
 

@@ -9,12 +9,12 @@
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac Insercao.java
- *       Windows: javac Insercao.java
+ *       Linux : javac InsercaoParcial.java
+ *       Windows: javac InsercaoParcial.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java Insercao
- *       Windows: java Insercao
+ *       Linux : java InsercaoParcial
+ *       Windows: java InsercaoParcial
  *   
 */
 

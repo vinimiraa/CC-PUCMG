@@ -9,12 +9,12 @@
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : gcc -o Personagem Personagem.c
- *       Windows: gcc -o Personagem Personagem.c
+ *       Linux : gcc -o SelecaoRec SelecaoRec.c
+ *       Windows: gcc -o SelecaoRec SelecaoRec.c
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : ./Personagem
- *       Windows: Personagem
+ *       Linux : ./SelecaoRec
+ *       Windows: SelecaoRec
  *   
 */
 

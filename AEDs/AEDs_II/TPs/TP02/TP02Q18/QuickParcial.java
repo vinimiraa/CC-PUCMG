@@ -9,12 +9,12 @@
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac Quick.java
- *       Windows: javac Quick.java
+ *       Linux : javac QuickParcial.java
+ *       Windows: javac QuickParcial.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java Quick
- *       Windows: java Quick
+ *       Linux : java QuickParcial
+ *       Windows: java QuickParcial
  *   
 */
 

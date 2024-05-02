@@ -9,12 +9,12 @@
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac Selecao.java
- *       Windows: javac Selecao.java
+ *       Linux : javac SelecaoParcial.java
+ *       Windows: javac SelecaoParcial.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java Selecao
- *       Windows: java Selecao
+ *       Linux : java SelecaoParcial
+ *       Windows: java SelecaoParcial
  *   
 */
 

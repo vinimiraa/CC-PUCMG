@@ -357,6 +357,7 @@ char* tratamentoBool( char* strbool )
 {
     char* tratada = strbool;
     tratada[strcspn(tratada,"\n")] = '\0';
+    tratada[strcspn(tratada,"\r")] = '\0';
     return ( tratada );
 } // end tratamentoBool ( )
 
@@ -443,10 +444,10 @@ Personagem* ler( char* filename, char* id_procurado )
                         init_Personagem(perso,
                                         atributos[0], atributos[1], atributos[2], atributos[3],
                                         atributos[4], atributos[5], "" ,
-                                 strcmp(tratamentoBool(atributos[6]), "VERDADEIRO") == 0,
-                                 strcmp(tratamentoBool(atributos[7]), "VERDADEIRO") == 0,
+                                 strcmp(atributos[6], "VERDADEIRO") == 0,
+                                 strcmp(atributos[7], "VERDADEIRO") == 0,
                                         atributos[8], 
-                                 strcmp(tratamentoBool(atributos[9]), "VERDADEIRO") == 0,
+                                 strcmp(atributos[9], "VERDADEIRO") == 0,
                                         atributos[10], 
                          tratamentoData(atributos[11]),
                                    atoi(atributos[12]), 
@@ -458,9 +459,9 @@ Personagem* ler( char* filename, char* id_procurado )
                         init_Personagem(perso,
                                         atributos[0], atributos[1], atributos[2], atributos[3],
                                         atributos[4], atributos[5], "" ,
-                                 strcmp(tratamentoBool(atributos[6]), "VERDADEIRO") == 0,
-                                 strcmp(tratamentoBool(atributos[7]), "VERDADEIRO") == 0, "", 
-                                 strcmp(tratamentoBool(atributos[8]), "VERDADEIRO") == 0,
+                                 strcmp(atributos[6], "VERDADEIRO") == 0,
+                                 strcmp(atributos[7], "VERDADEIRO") == 0, "", 
+                                 strcmp(atributos[8], "VERDADEIRO") == 0,
                                         atributos[9],
                          tratamentoData(atributos[10]),
                                    atoi(atributos[11]), atributos[12], 
@@ -473,10 +474,10 @@ Personagem* ler( char* filename, char* id_procurado )
                     init_Personagem(perso,
                                     atributos[0], atributos[1], atributos[2], atributos[3],
                                     atributos[4], atributos[5], atributos[6],
-                             strcmp(tratamentoBool(atributos[7]), "VERDADEIRO") == 0,
-                             strcmp(tratamentoBool(atributos[8]), "VERDADEIRO") == 0,
+                             strcmp(atributos[7], "VERDADEIRO") == 0,
+                             strcmp(atributos[8], "VERDADEIRO") == 0,
                                     atributos[9], 
-                             strcmp(tratamentoBool(atributos[10]), "VERDADEIRO") == 0,
+                             strcmp(atributos[10], "VERDADEIRO") == 0,
                                     atributos[11], 
                      tratamentoData(atributos[12]),
                                atoi(atributos[13]), 

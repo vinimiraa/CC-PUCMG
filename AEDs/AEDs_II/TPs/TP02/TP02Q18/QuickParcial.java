@@ -381,6 +381,7 @@ class Personagem
     {
         Personagem perso = new Personagem( );
         String path = "/tmp/characters.csv";
+        // path = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP02\\characters.csv";
         try 
         { 
             File file = new File( path );
@@ -419,58 +420,77 @@ class Personagem
 
     public static void swap( int i, int j, List<Personagem> perso, Log log ) 
     {
-        String temp = perso.get(i).getHouse( );
-        // perso.set( i, perso.get(j) );
-        // perso.set( j, temp );
-        perso.get(i).setHouse( perso.get(j).getHouse( ) );
-        perso.get(j).setHouse( temp );
+        Personagem temp = perso.get(i);
+        perso.set( i, perso.get(j) );
+        perso.set( j, temp );
         log.incrementarMov(); log.incrementarMov(); log.incrementarMov();
     } // end swap ( )
-
-    private static int compareHouse( Personagem perso1, Personagem perso2 )
-    {
-        int result = 0;
-        String str1 = perso1.getHouse( );
-        String str2 = perso2.getHouse( );
-        if( str1.compareTo( str2 ) < 0 ) { 
-            result = -1;
-        } 
-        else if( str1.compareTo( str2 ) > 0  ) {
-            result = 1;
-        } 
-        else
-        {
-            if( perso1.getName( ).compareTo( perso2.getName() ) > 0 ) { 
-                result = 1;
-            } 
-            else { 
-                result = -1;
-            } // end if
-        } // end if
-        return ( result );
-    } // end compareHouse ( )
-
-    public static void callQuick( List<Personagem> perso, Log log ) 
-    {
-        quickSort( 0, perso.size( )-1, perso, log );
-    } // end callQuick ( )
 
     public static void quickSort( int esq, int dir, List<Personagem> perso, Log log ) 
     {
         int i = esq, j = dir;
-        Personagem pivo = perso.get( (esq+dir)/2 );
-        while( i <= j ) {
-            while ( compareHouse( perso.get( i ), pivo ) < 0 ) { i++; log.incrementarComp( ); }
-            while ( compareHouse( perso.get( i ), pivo ) > 0 ) { j--; log.incrementarComp( ); }
-            if( i <= j ) { swap( i, j, perso, log ); i++; j--; }
+        String pivo = perso.get( (esq+dir)/2 ).getHouse( );
+        while( i <= j ) 
+        {
+            while ( perso.get( i ).getHouse( ).compareTo( pivo ) < 0 ) 
+            { 
+                i++; 
+                log.incrementarComp( ); 
+            } // end while
+            while ( perso.get( j ).getHouse( ).compareTo( pivo ) > 0 ) 
+            { 
+                j--; 
+                log.incrementarComp( ); 
+            } // end while
+            if( i <= j ) 
+            { 
+                swap( i, j, perso, log ); 
+                i++; 
+                j--; 
+            } // end if
         } // end while
         if( esq < j ) {
             quickSort( esq, j, perso, log );
         } // end if
-        if( i < 10 && i < dir ) {
+        if( i < dir && i < 10 ) {
             quickSort( i, dir, perso, log );
         } // end if
     } // end quickSort ( )
+
+    public static void sortByName( List<Personagem> perso, Log log )
+    {
+        int n = perso.size( );
+        for( int i = 0; i < n; i = i + 1 )
+        {
+            int menor = i;
+            for( int j = i + 1; j < n; j = j + 1 )
+            {
+                Personagem p1 = perso.get( menor );
+                Personagem p2 = perso.get( j );
+                int comparacaoCasa = p1.getHouse( ).compareTo( p2.getHouse( ) );
+                if( comparacaoCasa == 0 ) 
+                { // Casas são iguais, então compara os nomes
+                    if( p1.getName( ).compareTo( p2.getName( ) ) > 0 ) 
+                    {
+                        menor = j;
+                        log.incrementarComp( );
+                    } // end if
+                } 
+                else if( comparacaoCasa > 0 ) 
+                { // p1 vem depois de p2
+                    menor = j;
+                    log.incrementarComp();
+                } // end if
+            } // end for
+            swap( menor, i, perso, log );
+        } // end for
+    } // end sortByName ( )
+
+    public static void callQuick( List<Personagem> perso, Log log ) 
+    {
+        quickSort( 0, perso.size( )-1, perso, log );
+        sortByName( perso, log );
+    } // end callQuick ( )
 } // end class
 
 /**

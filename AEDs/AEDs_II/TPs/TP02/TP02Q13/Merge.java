@@ -381,6 +381,7 @@ class Personagem
     {
         Personagem perso = new Personagem( );
         String path = "/tmp/characters.csv";
+        // path = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP02\\characters.csv";
         try 
         { 
             File file = new File( path );
@@ -417,29 +418,6 @@ class Personagem
         return ( perso );
     } // end ler ( )
 
-    public static int compareActorNames( Personagem perso1, Personagem perso2 )
-    {
-        int result = 0;
-        String str1 = perso1.getActorName( );
-        String str2 = perso2.getActorName( );
-        if( str1.compareTo( str2 ) < 0 ) {
-            result = -1;
-        } 
-        else if( str1.compareTo( str2 ) > 0 ) {
-            result = 1;
-        } 
-        else // d1 == d2 
-        {
-            if( perso1.getName( ).compareTo( perso2.getName() ) > 0 ) { 
-                result = 1;
-            } 
-            else { 
-                result = -1;
-            } // end if
-        } // end if
-        return ( result );
-    } // end compareDates ( )
-
     public static void swap( int i, int j, List<Personagem> perso, Log log ) 
     {
         Personagem temp = perso.get(i);
@@ -456,7 +434,7 @@ class Personagem
             int menor = i;
             for( int j = i + 1; j < n; j = j + 1 )
             {
-                if( perso.get(menor).getYearOfBirth() == perso.get(j).getYearOfBirth() && 
+                if( perso.get(menor).getActorName( ).equals( perso.get(j).getActorName( ) ) && 
                     perso.get(menor).getName().compareTo(perso.get(j).getName()) > 0 ) {
                     menor = j;
                     log.incrementarComp( );
@@ -466,9 +444,44 @@ class Personagem
         } // end for
     } // end sortByName ( )
 
-    public static void callMerge( List<Personagem> perso, Log log ) {
-        mergeSort( 0, perso.size( )-1, perso, log );
-    } // end callMerge ( )
+    public static void intercalar( int esq, int meio, int dir, List<Personagem> perso, Log log ) 
+    {
+        int n1 = meio - esq+1;
+        int n2 = dir  - meio;
+    
+        List<Personagem> L = new ArrayList<>(n1);
+        List<Personagem> R = new ArrayList<>(n2);
+    
+        for( int i = 0; i < n1; i = i + 1 ) {
+            L.add( perso.get(esq+i) );
+        } // end for
+        for( int j = 0; j < n2; j = j + 1 ) {
+            R.add( perso.get(meio+j+1) );
+        } // end for
+    
+        int i = 0, j = 0, k = esq;
+        while( i < n1 && j < n2 ) 
+        {
+            if( L.get(i).getActorName( ).compareTo( R.get(j).getActorName( ) ) <= 0 ) {
+                perso.set( k++, L.get(i++) );
+            } else {
+                perso.set( k++, R.get(j++) );
+            } // end if
+            log.incrementarComp( );
+            log.incrementarMov( );
+        } // end while
+    
+        while( i < n1 ) 
+        {
+            perso.set(k++, L.get(i++));
+            log.incrementarMov();
+        } // end while
+        while( j < n2 ) 
+        {
+            perso.set(k++, R.get(j++));
+            log.incrementarMov();
+        } // end while
+    } // end intercalar ( )
 
     private static void mergeSort( int esq, int dir, List<Personagem> perso, Log log ) 
     {
@@ -476,57 +489,16 @@ class Personagem
         {
             int meio = (esq + dir) / 2;
             mergeSort( esq, meio, perso, log );
-            mergeSort( meio+1, dir, perso, log );
+            mergeSort( meio + 1, dir, perso, log );
             intercalar( esq, meio, dir, perso, log );
-            sortByName( perso, log );
+            // sortByName(perso, log);
         } // end if
     } // end mergeSort ( )
 
-    public static void intercalar( int esq, int meio, int dir, List<Personagem> perso, Log log )
-    {
-        int n1 = 0, n2 = 0, i = 0, j = 0, k = 0;
-
-        //Definir tamanho dos dois subarrays
-        n1 = meio-esq+1;
-        n2 = dir - meio;
-
-        Personagem[] a1 = new Personagem[n1];
-        Personagem[] a2 = new Personagem[n2];
-
-        //Inicializar primeiro subarray
-        for( i = 0; i < n1; i = i + 1 ){
-            a1[i] = perso.get(esq+i);
-        } // end for
-
-        //Inicializar segundo subarray
-        for( j = 0; j < n2; j = j + 1 ){
-            a2[j] = perso.get(meio+j+1);
-        } // end for
-
-        //Intercalacao propriamente dita
-        for( i = j = 0, k = esq; k <= dir; k = k + 1 ) 
-        {
-            if( compareActorNames( a1[i], a2[j] ) > 0 ) {
-                perso.set( k, perso.get( esq+i++ ) );
-                log.incrementarComp( );
-                log.incrementarMov( );
-            } else {
-                perso.set( k, perso.get( meio+j+1 ) );
-                log.incrementarMov( );
-            } // end if
-        } // end for
-
-        while( i < n1 ) 
-        {
-            perso.set(k++, a1[i++]);
-            log.incrementarMov();
-        } // end while
-        while( j < n2 ) 
-        {
-            perso.set(k++, a2[j++]);
-            log.incrementarMov();
-        } // end while
-    } // end intercalar ( )
+    public static void callMerge( List<Personagem> perso, Log log ) {
+        mergeSort( 0, perso.size( )-1, perso, log );
+        sortByName( perso, log );
+    } // end callMerge ( )
 
 } // end class
 

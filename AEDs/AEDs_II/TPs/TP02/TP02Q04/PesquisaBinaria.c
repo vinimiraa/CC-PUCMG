@@ -553,22 +553,21 @@ int main ( void )
 
     char id  [81] = { '\0' };
     char nome[81] = { '\0' };
-    char* filename = "/tmp/characters.csv"; 
+    char* filename = "/tmp/characters.csv";
     
-    scanf( "%s", id ); getchar( );
+    fgets( id, 81, stdin ); id[strcspn(id,"\n")] = '\0'; id[strcspn(id,"\r")] = '\0';
     int tam = 0;
     while( strcmp( id,"FIM" ) != 0 )
     {
         perso[tam] = ler( filename, id );
         tam++;
-        scanf( "%s", id ); getchar( );
+        fgets( id, 81, stdin ); id[strcspn(id,"\n")] = '\0'; id[strcspn(id,"\r")] = '\0';
     } // end while
 
     start_Timer( &timer );
-    scanf( "%s", nome ); getchar( );
+    fgets( nome, 81, stdin ); nome[strcspn(nome,"\n")] = '\0'; nome[strcspn(nome,"\r")] = '\0';
     while ( strcmp( nome, "FIM" ) != 0 )
     {
-
         int resp = pesquisaBinaria( nome, 0, tam, perso, &log );
         if( resp != -1 ) {
             printf( "%s\n", "SIM" );
@@ -576,7 +575,7 @@ int main ( void )
         else {
             printf( "%s\n", "NAO" );
         } // end if
-        scanf( "%s", nome ); getchar( );
+        fgets( nome, 81, stdin ); nome[strcspn(nome,"\n")] = '\0'; nome[strcspn(nome,"\r")] = '\0';
     } // end while
     end_Timer( &timer );
 

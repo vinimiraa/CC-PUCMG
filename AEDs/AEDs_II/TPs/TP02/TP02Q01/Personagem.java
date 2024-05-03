@@ -188,7 +188,7 @@ public class Personagem
         else
         {
             String tratada = "";
-            for( int p = 0, x = 0; x < alternateNames.length( ); x = x + 1 )
+            for( int x = 0; x < alternateNames.length( ); x = x + 1 )
             {
                 if( alternateNames.charAt(x) == '[' ) {
                     tratada = tratada + '{';
@@ -213,7 +213,7 @@ public class Personagem
         else
         {
             String tratada = "";
-            for( int p = 0, x = 0; x < alternateActors.length( ); x = x + 1 )
+            for( int x = 0; x < alternateActors.length( ); x = x + 1 )
             {
                 if( alternateActors.charAt(x) == '[' ) {
                     tratada = tratada + '{';

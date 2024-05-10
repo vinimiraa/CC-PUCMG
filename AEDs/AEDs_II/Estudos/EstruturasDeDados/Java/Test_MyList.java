@@ -1,8 +1,8 @@
-public class TesteLista extends Lista
+public class Test_MyList extends MyList
 {
-    public static void main( String[] args ) 
+    public static void main( String[] args ) throws Exception
     {
-        Lista array = new Lista( );   // criar vetor de inteiros com tamanho 10
+        MyList array = new MyList( );   // criar vetor de inteiros com tamanho 10
 
         System.out.println( "\nLista apos Criacao: " );  
         array.printLista();                     // mostrar o arranjo de inteiros
@@ -12,7 +12,7 @@ public class TesteLista extends Lista
         array.printLista();                     // mostrar o arranjo de inteiros
         
         System.out.println( "\nValor a ser Pesquisado = 10" );
-        System.out.println( "Pesquisa Sequencial: " + array.pesquisaSequencial(10) );
+        System.out.println( "Pesquisa Sequencial: " + array.sequentialSearch(10) );
         
         System.out.println( "\nLista Antes da Ordenacao: " );
         array.printLista();                     // mostrar o arranjo de inteiros
@@ -23,10 +23,10 @@ public class TesteLista extends Lista
         array.printLista();                     // mostrar o arranjo de inteiros
         
         System.out.println( "\nValor a ser Pesquisado = 10" );
-        System.out.println( "Pesquisa Binaria: " + array.pesquisaBinaria(10, 0, array.getSize()-1) );
+        System.out.println( "Pesquisa Binaria: " + array.binarySearch(10, 0, array.getSize()-1) );
 
-        int removido1 = array.removerInicio();
-        int removido2 = array.removerFim();
+        int removido1 = array.removeEnd();
+        int removido2 = array.removeStart();
         System.out.println( "\nValor Removido do Inicio: " + removido1 );
         System.out.println( "Valor Removido do Fim: " + removido2 );
 
@@ -36,10 +36,9 @@ public class TesteLista extends Lista
         System.out.println( "\nValor a ser Inserido no Inicio = 10 " );
         System.out.println( "Valor a ser Inserido no Fim = 10 " );
 
-        array.inserirInicio(10);          // inserir valor no inicio do arranjo
-        array.inserirFim(10);
+        array.insertStart(10);          // inserir valor no inicio do arranjo
+        array.insertEnd(10);
         System.out.println( "\nLista: " );
         array.printLista();                     // mostrar o arranjo de inteiros
-        
     } // end main ( )
 } // end class

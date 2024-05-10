@@ -1,26 +1,20 @@
 public class Queue 
 {
-    // ---------------------------------------- Atributos
-    
     protected int[] array;
     protected int   primeiro; // remover
     protected int   ultimo;   // inserir
-    
-    // ---------------------------------------- Construtores
-    
+        
     Queue( )
     {
         this( 5 );
-    } // end Fila ( )
+    } // end Queue ( )
     
     Queue( int length )
     {
         array = new int[length+1];
         primeiro = ultimo = 0;
-    } // end Fila ( )
+    } // end Queue ( )
     
-    // ---------------------------------------- Métodos Úteis
-
     public void print( )
     {
         int x = primeiro;
@@ -31,9 +25,7 @@ public class Queue
             x = (x + 1) % array.length;
         } // end while
         System.out.println( "]" );
-    } // end printFila ( )
-
-    // ---------------------------------------- Métodos de Inserção e Remoção
+    } // end print ( )
 
     public void insert( int value ) throws Exception
     {
@@ -43,7 +35,7 @@ public class Queue
         }
         array[ultimo] = value;
         ultimo = (ultimo + 1) % array.length;
-    } // end inserir ( )
+    } // end insert ( )
 
     public int remove( ) throws Exception
     {
@@ -56,6 +48,6 @@ public class Queue
         primeiro = (primeiro + 1) % array.length;
 
         return ( value );
-    } // end remover ( )
+    } // end remove ( )
 
 } // end class 

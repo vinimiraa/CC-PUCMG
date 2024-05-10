@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Lista 
+public class MyList 
 {
     // ---------------------------------------- atributos
 
@@ -10,12 +10,12 @@ public class Lista
 
     // ---------------------------------------- Construtores
 
-    public Lista( ) 
+    public MyList( ) 
     {
         this(10); // capacidade padrao de 10
     } // end Lista ( );
 
-    public Lista( int length ) 
+    public MyList( int length ) 
     {
         if( length > 0 )
         {
@@ -181,7 +181,7 @@ public class Lista
             {
                 if( array[j] > array[j+1] )
                 {
-                    int temp = array[j+1];
+                    // int temp = array[j+1];
                     swap( j, j+1 );
                 } // end if
             } // end for
@@ -222,7 +222,7 @@ public class Lista
         for( int i = 0; i < size - 1; i = i + 1 ) 
         {
             int minIndex = i;
-            for( int j = i + 1; j < n; j++ ) 
+            for( int j = i + 1; j < size; j++ ) 
             {
                 if (array[j] < array[minIndex]) {
                     minIndex = j;

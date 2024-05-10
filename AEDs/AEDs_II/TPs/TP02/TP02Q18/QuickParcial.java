@@ -418,7 +418,7 @@ class Personagem
         return ( perso );
     } // end ler ( )
 
-    public static void swap( int i, int j, List<Personagem> perso, Log log ) 
+    public static void swap( int i, int j, List<Personagem> perso, MyLog log ) 
     {
         Personagem temp = perso.get(i);
         perso.set( i, perso.get(j) );
@@ -426,7 +426,7 @@ class Personagem
         log.incrementarMov(); log.incrementarMov(); log.incrementarMov();
     } // end swap ( )
 
-    public static void quickSort( int esq, int dir, List<Personagem> perso, Log log ) 
+    public static void quickSort( int esq, int dir, List<Personagem> perso, MyLog log ) 
     {
         int i = esq, j = dir;
         String pivo = perso.get( (esq+dir)/2 ).getHouse( );
@@ -457,7 +457,7 @@ class Personagem
         } // end if
     } // end quickSort ( )
 
-    public static void sortByName( List<Personagem> perso, Log log )
+    public static void sortByName( List<Personagem> perso, MyLog log )
     {
         int n = perso.size( );
         for( int i = 0; i < n; i = i + 1 )
@@ -486,7 +486,7 @@ class Personagem
         } // end for
     } // end sortByName ( )
 
-    public static void callQuick( List<Personagem> perso, Log log ) 
+    public static void callQuick( List<Personagem> perso, MyLog log ) 
     {
         quickSort( 0, perso.size( )-1, perso, log );
         sortByName( perso, log );
@@ -502,7 +502,7 @@ public class QuickParcial extends Personagem
     {
         Scanner scan = new Scanner( System.in );
         
-        Log log = new Log( "812839_quickparcial.txt" );
+        MyLog log = new MyLog( "812839_quickparcial.txt" );
         Personagem perso = new Personagem( );
         List<Personagem> arranjo = new ArrayList<>( );
 

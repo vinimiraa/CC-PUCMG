@@ -8,6 +8,7 @@
 #include <string.h>
 
 // --------------------------- Prototypes
+
 char*  str_read          ( size_t _Size );
 int    str_len           ( const char *_Str );
 char*  str_copy          ( char *_Dest, const char *_Str );

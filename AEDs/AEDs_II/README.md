@@ -7,10 +7,10 @@ Max Machado e Felipe Domingo.
 
 ## 📑 Estrutura do Repositório
 
-- [TPs](/AEDs/AEDs-II/TPs/) : Trabalhos Práticos.
-- [Aquecimentos](/AEDs/AEDs-II/Aquecimentos/) : Atividades de Aquecimento.
-- [Estudos](/AEDs/AEDs-II/Estudos/) : Códigos desenvolvidos para estudo.
-- [Provas](/AEDs/AEDs-II/Provas/) : Resolução das Provas Práticas.
+- [TPs](/AEDs/AEDs_II/TPs/) : Trabalhos Práticos.
+- [Aquecimentos](/AEDs/AEDs_II/Aquecimentos/) : Atividades de Aquecimento.
+- [Estudos](/AEDs/AEDs_II/Estudos/) : Códigos desenvolvidos para estudo.
+- [Provas](/AEDs/AEDs_II/Provas/) : Resolução das Provas Práticas.
 
 ## 📚 Material
 

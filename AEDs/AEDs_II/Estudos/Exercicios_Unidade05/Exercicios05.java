@@ -138,9 +138,51 @@ class Agenda
         return ( i );
     }
 
-    boolean pesquisar ( String nome )
+    boolean pesquisar ( String nome ) 
+    { 
+        return ( pesquisar( nome, raiz ) );
+    }
+
+    private boolean pesquisar ( String nome, No i ) 
     {
         boolean found = false;
+        if( i == null ) {
+            found = false;
+        } else if( nome.charAt(0) < i.letra ) {
+            found = pesquisar( nome, i.esq );
+        } else if( nome.charAt(0) > i.letra ) {
+            found = pesquisar( nome, i.dir );
+        } else {
+            for( Celula j = i.primeiro.prox; (!found && j != null); j = j.prox ) {
+                if( j.contato.nome.equals(nome) == true ) {
+                    found = true;
+                }
+            }
+        }
+        return ( found );
+    }
+
+    boolean pesquisar ( int cpf ) 
+    { 
+        return ( pesquisar( cpf, raiz ) );
+    }
+
+    private boolean pesquisar ( int cpf, No i ) 
+    {
+        boolean found = false;
+        if( i == null ) {
+            found = false;
+        } else if( cpf < i.letra ) {
+            found = pesquisar( cpf, i.esq );
+        } else if( cpf > i.letra ) {
+            found = pesquisar( cpf, i.dir );
+        } else {
+            for( Celula j = i.primeiro.prox; (!found && j != null); j = j.prox ) {
+                if( j.contato.cpf == cpf ) {
+                    found = true;
+                }
+            }
+        }
         return ( found );
     }
 
@@ -166,7 +208,6 @@ class Agenda
             caminhar( i.dir );
         }
     }
-
 } // end class
 
 public class Exercicios05 
@@ -193,7 +234,12 @@ public class Exercicios05
             agenda.inserir( pessoas2[i] );
             // System.out.println( i );
         }
-
         agenda.caminhar( );
+
+        System.out.println( "Resultado da Pesquisa Por Nome \"Mnome\" : " + agenda.pesquisar( "Mnome" ) );
+        System.out.println( "Resultado da Pesquisa Por Nome \"hnome\" : " + agenda.pesquisar( "hnome" ) );
+
+        System.out.println( "Resultado da Pesquisa Por CPF \"123456789\" : " + agenda.pesquisar( 123456789 ) );
+        System.out.println( "Resultado da Pesquisa Por CPF \"987654321\" : " + agenda.pesquisar( 987654321 ) );
     } // end main ( )
 } // end class

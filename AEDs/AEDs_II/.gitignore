@@ -98,3 +98,6 @@ dkms.conf
 *.la
 *.a
 *.lib
+
+#vscode folder
+.vscode/

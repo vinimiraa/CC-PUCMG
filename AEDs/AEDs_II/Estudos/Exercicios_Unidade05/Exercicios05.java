@@ -238,8 +238,9 @@ public class Exercicios05
 
         System.out.println( "Resultado da Pesquisa Por Nome \"Mnome\" : " + agenda.pesquisar( "Mnome" ) );
         System.out.println( "Resultado da Pesquisa Por Nome \"hnome\" : " + agenda.pesquisar( "hnome" ) );
-
+        System.out.println( "" );
         System.out.println( "Resultado da Pesquisa Por CPF \"123456789\" : " + agenda.pesquisar( 123456789 ) );
         System.out.println( "Resultado da Pesquisa Por CPF \"987654321\" : " + agenda.pesquisar( 987654321 ) );
+        System.out.println( "" );
     } // end main ( )
 } // end class

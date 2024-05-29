@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP02Q09 - 21 / 04 / 2024
+ *  TP03Q01 - 27 / 05 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac Heap.java
- *       Windows: javac Heap.java
+ *       Linux : javac ListaSeq.java
+ *       Windows: javac ListaSeq.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java Heap
- *       Windows: java Heap
+ *       Linux : java ListaSeq
+ *       Windows: java ListaSeq
  *   
 */
 
@@ -51,7 +51,7 @@ class Lista
     {
         if( this.tamanho >= personagens.length ) {
             throw new Exception( "ERRO: Nao foi possivel inserir (fim)!" );
-        }
+        } // end if
         this.personagens[this.tamanho] = personagem;
         this.tamanho++;
     } // end inserirFim ( )
@@ -60,7 +60,7 @@ class Lista
     {
         if( this.tamanho >= personagens.length ) {
             throw new Exception( "ERRO: Nao foi possivel inserir (inicio)!" );
-        }
+        } // end if
         for( int i = this.tamanho; i > 0; i = i - 1 )
         {
             this.personagens[i] = this.personagens[i-1];
@@ -74,7 +74,7 @@ class Lista
         Personagem personagem = null;
         if( this.tamanho == 0 ) {
             throw new Exception( "ERRO: Lista Vazia!" );
-        }
+        } // end if
         this.tamanho--;
         personagem = this.personagens[tamanho];
         return ( personagem );
@@ -85,7 +85,7 @@ class Lista
         Personagem personagem = null;
         if( this.tamanho == 0 ) {
             throw new Exception( "ERRO: Lista Vazia!" );
-        }
+        } // end if
         personagem = this.personagens[0];
         this.tamanho--;
         for( int i = 0; i < this.tamanho; i = i + 1 )

@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP03Q01 - 27 / 05 / 2024
+ *  TP03Q06 - 30 / 05 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac ListaSeq.java
- *       Windows: javac ListaSeq.java
+ *       Linux : javac PilhaFlex.java
+ *       Windows: javac PilhaFlex.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java ListaSeq
- *       Windows: java ListaSeq
+ *       Linux : java PilhaFlex
+ *       Windows: java PilhaFlex
  *   
 */
 
@@ -25,113 +25,70 @@ import java.io.FileNotFoundException;
 import java.time.format.DateTimeFormatter;
 
 /**
- *  Classe Lista : Lista Sequencial
+ *  Classe Celula
  */
-class Lista
+class Celula
 {
-    private Personagem [] personagens;
-    private int tamanho;
+    Personagem elemento;
+    Celula     prox;
 
-    public Lista ( )
+    public Celula ( )
     {
-        this.personagens = null;
-        this.tamanho = 0;
-    } // end Lista ( )
+        this( null );
+    } // end Celula ( )
 
-    public Lista ( int tamanho )
+    public Celula ( Personagem personagem )
     {
-        if( tamanho > 0 )
-        {
-            this.personagens = new Personagem[tamanho];
-            this.tamanho = 0;
-        } // end if
-    } // end Lista ( )
+        this.elemento = personagem;
+        this.prox = null;
+    } // end Celula ( )
+} // end class Celula
 
-    public void inserirFim ( Personagem personagem ) throws Exception
-    {
-        if( this.tamanho >= personagens.length ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir (fim)!" );
-        } // end if
-        this.personagens[this.tamanho] = personagem;
-        this.tamanho++;
-    } // end inserirFim ( )
+/**
+ *  Classe Pilha : Pilha Flexivel
+ */
+class Pilha
+{
+    private Celula topo;
 
-    public void inserirInicio ( Personagem personagem ) throws Exception
+    public Pilha ( )
     {
-        if( this.tamanho >= personagens.length ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir (inicio)!" );
-        } // end if
-        for( int i = this.tamanho; i > 0; i = i - 1 )
-        {
-            this.personagens[i] = this.personagens[i-1];
-        } // end for
-        this.personagens[0] = personagem;
-        this.tamanho++;
-    } // end inserirInicio ( )
+        topo = null;
+    } // end Pilha ( )
 
-    public Personagem removerFim ( ) throws Exception
+    public void inserir ( Personagem personagem ) throws Exception
     {
-        Personagem personagem = null;
-        if( this.tamanho == 0 ) {
-            throw new Exception( "ERRO: Lista Vazia!" );
-        } // end if
-        this.tamanho--;
-        personagem = this.personagens[tamanho];
-        return ( personagem );
-    } // end removerFim ( )
-
-    public Personagem removerInicio ( ) throws Exception
-    {
-        Personagem personagem = null;
-        if( this.tamanho == 0 ) {
-            throw new Exception( "ERRO: Lista Vazia!" );
-        } // end if
-        personagem = this.personagens[0];
-        this.tamanho--;
-        for( int i = 0; i < this.tamanho; i = i + 1 )
-        {
-            this.personagens[i] = this.personagens[i+1];
-        } // end for
-        return ( personagem );
-    } // end removerInicio ( )
-
-    public void inserir ( Personagem personagem, int index ) throws Exception
-    {
-        if( index >= personagens.length || index < 0 || this.tamanho < index ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir!" );
-        }
-        for( int i = this.tamanho; i > index; i = i - 1 )
-        {
-            this.personagens[i] = this.personagens[i-1];
-        } // end for
-        this.personagens[index] = personagem;
-        this.tamanho++;
+        Celula temp = new Celula( personagem );
+        temp.prox = topo;
+		topo = temp;
+        temp = null;
     } // end inserir ( )
 
-    public Personagem remover ( int index ) throws Exception
+    public Personagem remover ( ) throws Exception
     {
-        Personagem personagem = null;
-        if( index == 0 || index < 0 || this.tamanho < index ) {
-            throw new Exception( "ERRO: Nao foi possivel remover!" );
-        }
-        personagem = this.personagens[index];
-        this.tamanho--;
-        for( int i = index; i < tamanho; i = i + 1 )
-        {
-            this.personagens[i] = this.personagens[i+1];
-        } // end for
-        return ( personagem );
+        if( topo == null ) {
+			throw new Exception("Erro ao remover!");
+		} // end if
+		Personagem perso = topo.elemento;
+		Celula tmp = topo;
+		topo = topo.prox;
+		tmp.prox = null;
+		tmp = null;
+		return ( perso );
     } // end remover ( )
 
     public void mostrar ( )
-    {
-        for( int i = 0; i < this.tamanho; i = i + 1 )
+    {   
+        int j = 0;
+        System.out.println( "[ Top ]" );
+        for( Celula i = topo; i != null; i = i.prox, j = j + 1 )
         {
-            this.personagens[i].imprimir( i );
+            i.elemento.imprimir( j );
         } // end for
+        System.out.println( "[ Bottom ]" );
     } // end mostrar ( )
 
-} // end class Lista
+} // end class Pilha
 
 /**
  *  Classe Personagem : Modelo Personagem de Harry Potter
@@ -485,22 +442,22 @@ class Personagem
 } // end class Personagem
 
 /**
- * Classe ListaSeq : Teste
+ * Classe PilhaFlex : Teste
  */
-public class ListaSeq extends Personagem
+public class PilhaFlex extends Personagem
 {
     public static void main ( String [] args ) throws Exception
     {
         Scanner scan = new Scanner( System.in );
         
         Personagem perso = new Personagem( );
-        Lista lista = new Lista( 405 );
+        Pilha pilha = new Pilha( );
 
         // fazer a leitura dos dados
         String input = scan.nextLine( );
         while( !isFim( input ) )
         {
-            lista.inserirFim( perso.ler( input ) );
+            pilha.inserir( perso.ler( input ) );
             input = scan.nextLine( );
         } // end while
         
@@ -510,34 +467,17 @@ public class ListaSeq extends Personagem
         {
             input = scan.nextLine( );
             String[] str = input.split( " " );
-            Personagem outro;
             try 
             {
                 switch( str[0] ) 
                 {
-                    case "II":
-                        outro = perso.ler( str[1] );
-                        lista.inserirInicio( outro );
+                    case "I":
+                        perso = perso.ler( str[1] );
+                        pilha.inserir( perso );
                         break;
-                    case "IF":
-                        outro = perso.ler( str[1] );
-                        lista.inserirFim( outro );
-                        break;
-                    case "I*":
-                        outro = perso.ler( str[2] );
-                        lista.inserir( outro, Integer.parseInt(str[1]) );
-                        break;
-                    case "RI":
-                        outro = lista.removerInicio( );
-                        System.out.println( "(R) " + outro.getName( ) );
-                        break;
-                    case "RF":
-                        outro = lista.removerFim( );
-                        System.out.println( "(R) " + outro.getName( ) );
-                        break;
-                    case "R*":
-                        outro = lista.remover( Integer.parseInt( str[1] ) );
-                        System.out.println( "(R) " + outro.getName( ) );
+                    case "R":
+                        perso = pilha.remover( );
+                        System.out.println( "(R) " + perso.getName( ) );
                         break;
                     default:
                         break;
@@ -546,7 +486,7 @@ public class ListaSeq extends Personagem
                 e.getMessage();
             } // end try catch
         } // end for
-        lista.mostrar( );
+        pilha.mostrar( );
         scan.close( );
     } // end main ( )
-} // end class ListaSeq
+} // end class PilhaFlex

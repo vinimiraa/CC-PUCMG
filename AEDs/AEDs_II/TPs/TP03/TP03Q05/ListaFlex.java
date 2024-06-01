@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP03Q01 - 27 / 05 / 2024
+ *  TP03Q05 - 30 / 05 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac ListaSeq.java
- *       Windows: javac ListaSeq.java
+ *       Linux : javac ListaFlex.java
+ *       Windows: javac ListaFlex.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java ListaSeq
- *       Windows: java ListaSeq
+ *       Linux : java ListaFlex
+ *       Windows: java ListaFlex
  *   
 */
 
@@ -25,109 +25,154 @@ import java.io.FileNotFoundException;
 import java.time.format.DateTimeFormatter;
 
 /**
- *  Classe Lista : Lista Sequencial
+ *  Classe Celula
+ */
+class Celula
+{
+    Personagem elemento;
+    Celula     prox;
+
+    public Celula ( )
+    {
+        this( null );
+    } // end Celula ( )
+
+    public Celula ( Personagem personagem )
+    {
+        this.elemento = personagem;
+        this.prox = null;
+    } // end Celula ( )
+} // end class Celula
+
+/**
+ *  Classe Lista : Lista Flexivel
  */
 class Lista
 {
-    private Personagem [] personagens;
-    private int tamanho;
+    private Celula primeiro;
+    private Celula ultimo;
 
     public Lista ( )
     {
-        this.personagens = null;
-        this.tamanho = 0;
-    } // end Lista ( )
-
-    public Lista ( int tamanho )
-    {
-        if( tamanho > 0 )
-        {
-            this.personagens = new Personagem[tamanho];
-            this.tamanho = 0;
-        } // end if
+        primeiro = new Celula( );
+        ultimo = primeiro;
     } // end Lista ( )
 
     public void inserirFim ( Personagem personagem ) throws Exception
     {
-        if( this.tamanho >= personagens.length ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir (fim)!" );
-        } // end if
-        this.personagens[this.tamanho] = personagem;
-        this.tamanho++;
+        ultimo.prox = new Celula( personagem );
+        ultimo = ultimo.prox;
     } // end inserirFim ( )
 
     public void inserirInicio ( Personagem personagem ) throws Exception
     {
-        if( this.tamanho >= personagens.length ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir (inicio)!" );
-        } // end if
-        for( int i = this.tamanho; i > 0; i = i - 1 )
-        {
-            this.personagens[i] = this.personagens[i-1];
-        } // end for
-        this.personagens[0] = personagem;
-        this.tamanho++;
+        Celula temp = new Celula( personagem );
+        temp.prox = primeiro.prox;
+		primeiro.prox = temp;
+		if( primeiro == ultimo ) {                 
+			ultimo = temp;
+		} // end if
+        temp = null;
     } // end inserirInicio ( )
 
     public Personagem removerFim ( ) throws Exception
     {
-        Personagem personagem = null;
-        if( this.tamanho == 0 ) {
-            throw new Exception( "ERRO: Lista Vazia!" );
-        } // end if
-        this.tamanho--;
-        personagem = this.personagens[tamanho];
-        return ( personagem );
+        if( primeiro == ultimo ) {
+			throw new Exception( "Erro ao remover (vazia)!" );
+		} // end if
+
+		// Caminhar ate a penultima celula:
+        Celula i;
+        for( i = primeiro; i.prox != ultimo; i = i.prox );
+
+        Personagem perso = ultimo.elemento; 
+        ultimo = i; 
+        i = ultimo.prox = null;
+        
+		return ( perso );
     } // end removerFim ( )
 
     public Personagem removerInicio ( ) throws Exception
     {
-        Personagem personagem = null;
-        if( this.tamanho == 0 ) {
-            throw new Exception( "ERRO: Lista Vazia!" );
-        } // end if
-        personagem = this.personagens[0];
-        this.tamanho--;
-        for( int i = 0; i < this.tamanho; i = i + 1 )
-        {
-            this.personagens[i] = this.personagens[i+1];
-        } // end for
-        return ( personagem );
+        if( primeiro == ultimo ) {
+			throw new Exception( "Erro ao remover (vazia)!" );
+		} // end if
+
+        Celula temp = primeiro;
+		primeiro = primeiro.prox;
+		Personagem perso = primeiro.elemento;
+        temp.prox = null;
+        temp = null;
+		return ( perso );
     } // end removerInicio ( )
 
     public void inserir ( Personagem personagem, int index ) throws Exception
     {
-        if( index >= personagens.length || index < 0 || this.tamanho < index ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir!" );
-        }
-        for( int i = this.tamanho; i > index; i = i - 1 )
+        int tamanho = tamanho( );
+
+        if( index < 0 || index > tamanho ) {
+            throw new Exception( "Erro ao inserir posicao (" + index + " / tamanho = " + tamanho + ") invalida!" );
+        } else if( index == 0 ) {
+            inserirInicio( personagem );
+        } else if( index == tamanho ) {
+            inserirFim( personagem );
+        } 
+        else 
         {
-            this.personagens[i] = this.personagens[i-1];
-        } // end for
-        this.personagens[index] = personagem;
-        this.tamanho++;
+	    	// Caminhar ate a posicao anterior a insercao
+            Celula i = primeiro;
+            for( int j = 0; j < index; j++, i = i.prox );
+        
+            Celula temp = new Celula( personagem );
+            temp.prox = i.prox;
+            i.prox = temp;
+            temp = i = null;
+        } // end if
     } // end inserir ( )
 
     public Personagem remover ( int index ) throws Exception
     {
-        Personagem personagem = null;
-        if( index == 0 || index < 0 || this.tamanho < index ) {
-            throw new Exception( "ERRO: Nao foi possivel remover!" );
-        }
-        personagem = this.personagens[index];
-        this.tamanho--;
-        for( int i = index; i < tamanho; i = i + 1 )
+        Personagem perso = null;
+        int tamanho = tamanho( );
+
+        if( primeiro == ultimo ) {
+            throw new Exception( "Erro ao remover (vazia)!" );
+        } else if( index < 0 || index >= tamanho ) {
+            throw new Exception( "Erro ao remover (posicao " + index + " / " + tamanho + " invalida!" );
+        } else if( index == 0 ) {
+            perso = removerInicio( );
+        } else if( index == tamanho - 1 ) {
+            perso = removerFim( );
+        } 
+        else 
         {
-            this.personagens[i] = this.personagens[i+1];
-        } // end for
-        return ( personagem );
+            // Caminhar ate a posicao anterior a insercao
+            Celula i = primeiro;
+            for( int j = 0; j < index; j++, i = i.prox );
+            
+            Celula temp = i.prox;
+            perso = temp.elemento;
+            i.prox = temp.prox;
+            temp.prox = null;
+            i = temp = null;
+        } // end if
+
+		return ( perso );
     } // end remover ( )
 
-    public void mostrar ( )
+    public int tamanho ( ) 
     {
-        for( int i = 0; i < this.tamanho; i = i + 1 )
+        int length = 0; 
+        for( Celula i = primeiro; i != ultimo; i = i.prox, length++ );
+        return ( length );
+    } // end length ( )
+
+    public void mostrar ( )
+    {   
+        int j = 0;
+        for( Celula i = primeiro.prox; i != null; i = i.prox, j = j + 1 )
         {
-            this.personagens[i].imprimir( i );
+            i.elemento.imprimir( j );
         } // end for
     } // end mostrar ( )
 
@@ -485,16 +530,16 @@ class Personagem
 } // end class Personagem
 
 /**
- * Classe ListaSeq : Teste
+ * Classe ListaFlex : Teste
  */
-public class ListaSeq extends Personagem
+public class ListaFlex extends Personagem
 {
     public static void main ( String [] args ) throws Exception
     {
         Scanner scan = new Scanner( System.in );
         
         Personagem perso = new Personagem( );
-        Lista lista = new Lista( 405 );
+        Lista lista = new Lista( );
 
         // fazer a leitura dos dados
         String input = scan.nextLine( );
@@ -549,4 +594,4 @@ public class ListaSeq extends Personagem
         lista.mostrar( );
         scan.close( );
     } // end main ( )
-} // end class ListaSeq
+} // end class ListaFlex

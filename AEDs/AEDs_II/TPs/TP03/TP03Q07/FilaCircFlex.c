@@ -442,29 +442,44 @@ Personagem* ler( char* filename, char* id_procurado )
     return ( perso );
 } // end ler ( )
 
+// ---------------------------------- Struct Celula
+
+typedef struct s_Celula
+{
+    Personagem* perso;
+    Celula* prox;
+} Celula;
+
+Celula* new_Celula ( Personagem* personagem )
+{
+    Celula* nova = (Celula*) malloc( sizeof(Celula) );
+    nova->perso = personagem;
+    nova->prox = NULL;
+    return ( nova );
+} // end new_Celula ( )
+
 // ---------------------------------- Struct Lista
 
 typedef struct s_Lista
 {
-    Personagem** perso;
+    Celula* primeiro;
+    Celula* ultimo;
     int tamanho;
     int MAXTAM;
 } Lista;
 
 // ---------------------------------- Funções - Lista
 
-Lista* new_Lista ( int tamanho )
+Lista* new_Lista (  )
 {
     Lista* lista = (Lista*) malloc( sizeof(Lista) );
     if( lista != NULL )
     {
-        if( tamanho > 0 )
-        {
-            lista->perso = (Personagem**) malloc ( tamanho * sizeof(Personagem*) );
-            lista->tamanho = 0;
-        } // end if
+        lista->primeiro = new_Celula( NULL );
+        lista->ultimo = lista->primeiro;
+        lista->tamanho = 0;
+        lista->MAXTAM = 5;
     } // end if
-    lista->MAXTAM = 405;
     return( lista );
 } // end new_Lista ( )
 
@@ -472,99 +487,46 @@ void delete_Lista ( Lista* lista )
 {
     if( lista != NULL )
     {
-        if( lista->perso != NULL )
+        if( lista->primeiro != NULL )
         {
-            for( int i = 0; i < lista->tamanho; i = i + 1 ) 
+            for( Celula* i = 0; i != NULL; i = i->prox ) 
             {
-                delete_Personagem( lista->perso[i] ); 
+                delete_Personagem( lista->primeiro->perso ); 
             } // end for
         } // end if
-        free( lista->perso ); lista->perso = NULL;
+        free( lista->primeiro ); lista->primeiro = NULL;
+        free( lista->ultimo ); lista->ultimo = NULL;
         free( lista ); lista = NULL;
     } // end if
 } // end delete_Lista ( )
 
-void inserirFim ( Lista* lista, Personagem* perso )
+void inserir ( Lista* lista, Personagem* perso )
 {
-    if( lista->tamanho >= lista->MAXTAM ) {
-        printf( "\n%s\n", "ERRO: Nao foi possivel inserir (fim)!" );
-        exit( 1 );
+    Celula *temp = new_celula( perso );
+    temp->prox = lista->primeiro->prox;
+    lista->primeiro->prox = temp;
+    if( lista->primeiro == lista->ultimo ) {
+        lista->ultimo = temp;
     } // end if
-    lista->perso[lista->tamanho] = perso;
     lista->tamanho++;
-} // end inserirFim ( )
-
-void inserirInicio ( Lista* lista, Personagem* perso )
-{
-    if( lista->tamanho >= lista->MAXTAM ) {
-        printf ( "\n%s\n", "ERRO: Nao foi possivel inserir (inicio)!");
-        exit( 1 );
-    } // end if
-    for( int i = lista->tamanho; i > 0; i = i - 1 )
-    {
-        lista->perso[i] = lista->perso[i-1];
-    } // end for
-    lista->perso[0] = perso;
-    lista->tamanho++;
-} // end inserirInicio ( )
-
-Personagem* removerInicio( Lista* lista ) 
-{
-    if( lista->tamanho == 0 ) {
-        printf( "\n%s\n", "ERRO: Lista Vazia!" );
-        exit( 1 );
-    } // end if
-    Personagem* resp = lista->perso[0];
-    lista->tamanho--;
-    for( int i = 0; i < lista->tamanho; i = i + 1 ) {
-        lista->perso[i] = lista->perso[i+1];
-    } // end for
-    return ( resp );
-} // end removerInicio ( )
-
-Personagem* removerFim ( Lista* lista )
-{
-    if( lista->tamanho == 0 ) {
-        printf( "\n%s\n", "ERRO: Lista Vazia!" );
-        exit( 1 );
-    } // end if
-    return ( lista->perso[--lista->tamanho] );
-} // end removerFim ( )
-
-void inserir ( Lista* lista, Personagem* perso, int index ) 
-{
-    if( lista->tamanho >= lista->MAXTAM || index < 0 || index > lista->tamanho ) {
-        printf( "\n%s\n", "ERRRO: Nao foi possivel inserir!");
-        exit( 1 );
-    } // end if
-    for( int i = lista->tamanho; i > index; i = i - 1 ) {
-        lista->perso[i] = lista->perso[i-1];
-    } // end for
-    lista->perso[index] = perso;
-    lista->tamanho++;
+    temp = NULL;
 } // end inserir ( )
 
-Personagem* remover( Lista* lista, int index ) 
+Personagem* remover ( Lista* lista ) 
 {
-    if( lista->tamanho == 0 || index < 0 || index >= lista->tamanho ) {
-        printf( "\n%s\n", "Erro ao remover!");
+    if( lista->primeiro == lista->ultimo ) {
+        errx(1, "Erro ao remover!");
     } // end if
-    Personagem* resp = lista->perso[index];
-    lista->tamanho--;
-    for( int i = index; i < lista->tamanho; i = i + 1 )
-    {
-        lista->perso[i] = lista->perso[i+1];
-    } // end for
-    return ( resp );
-} // end remover ( )
 
-void mostrar ( Lista* lista )
-{
-    for( int i = 0; i < lista->tamanho; i = i + 1 )
-    {
-        imprimir2( i, lista->perso[i] );
-    } // end for ( )
-} // end mostrar ( )
+    Celula* tmp = lista->primeiro;
+    lista->primeiro = lista->primeiro->prox;
+    Personagem* perso = lista->primeiro->perso;
+    tmp->prox = NULL;
+    free( tmp );
+    tmp = NULL;
+
+    return ( perso );
+} // end remover ( )
 
 // ---------------------------------- Funções - String
 
@@ -600,38 +562,13 @@ int main ( void )
         {
             scanf( "%s", id );
             perso = ler( filename, id );
-            inserirInicio( lista, perso );
-        }
-        else if( strcmp(input, "IF") == 0 ) 
-        {
-            scanf( "%s", id );
-            perso = ler( filename, id );
-            inserirFim( lista, perso );
-        }
-        else if( strcmp(input, "I*") == 0 ) 
-        {
-            int index = 0;
-            scanf( "%d %s", &index, id );
-            perso = ler( filename, id );
-            inserir( lista, perso, index );
-        }
-        else if( strcmp(input, "RI") == 0 ) 
-        {
-            perso = removerInicio( lista );
-            printf( "(R) %s\n", getName( perso ) );
+            inserir( lista, perso );
         }
         else if( strcmp(input, "RF") == 0 ) 
         {
-            perso = removerFim( lista );
+            perso = remover( lista );
             printf( "(R) %s\n", getName( perso ) );
         }
-        else if( strcmp(input, "R*") == 0 ) 
-        {
-            int index = 0;
-            scanf( "%d", &index );
-            perso = remover( lista, index );
-            printf( "(R) %s\n", getName( perso ) );
-        } // end if
     } // end for
     mostrar( lista );
 

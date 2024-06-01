@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP03Q01 - 27 / 05 / 2024
+ *  TP03Q03 - 29 / 05 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac ListaSeq.java
- *       Windows: javac ListaSeq.java
+ *       Linux : javac PilhaSeq.java
+ *       Windows: javac PilhaSeq.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java ListaSeq
- *       Windows: java ListaSeq
+ *       Linux : java PilhaSeq
+ *       Windows: java PilhaSeq
  *   
 */
 
@@ -25,113 +25,59 @@ import java.io.FileNotFoundException;
 import java.time.format.DateTimeFormatter;
 
 /**
- *  Classe Lista : Lista Sequencial
+ *  Classe Pilha : Pilha Sequencial
  */
-class Lista
+class Pilha
 {
     private Personagem [] personagens;
     private int tamanho;
 
-    public Lista ( )
+    public Pilha ( )
     {
         this.personagens = null;
         this.tamanho = 0;
-    } // end Lista ( )
+    } // end Pilha ( )
 
-    public Lista ( int tamanho )
+    public Pilha ( int tamanho )
     {
         if( tamanho > 0 )
         {
             this.personagens = new Personagem[tamanho];
             this.tamanho = 0;
         } // end if
-    } // end Lista ( )
+    } // end Pilha ( )
 
-    public void inserirFim ( Personagem personagem ) throws Exception
+    public void inserir ( Personagem personagem ) throws Exception
     {
         if( this.tamanho >= personagens.length ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir (fim)!" );
+            throw new Exception( "ERRO: Nao foi possivel inserir!" );
         } // end if
         this.personagens[this.tamanho] = personagem;
         this.tamanho++;
-    } // end inserirFim ( )
+    } // end inserir ( )
 
-    public void inserirInicio ( Personagem personagem ) throws Exception
-    {
-        if( this.tamanho >= personagens.length ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir (inicio)!" );
-        } // end if
-        for( int i = this.tamanho; i > 0; i = i - 1 )
-        {
-            this.personagens[i] = this.personagens[i-1];
-        } // end for
-        this.personagens[0] = personagem;
-        this.tamanho++;
-    } // end inserirInicio ( )
-
-    public Personagem removerFim ( ) throws Exception
+    public Personagem remover ( ) throws Exception
     {
         Personagem personagem = null;
         if( this.tamanho == 0 ) {
-            throw new Exception( "ERRO: Lista Vazia!" );
+            throw new Exception( "ERRO: Pilha Vazia!" );
         } // end if
         this.tamanho--;
         personagem = this.personagens[tamanho];
-        return ( personagem );
-    } // end removerFim ( )
-
-    public Personagem removerInicio ( ) throws Exception
-    {
-        Personagem personagem = null;
-        if( this.tamanho == 0 ) {
-            throw new Exception( "ERRO: Lista Vazia!" );
-        } // end if
-        personagem = this.personagens[0];
-        this.tamanho--;
-        for( int i = 0; i < this.tamanho; i = i + 1 )
-        {
-            this.personagens[i] = this.personagens[i+1];
-        } // end for
-        return ( personagem );
-    } // end removerInicio ( )
-
-    public void inserir ( Personagem personagem, int index ) throws Exception
-    {
-        if( index >= personagens.length || index < 0 || this.tamanho < index ) {
-            throw new Exception( "ERRO: Nao foi possivel inserir!" );
-        }
-        for( int i = this.tamanho; i > index; i = i - 1 )
-        {
-            this.personagens[i] = this.personagens[i-1];
-        } // end for
-        this.personagens[index] = personagem;
-        this.tamanho++;
-    } // end inserir ( )
-
-    public Personagem remover ( int index ) throws Exception
-    {
-        Personagem personagem = null;
-        if( index == 0 || index < 0 || this.tamanho < index ) {
-            throw new Exception( "ERRO: Nao foi possivel remover!" );
-        }
-        personagem = this.personagens[index];
-        this.tamanho--;
-        for( int i = index; i < tamanho; i = i + 1 )
-        {
-            this.personagens[i] = this.personagens[i+1];
-        } // end for
         return ( personagem );
     } // end remover ( )
 
     public void mostrar ( )
     {
-        for( int i = 0; i < this.tamanho; i = i + 1 )
+        System.out.println( "[ Top ]" );
+        for( int i = this.tamanho-1, j = 0; i >= 0; i = i - 1, j = j + 1 )
         {
-            this.personagens[i].imprimir( i );
+            this.personagens[i].imprimir( j );
         } // end for
+        System.out.println( "[ Bottom ]" );
     } // end mostrar ( )
 
-} // end class Lista
+} // end class Pilha
 
 /**
  *  Classe Personagem : Modelo Personagem de Harry Potter
@@ -485,59 +431,42 @@ class Personagem
 } // end class Personagem
 
 /**
- * Classe ListaSeq : Teste
+ * Classe PilhaSeq : Teste
  */
-public class ListaSeq extends Personagem
+public class PilhaSeq extends Personagem
 {
     public static void main ( String [] args ) throws Exception
     {
         Scanner scan = new Scanner( System.in );
         
+        Pilha pilha = new Pilha( 405 );
         Personagem perso = new Personagem( );
-        Lista lista = new Lista( 405 );
 
         // fazer a leitura dos dados
         String input = scan.nextLine( );
         while( !isFim( input ) )
         {
-            lista.inserirFim( perso.ler( input ) );
+            pilha.inserir( perso.ler( input ) );
             input = scan.nextLine( );
         } // end while
         
-        // fazer a leitura dos metodos 
+        // fazer a leitura dos metodos
         int tam = scan.nextInt( );
         for( int i = 0; i <= tam; i = i + 1 ) 
         {
             input = scan.nextLine( );
             String[] str = input.split( " " );
-            Personagem outro;
             try 
             {
                 switch( str[0] ) 
                 {
-                    case "II":
-                        outro = perso.ler( str[1] );
-                        lista.inserirInicio( outro );
+                    case "I":
+                        perso = perso.ler( str[1] );
+                        pilha.inserir( perso );
                         break;
-                    case "IF":
-                        outro = perso.ler( str[1] );
-                        lista.inserirFim( outro );
-                        break;
-                    case "I*":
-                        outro = perso.ler( str[2] );
-                        lista.inserir( outro, Integer.parseInt(str[1]) );
-                        break;
-                    case "RI":
-                        outro = lista.removerInicio( );
-                        System.out.println( "(R) " + outro.getName( ) );
-                        break;
-                    case "RF":
-                        outro = lista.removerFim( );
-                        System.out.println( "(R) " + outro.getName( ) );
-                        break;
-                    case "R*":
-                        outro = lista.remover( Integer.parseInt( str[1] ) );
-                        System.out.println( "(R) " + outro.getName( ) );
+                    case "R":
+                        perso = pilha.remover( );
+                        System.out.println( "(R) " + perso.getName( ) );
                         break;
                     default:
                         break;
@@ -546,7 +475,7 @@ public class ListaSeq extends Personagem
                 e.getMessage();
             } // end try catch
         } // end for
-        lista.mostrar( );
+        pilha.mostrar( );
         scan.close( );
     } // end main ( )
-} // end class ListaSeq
+} // end class PilhaSeq

@@ -442,7 +442,7 @@ Personagem* ler( char* filename, char* id_procurado )
     return ( perso );
 } // end ler ( )
 
-// ---------------------------------- Struct Lista
+// ---------------------------------- Struct Lista Sequencial
 
 typedef struct s_Lista
 {
@@ -451,7 +451,7 @@ typedef struct s_Lista
     int MAXTAM;
 } Lista;
 
-// ---------------------------------- Funções - Lista
+// ---------------------------------- Funções - Lista Sequencial
 
 Lista* new_Lista ( int tamanho )
 {
@@ -565,8 +565,6 @@ void mostrar ( Lista* lista )
         imprimir2( i, lista->perso[i] );
     } // end for ( )
 } // end mostrar ( )
-
-// ---------------------------------- Funções - String
 
 /**
  *  Função Principal.

@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP03Q0 - 31 / 05 / 2024
+ *  TP03Q08 - 10 / 04 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : gcc -o FilaCircFlex FilaCircFlex.c
- *       Windows: gcc -o FilaCircFlex FilaCircFlex.c
+ *       Linux : gcc -o ListaDuplaFlex ListaDuplaFlex.c
+ *       Windows: gcc -o ListaDuplaFlex ListaDuplaFlex.c
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : ./FilaCircFlex
- *       Windows: FilaCircFlex
+ *       Linux : ./ListaDuplaFlex
+ *       Windows: ListaDuplaFlex
  *   
 */
 
@@ -27,6 +27,74 @@
 #include <time.h>
 #include <wchar.h>   
 #include <locale.h>
+#include <stdarg.h>
+
+// ---------------------------------- Tratamento de Erro
+
+void errx ( int eval, const char *fmt, ... )
+{
+    va_list args;
+    va_start( args, fmt );
+    vfprintf( stderr, fmt, args );
+    va_end( args );
+    fprintf( stderr, "\n" );
+    exit( eval );
+} // end errx ( )
+
+// ---------------------------------- Struct Timer
+
+typedef struct s_Timer
+{
+    clock_t startTime;
+    clock_t endTime  ;
+    double  totalTime;
+} Timer;
+
+Timer new_Timer( )
+{
+    Timer timer;
+    timer.startTime = 0;
+    timer.endTime = 0;
+    timer.totalTime = 0;
+    return ( timer );
+} // end new_Timer ( )
+
+void start_Timer( Timer* time ) {
+    time->startTime = clock( );
+} // end startTime ( )
+
+void end_Timer( Timer* time ) {
+    time->endTime = clock( );
+} // end endTime ( )
+
+double total_Timer( Timer* time ) {
+    time->totalTime = difftime( time->endTime, time->startTime ) * 1000;
+    return ( time->totalTime );
+} // end timeTotal ( )
+
+// ---------------------------------- Struct Log
+
+typedef struct s_Log
+{
+    int comparacoes;
+    int movimentacoes;
+} Log;
+
+Log new_Log( )
+{
+    Log log;
+    log.movimentacoes = 0;
+    log.comparacoes = 0;
+    return ( log ); 
+} // end new_Log ( )
+
+void registro( char* filename, Timer* time, Log* log )
+{
+    FILE *file = fopen( filename, "wt" );
+    fprintf( file, "812839\tComparacoes: %d\tMovimentacoes: %d\tTempo de Execucao(ms): %lf\n",
+                        log->comparacoes, log->movimentacoes, total_Timer( time ) );
+    fclose( file );
+} // end registro ( )
 
 // ---------------------------------- Struct Pesonagem
 
@@ -52,7 +120,7 @@ typedef struct s_Personagem
     bool    wizard          ; 
 } Personagem;
 
-// ---------------------------------- Funções - Personagem
+// ---------------------------------- Funções
 
 /**
  *  Verificar existencia de espaço para o Personagem.
@@ -271,32 +339,6 @@ void imprimir ( Personagem *perso )
 } // end imprimir ( )
 
 /**
- *  Função para imprimir um Personagem.
-*/
-void imprimir2 ( int id, Personagem *perso )
-{
-    printf( "[%d ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %d ## %s ## %s ## %s ## %s]\n",
-            id                          ,
-            getId              ( perso ),
-            getName            ( perso ),
-            getAlternateNames  ( perso ),
-            getHouse           ( perso ),
-            getAncestry        ( perso ),
-            getSpecies         ( perso ),
-            getPatronus        ( perso ),
-            getHogwartsStaff   ( perso ) ? "true" : "false",
-            getHogwartsStudent ( perso ) ? "true" : "false",
-            getActorName       ( perso ),
-            getAlive           ( perso ) ? "true" : "false",
-            getDateOfBirth     ( perso ),
-            getYearOfBirth     ( perso ),
-            getEyeColour       ( perso ),
-            getGender          ( perso ),
-            getHairColour      ( perso ),
-            getWizard          ( perso ) ? "true" : "false" ); 
-} // end imprimir ( )
-
-/**
  *  Função para tratamento das cadeia de caracteres "booleana"
 */
 char* tratamentoBool( char* strbool )
@@ -442,118 +484,266 @@ Personagem* ler( char* filename, char* id_procurado )
     return ( perso );
 } // end ler ( )
 
-// ---------------------------------- Struct Celula
+// ---------------------------------- Struct Célula
 
 typedef struct s_Celula
 {
     Personagem* perso;
+    struct s_Celula* ante;
     struct s_Celula* prox;
 } Celula;
 
 Celula* new_Celula ( Personagem* personagem )
 {
-    Celula* nova = (Celula*) malloc( sizeof(Celula) );
+    Celula* nova = (Celula*) malloc ( sizeof(Celula) );
     if( nova != NULL )
     {
         nova->perso = personagem;
-        nova->prox = NULL;
+        nova->ante = nova->prox = NULL;
     } // end if
     return ( nova );
 } // end new_Celula ( )
 
-// ---------------------------------- Struct Fila Circular Flexível
+// ---------------------------------- Struct Lista Dupla
 
-typedef struct s_Fila
+typedef struct s_Lista
 {
     Celula* primeiro;
     Celula* ultimo;
     int tamanho;
-    int MAXTAM;
-} Fila;
+} Lista;
 
-// ---------------------------------- Funções - Fila Circular Flexível
+// ---------------------------------- Funções de Ordenação
 
-Fila* new_Fila (  )
+/**
+ *  Função para trocar dois personagens no arranjo de Personagem.
+*/
+void swap ( Celula* i, Celula* j )
 {
-    Fila* fila = (Fila*) malloc( sizeof(Fila) );
-    if( fila != NULL )
-    {
-        fila->primeiro = new_Celula( NULL );
-        fila->ultimo = fila->primeiro;
-        fila->tamanho = 0;
-        fila->MAXTAM = 5;
-    } // end if
-    return( fila );
-} // end new_Fila ( )
+    Personagem *temp = i->perso;
+    i->perso = j->perso;
+    j->perso = temp;
+    temp = NULL;
+} // end swap ( )
 
-void delete_Fila ( Fila* fila )
+bool exist ( Celula* i, Celula* j )
 {
-    if( fila != NULL )
+    bool result = false;
+    while( i != NULL && !result )
     {
-        Celula* atual = fila->primeiro;
-        while( atual != NULL )
+        if( i == j ) {
+            result = true;
+        } // end if
+        i = i->prox;
+    } // end while 
+    return ( result );
+} // end exist ( )
+
+/**
+ *  QuickSort.
+*/
+void quicksortRec( Celula* esq, Celula* dir, Log* log ) 
+{
+    if( esq != dir && esq != dir->prox ) 
+    {
+        Celula* i = esq;
+        Celula* j = dir;
+        Celula* pivo = i;
+        char* pivoHouse = getHouse( pivo->perso );
+        
+        while( exist( i, j ) ) 
         {
-            Celula* prox = atual->prox;
-            delete_Personagem( atual->perso );
-            free( atual );
-            atual = prox;
-        } // end while
-        fila->primeiro = fila->ultimo = NULL;
-        free( fila ); fila = NULL;
+            while( strcmp(getHouse(i->perso), pivoHouse) < 0 ) 
+            {
+                i = i->prox;
+                log->comparacoes++;
+            } // end while
+            while( strcmp(getHouse(j->perso), pivoHouse) > 0 ) 
+            {
+                j = j->ante;
+                log->comparacoes++;
+            } // end while
+            if( exist( i, j ) ) 
+            {
+                swap( i, j );
+                log->movimentacoes += 3;
+                i = i->prox;
+                j = j->ante;
+            } // end if
+            log->comparacoes++;
+        } // end while  
+        quicksortRec( esq, j, log );
+        quicksortRec( i, dir, log );
     } // end if
-} // end delete_Fila ( )
+} // end quicksortRec ( )
 
-int media( Fila* fila )
+/**
+ *  Insercao para ordenar por Name o arranjo já ordenado por House de Personagem.
+*/
+void sortByName( Lista* lista, Log* log )
 {
-    int media = 0;
-    int soma = 0;
-    for( Celula* i = fila->primeiro->prox; i != NULL; i = i->prox ) {
-        soma = soma + getYearOfBirth( i->perso );
+    for( Celula* i = lista->primeiro->prox; i != NULL; i = i->prox )
+    {
+        Celula* menor = i;
+        for( Celula* j = i->prox; j != NULL; j = j->prox )
+        {
+            if( strcmp( getHouse(menor->perso), getHouse(j->perso) ) == 0 &&
+                strcmp( getName(menor->perso), getName(j->perso) ) > 0 )
+            {
+                menor = j;
+                log->comparacoes++;
+            } // end if
+            log->comparacoes++;
+        } // end for
+        swap( menor, i );
+        log->movimentacoes += 3;
     } // end for
-    media = soma / fila->tamanho;
-    return ( media );
-} // end media ( )
+} // end sortByName ( )
 
-Personagem* remover ( Fila* fila ) 
+/**
+ *  Função de Chamada da Função Recursiva.
+*/
+void quicksort( Lista* lista, Log * log ) 
 {
-    if( fila->primeiro == fila->ultimo ) {
-        printf( "\n%s\n", "ERRO: Fila Vazia!" );
-        exit( 1 );
+    if( lista != NULL )
+    {
+        quicksortRec( lista->primeiro->prox, lista->ultimo , log );
+        sortByName( lista, log );
+    }
+} // end quicksort ( )
+
+// ---------------------------------- Funções - Lista Dupla
+
+Lista* new_Lista ( )
+{
+    Lista* lista = (Lista*) malloc ( sizeof(Lista) );
+    if( lista != NULL )
+    {
+        lista->primeiro = new_Celula( NULL );
+        lista->ultimo = lista->primeiro;
     } // end if
-    Celula* temp = fila->primeiro->prox;
-    Personagem* perso = temp->perso;
-    fila->primeiro->prox = temp->prox;
-    if( temp == fila->ultimo ) {
-        fila->ultimo = fila->primeiro;
+    return ( lista );
+} // end new_Lista ( )
+
+void delete_Lista ( Lista* lista )
+{
+    if( lista != NULL )
+    {
+        for( Celula* i = lista->primeiro->prox; i != NULL; i = i->prox )
+        {
+            delete_Personagem( i->perso );
+        } // end for
+        free( lista ); lista = NULL;
     } // end if
-    temp->prox = NULL;
+} // end delete_Lista ( )
+
+void inserirInicio ( Lista* lista, Personagem* personagem )
+{
+    Celula* temp = new_Celula( personagem );
+    temp->ante = lista->primeiro;
+    temp->prox = lista->primeiro->prox;
+    if( lista->primeiro == lista->ultimo ) {                    
+        lista->ultimo = temp;
+    } else {
+        temp->prox->ante = temp;
+    } // end if
+    lista->tamanho++;
+} // end inserirInicio ( )
+
+void inserirFim ( Lista* lista, Personagem* personagem )
+{
+    lista->ultimo->prox = new_Celula( personagem );
+    lista->ultimo->prox->ante = lista->ultimo;
+    lista->ultimo = lista->ultimo->prox;
+} // end inserirFim ( )
+
+Personagem* removerInicio ( Lista* lista ) 
+{
+    if( lista->primeiro == lista->ultimo ) {
+        errx( 1, "Erro ao remover (vazia)!" );
+    } // end if
+    Celula* temp = lista->primeiro;
+    lista->primeiro = lista->primeiro->prox;
+    Personagem* perso = lista->primeiro->perso;
+    temp->prox = lista->primeiro->ante = NULL;
     free( temp );
-    fila->tamanho--;
+    temp = NULL;
+    lista->tamanho--;
+    return ( perso );
+} // end removerInicio ( )
+
+Personagem* removerFim ( Lista* lista ) 
+{
+    if( lista->primeiro == lista->ultimo ) {
+        errx( 1, "Erro ao remover (vazia)!" );
+    } // end if
+    Personagem* perso = lista->ultimo->perso;
+    lista->ultimo = lista->ultimo->ante;
+    lista->ultimo->prox->ante = NULL;
+    free(lista->ultimo->prox);
+    lista->ultimo->prox = NULL;
+    lista->tamanho--;
+    return ( perso );
+} // end removerFim ( )
+
+void inserir ( Lista* lista, Personagem* personagem, int index ) 
+{
+    if( index < 0 || index > lista->tamanho ) {
+        errx( 1, "Erro ao remover (posicao %d/%d invalida!", index, lista->tamanho );
+    } else if( index == 0 ) {
+        inserirInicio( lista, personagem );
+    } else if( index == lista->tamanho ) {
+        inserirFim( lista, personagem );
+    } 
+    else 
+    {
+        Celula* i = lista->primeiro;
+        int j = 0;
+        for( j = 0; j < index; j = j + 1, i = i->prox );   
+        Celula* temp = new_Celula( personagem );
+        temp->ante = i;
+        temp->prox = i->prox;
+        temp->ante->prox = temp->prox->ante = temp;
+        temp = i = NULL;
+        lista->tamanho++;
+    } // end if
+} // end inserir ( )
+
+Personagem* remover( Lista* lista, int index ) 
+{
+    Personagem* perso;
+    if( lista->primeiro == lista->ultimo ) {
+        errx( 1, "Erro ao remover (vazia)!" );
+    } else if( index < 0 || index >= lista->tamanho ) {
+        errx( 1, "Erro ao remover (posicao %d/%d invalida!", index, lista->tamanho );
+    } else if( index == 0 ) {
+        perso = removerInicio( lista );
+    } else if( index == lista->tamanho - 1 ) {
+        perso = removerFim( lista );
+    } 
+    else 
+    {
+        Celula* i = lista->primeiro->prox;
+        int j = 0;
+        for( j = 0; j < index; j = j + 1, i = i->prox );   
+        i->ante->prox = i->prox;
+        i->prox->ante = i->ante;
+        perso = i->perso;
+        i->prox = i->ante = NULL;
+        free( i );
+        i = NULL;
+        lista->tamanho--;
+    } // end if
     return ( perso );
 } // end remover ( )
 
-void inserir ( Fila* fila, Personagem* perso )
+void mostrar ( Lista* lista )
 {
-    if( fila->tamanho == fila->MAXTAM )
+    for( Celula* i = lista->primeiro->prox; i != NULL; i = i->prox ) 
     {
-        Personagem* perso = remover ( fila );
-    }
-    fila->ultimo->prox = new_Celula( perso );
-    fila->ultimo = fila->ultimo->prox;
-    fila->tamanho++;
-    printf( ">> Year Birthday Average: %d\n", media( fila ) );
-} // end inserir ( )
-
-void mostrar ( Fila* fila )
-{
-    printf( "%s\n", "[ Head ]" );
-    int j = 0;
-    for( Celula* i = fila->primeiro->prox; i != NULL;  i = i->prox, j = j + 1 )
-    {
-        imprimir2( j, i->perso );
-    } // end for ( )
-    printf( "%s\n", "[ Tail ]" );
-} // end mostrar ( )
+        imprimir( i->perso );
+    } // end for
+} // end mostrar
 
 /**
  *  Função Principal.
@@ -562,42 +752,30 @@ int main ( void )
 {
     setlocale( LC_CTYPE, "UTF-8" ); // setCharset
 
-    Fila* fila = new_Fila( 405 );
-    Personagem* perso = NULL;
+    Lista* lista = new_Lista ( );
+    Timer timer = new_Timer ( );
+    Log   log   = new_Log   ( );
 
-    char id [81] = { '\0' };
-    char* filename = "/tmp/characters.csv";
-    int numOp = 0;
+    char id  [81] = { '\0' };
+    char nome[81] = { '\0' };
+    char* filename = "/tmp/characters.csv"; 
+    // filename = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP02\\characters.csv";
     
     scanf( "%s", id ); getchar( );
     while( strcmp( id,"FIM" ) != 0 )
     {
-        inserir( fila, ler( filename, id ) );
-        scanf( "%80s", id ); getchar( );
+        inserirFim( lista, ler( filename, id ) );
+        scanf( "%s", id ); getchar( );
     } // end while
 
-    // fazer a leitura dos metodos
-    scanf( "%d", &numOp ); getchar( );
-    for ( int i = 0; i < numOp; i = i + 1 ) 
-    {
-        char input[81];
-        scanf( "%s", input );
-
-        if( strcmp(input, "I") == 0 ) 
-        {
-            scanf( "%s", id );
-            perso = ler( filename, id );
-            inserir( fila, perso );
-        }
-        else if( strcmp(input, "R") == 0 ) 
-        {
-            perso = remover( fila );
-            printf( "(R) %s\n", getName( perso ) );
-        } // end if
-    } // end for
-    mostrar( fila );
-
-    delete_Fila( fila );
+    start_Timer( &timer );
+    quicksort( lista, &log );
+    end_Timer( &timer );
+    registro( "812839_quicksort.txt", &timer, &log );
     
+    mostrar( lista );
+
+    delete_Lista ( lista );
+
     return ( 0 );
 } // end main ( )

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "sstream": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "locale.h": "c"
     }
 }

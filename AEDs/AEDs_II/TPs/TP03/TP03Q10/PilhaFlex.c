@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP03Q0 - 31 / 05 / 2024
+ *  TP03Q10 - 31 / 05 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : gcc -o FilaCircFlex FilaCircFlex.c
- *       Windows: gcc -o FilaCircFlex FilaCircFlex.c
+ *       Linux : gcc -o PilhaFlex PilhaFlex.c
+ *       Windows: gcc -o PilhaFlex PilhaFlex.c
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : ./FilaCircFlex
- *       Windows: FilaCircFlex
+ *       Linux : ./PilhaFlex
+ *       Windows: PilhaFlex
  *   
 */
 
@@ -450,9 +450,9 @@ typedef struct s_Celula
     struct s_Celula* prox;
 } Celula;
 
-Celula* new_Celula ( Personagem* personagem )
+Celula* new_Celula( Personagem* personagem )
 {
-    Celula* nova = (Celula*) malloc( sizeof(Celula) );
+    Celula* nova = (Celula*) malloc ( sizeof(Celula) );
     if( nova != NULL )
     {
         nova->perso = personagem;
@@ -461,98 +461,75 @@ Celula* new_Celula ( Personagem* personagem )
     return ( nova );
 } // end new_Celula ( )
 
-// ---------------------------------- Struct Fila Circular Flexível
+// ---------------------------------- Struct Pilha
 
-typedef struct s_Fila
+typedef struct s_Pilha
 {
-    Celula* primeiro;
-    Celula* ultimo;
+    Celula* topo;
     int tamanho;
-    int MAXTAM;
-} Fila;
+} Pilha;
 
-// ---------------------------------- Funções - Fila Circular Flexível
+// ---------------------------------- Funções - Pilha
 
-Fila* new_Fila (  )
+Pilha* new_Pilha ( )
 {
-    Fila* fila = (Fila*) malloc( sizeof(Fila) );
-    if( fila != NULL )
+    Pilha* pilha = (Pilha*) malloc( sizeof(Pilha) );
+    if( pilha != NULL )
     {
-        fila->primeiro = new_Celula( NULL );
-        fila->ultimo = fila->primeiro;
-        fila->tamanho = 0;
-        fila->MAXTAM = 5;
+        pilha->topo = NULL;
     } // end if
-    return( fila );
-} // end new_Fila ( )
+    return( pilha );
+} // end new_Pilha ( )
 
-void delete_Fila ( Fila* fila )
+void delete_Pilha( Pilha* pilha )
 {
-    if( fila != NULL )
+    if( pilha != NULL )
     {
-        Celula* atual = fila->primeiro;
-        while( atual != NULL )
+        while( pilha->topo != NULL )
         {
-            Celula* prox = atual->prox;
-            delete_Personagem( atual->perso );
-            free( atual );
-            atual = prox;
+            Celula* temp = pilha->topo;
+            pilha->topo = pilha->topo->prox;
+            delete_Personagem( temp->perso );
+            free( temp );
         } // end while
-        fila->primeiro = fila->ultimo = NULL;
-        free( fila ); fila = NULL;
+        free( pilha );
     } // end if
-} // end delete_Fila ( )
+} // end delete_Pilha ( )
 
-int media( Fila* fila )
+void inserir ( Pilha* pilha, Personagem* perso )
 {
-    int media = 0;
-    int soma = 0;
-    for( Celula* i = fila->primeiro->prox; i != NULL; i = i->prox ) {
-        soma = soma + getYearOfBirth( i->perso );
-    } // end for
-    media = soma / fila->tamanho;
-    return ( media );
-} // end media ( )
+    Celula* temp = new_Celula( perso );
+    temp->prox = pilha->topo;
+    pilha->topo = temp;
+    pilha->tamanho++;
+    temp = NULL;
+} // end inserir ( )
 
-Personagem* remover ( Fila* fila ) 
+Personagem* remover ( Pilha* pilha )
 {
-    if( fila->primeiro == fila->ultimo ) {
-        printf( "\n%s\n", "ERRO: Fila Vazia!" );
+    if( pilha->topo == NULL )
+    {
+        printf( "\n%s\n", "ERRO: Pilha Vazia!" );
         exit( 1 );
     } // end if
-    Celula* temp = fila->primeiro->prox;
+    Celula* temp = pilha->topo;
     Personagem* perso = temp->perso;
-    fila->primeiro->prox = temp->prox;
-    if( temp == fila->ultimo ) {
-        fila->ultimo = fila->primeiro;
-    } // end if
+    pilha->topo = temp->prox;
     temp->prox = NULL;
     free( temp );
-    fila->tamanho--;
+    temp = NULL;
     return ( perso );
 } // end remover ( )
 
-void inserir ( Fila* fila, Personagem* perso )
+void mostrar ( Pilha* pilha )
 {
-    if( fila->tamanho == fila->MAXTAM )
-    {
-        Personagem* perso = remover ( fila );
-    }
-    fila->ultimo->prox = new_Celula( perso );
-    fila->ultimo = fila->ultimo->prox;
-    fila->tamanho++;
-    printf( ">> Year Birthday Average: %d\n", media( fila ) );
-} // end inserir ( )
-
-void mostrar ( Fila* fila )
-{
-    printf( "%s\n", "[ Head ]" );
     int j = 0;
-    for( Celula* i = fila->primeiro->prox; i != NULL;  i = i->prox, j = j + 1 )
+    printf( "[ Top ]\n" );
+    for( Celula* i = pilha->topo; i != NULL; i = i->prox, j = j + 1 )
     {
         imprimir2( j, i->perso );
     } // end for ( )
-    printf( "%s\n", "[ Tail ]" );
+    printf( "[ Bottom ]\n" );
 } // end mostrar ( )
 
 /**
@@ -562,17 +539,18 @@ int main ( void )
 {
     setlocale( LC_CTYPE, "UTF-8" ); // setCharset
 
-    Fila* fila = new_Fila( 405 );
+    Pilha* pilha = new_Pilha( );
     Personagem* perso = NULL;
 
     char id [81] = { '\0' };
-    char* filename = "/tmp/characters.csv";
+    char* filename = "/tmp/characters.csv"; 
+    // filename = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP03\\characters.csv";
     int numOp = 0;
     
     scanf( "%s", id ); getchar( );
     while( strcmp( id,"FIM" ) != 0 )
     {
-        inserir( fila, ler( filename, id ) );
+        inserir( pilha, ler( filename, id ) );
         scanf( "%80s", id ); getchar( );
     } // end while
 
@@ -587,17 +565,17 @@ int main ( void )
         {
             scanf( "%s", id );
             perso = ler( filename, id );
-            inserir( fila, perso );
+            inserir( pilha, perso );
         }
         else if( strcmp(input, "R") == 0 ) 
         {
-            perso = remover( fila );
+            perso = remover( pilha );
             printf( "(R) %s\n", getName( perso ) );
-        } // end if
+        }
     } // end for
-    mostrar( fila );
+    mostrar( pilha );
 
-    delete_Fila( fila );
+    delete_Pilha( pilha );
     
     return ( 0 );
 } // end main ( )

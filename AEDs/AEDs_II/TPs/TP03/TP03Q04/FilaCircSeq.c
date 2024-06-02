@@ -442,98 +442,96 @@ Personagem* ler( char* filename, char* id_procurado )
     return ( perso );
 } // end ler ( )
 
-// ---------------------------------- Struct Lista
+// ---------------------------------- Struct Fila Circular
 
-typedef struct s_Lista
+typedef struct s_Fila
 {
     Personagem** perso;
     int tamanho;
     int MAXTAM;
     int primeiro;
     int ultimo;
-} Lista;
+} Fila;
 
-// ---------------------------------- Funções - Lista
+// ---------------------------------- Funções - Fila Circular
 
-Lista* new_Lista ( int tamanho )
+Fila* new_Fila ( int tamanho )
 {
-    Lista* lista = (Lista*) malloc( sizeof(Lista) );
-    if( lista != NULL )
+    Fila* fila = (Fila*) malloc( sizeof(Fila) );
+    if( fila != NULL )
     {
-        lista->MAXTAM = 5;
+        fila->MAXTAM = 5;
         if( tamanho > 0 )
         {
-            lista->perso = (Personagem**) malloc ( tamanho * sizeof(Personagem*) );
-            lista->primeiro = lista->ultimo = 0;
-            lista->tamanho = 0;
+            fila->perso = (Personagem**) malloc ( tamanho * sizeof(Personagem*) );
+            fila->primeiro = fila->ultimo = 0;
+            fila->tamanho = 0;
         } // end if
     } // end if
-    return( lista );
-} // end new_Lista ( )
+    return( fila );
+} // end new_Fila ( )
 
-void delete_Lista ( Lista* lista )
+void delete_Fila ( Fila* fila )
 {
-    if( lista != NULL )
+    if( fila != NULL )
     {
-        if( lista->perso != NULL )
+        if( fila->perso != NULL )
         {
-            for( int i = 0; i < lista->tamanho; i = i + 1 ) 
+            for( int i = 0; i < fila->tamanho; i = i + 1 ) 
             {
-                delete_Personagem( lista->perso[(lista->primeiro + i) % (lista->MAXTAM+1)] ); 
+                delete_Personagem( fila->perso[(fila->primeiro + i) % (fila->MAXTAM+1)] ); 
             } // end for
         } // end if
-        free( lista->perso ); lista->perso = NULL;
-        free( lista ); lista = NULL;
+        free( fila->perso ); fila->perso = NULL;
+        free( fila ); fila = NULL;
     } // end if
-} // end delete_Lista ( )
+} // end delete_Fila ( )
 
-int media( Lista* lista )
+int media( Fila* fila )
 {
     int media = 0;
     int soma = 0;
-    for( int i = lista->primeiro; i != lista->ultimo; i = ((i + 1) % (lista->MAXTAM + 1)) ) {
-        soma = soma + getYearOfBirth( lista->perso[i] );
+    for( int i = fila->primeiro; i != fila->ultimo; i = ((i + 1) % (fila->MAXTAM + 1)) ) {
+        soma = soma + getYearOfBirth( fila->perso[i] );
     } // end for
-    media = soma / lista->tamanho;
+    media = soma / fila->tamanho;
     return ( media );
 } // end media ( )
 
-Personagem* remover ( Lista* lista ) 
+Personagem* remover ( Fila* fila ) 
 {
-    if( lista->primeiro == lista->ultimo ) {
-        printf( "\n%s\n", "ERRO: Lista Vazia!" );
+    if( fila->primeiro == fila->ultimo ) {
+        printf( "\n%s\n", "ERRO: Fila Vazia!" );
         exit( 1 );
     } // end if
-    Personagem* perso = lista->perso[lista->primeiro];
-    lista->primeiro = (lista->primeiro + 1) % (lista->MAXTAM + 1);
-    lista->tamanho--;
-    // printf( "R: p = %d, u = %d\n", lista->primeiro, lista->ultimo );
+    Personagem* perso = fila->perso[fila->primeiro];
+    fila->primeiro = (fila->primeiro + 1) % (fila->MAXTAM + 1);
+    fila->tamanho--;
+    // printf( "R: p = %d, u = %d\n", fila->primeiro, fila->ultimo );
     return ( perso );
 } // end remover ( )
 
-void inserir ( Lista* lista, Personagem* perso )
+void inserir ( Fila* fila, Personagem* perso )
 {
-    if( ((lista->ultimo + 1) % (lista->MAXTAM + 1)) == lista->primeiro ) {
-        Personagem* perso = remover ( lista );
+    if( ((fila->ultimo + 1) % (fila->MAXTAM + 1)) == fila->primeiro ) {
+        Personagem* perso = remover ( fila );
     } // end if
-    lista->perso[lista->ultimo] = perso;
-    lista->ultimo = (lista->ultimo + 1) % (lista->MAXTAM + 1);
-    lista->tamanho++;
-    // printf( "I: p = %d, u = %d\n", lista->primeiro, lista->ultimo );
-    printf( ">> Year Birthday Average: %d\n", media( lista ) );
+    fila->perso[fila->ultimo] = perso;
+    fila->ultimo = (fila->ultimo + 1) % (fila->MAXTAM + 1);
+    fila->tamanho++;
+    // printf( "I: p = %d, u = %d\n", fila->primeiro, fila->ultimo );
+    printf( ">> Year Birthday Average: %d\n", media( fila ) );
 } // end inserir ( )
 
-void mostrar ( Lista* lista )
+void mostrar ( Fila* fila )
 {
     printf( "%s\n", "[ Head ]" );
-    for( int i = lista->primeiro; i != lista->ultimo;  i = ((i + 1) % (lista->MAXTAM + 1) ) )
+    for( int i = fila->primeiro, j = 0; i != fila->ultimo;  i = ((i + 1) % (fila->MAXTAM + 1) ), j = j + 1 )
     {
-        imprimir2( i, lista->perso[i] );
+        imprimir2( j, fila->perso[i] );
     } // end for ( )
     printf( "%s\n", "[ Tail ]" );
 } // end mostrar ( )
-
-// ---------------------------------- Funções - String
 
 /**
  *  Função Principal.
@@ -542,18 +540,17 @@ int main ( void )
 {
     setlocale( LC_CTYPE, "UTF-8" ); // setCharset
 
-    Lista* lista = new_Lista( 405 );
+    Fila* fila = new_Fila( 405 );
     Personagem* perso = NULL;
 
     char id [81] = { '\0' };
-    char* filename = "/tmp/characters.csv"; 
-          filename = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP02\\characters.csv";
+    char* filename = "/tmp/characters.csv";
     int numOp = 0;
     
     scanf( "%s", id ); getchar( );
     while( strcmp( id,"FIM" ) != 0 )
     {
-        inserir( lista, ler( filename, id ) );
+        inserir( fila, ler( filename, id ) );
         scanf( "%80s", id ); getchar( );
     } // end while
 
@@ -568,17 +565,17 @@ int main ( void )
         {
             scanf( "%s", id );
             perso = ler( filename, id );
-            inserir( lista, perso );
+            inserir( fila, perso );
         }
         else if( strcmp(input, "R") == 0 ) 
         {
-            perso = remover( lista );
+            perso = remover( fila );
             printf( "(R) %s\n", getName( perso ) );
-        }
+        } // end if
     } // end for
-    mostrar( lista );
+    mostrar( fila );
 
-    delete_Lista( lista );
+    delete_Fila( fila );
     
     return ( 0 );
 } // end main ( )

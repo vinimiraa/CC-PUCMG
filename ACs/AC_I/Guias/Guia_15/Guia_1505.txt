@@ -1,0 +1,24 @@
+// Guia_1505.txt
+// 812839 - Vinicius Miranda de Araujo
+//
+// Implementar um programa (Guia_1505.txt) para o processador 8085 para 
+// calcular o resultado da expressão aritmética abaixo, 
+// usando dados com 8 bits. 
+// DICA: Usar deslocamentos/rotações para multiplicar e dividir. 
+//            Levar em consideração o bit do sinal. 
+//  
+// dado03 = dado01 * 4 + dado02 / 2
+
+// Area de código    ; Significado           // Comentario 
+LXI H, dado1         ; HL <- addr(dado1)     //
+MOV A, M             ; A  <- MEM [HL]        // 
+MOV B, A             ; B  <- A               // 
+RLC                  ; A  <- A << 1          //
+RLC                  ; A  <- A << 1          //
+MOV C, A             ; C  <- A               //
+INX H                ; HL <- HL+1            //
+MOV A, M             ; A  <- MEM [HL]        // 
+RAR                  ; A  <- A >> 1          //
+ADD C                ; A  <- A + C           //
+STA dado3            ; MEM [dado3] <- A      //
+HLT                  ; HALT                  //

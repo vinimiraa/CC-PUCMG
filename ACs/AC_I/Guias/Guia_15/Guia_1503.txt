@@ -1,0 +1,22 @@
+// Guia_1503.txt
+// 812839 - Vinicius Miranda de Araujo
+//
+// Implementar um programa (Guia_1503.txt) para o processador 8085 para 
+// calcular o resultado da expressão aritmética abaixo, 
+// usando dados com 8 bits codificados em BCD. 
+// DICA: Se passar de 9, precisará ajustar o próximo bit para converter a saída.
+// 
+// dado04 = dado01 + dado02 + dado03
+
+// Area de código    ; Significado         // Comentario 
+LXI H, dado01        ; HL <- addr(dado1)   //
+MOV A, M             ; A  <- MEM [HL]      //
+INX H                ; HL <- HL+1          //
+ADD M                ; A  <- A + MEM [HL]  //
+DAA                  ;                     //
+INX H                ; HL <- HL+1          //
+ADD M                ; A  <- A + MEM [HL]  //
+DAA                  ;                     //
+LXI H, dado04        ;                     //
+STA dado4            ; MEM [HL] <- A       //
+HLT                  ; HALT                //

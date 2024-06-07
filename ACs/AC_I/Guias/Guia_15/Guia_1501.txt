@@ -1,0 +1,18 @@
+// Guia_1501.txt
+// 812839 - Vinicius Miranda de Araujo
+//
+// Implementar um programa (Guia_1501.txt) para o processador 8085 para 
+// calcular o resultado da expressão aritmética abaixo, 
+// usando dados com 8 bits. 
+//  
+// dado04 = dado01 - dado02 + dado03
+
+// Area de código    ; Significado         // Comentario 
+LXI H, dado1         ; HL <- addr(dado1)   // Carrega o endereço de dado1 nos registradores HL
+MOV A, M             ; A  <- MEM[HL]       // Move o conteúdo da memória no endereço em HL (dado1) para A
+INX H                ; HL <- HL + 1        // Incrementa HL para apontar para o endereço de dado2
+SUB M                ; A <- A - MEM[HL]    // Subtrai o conteúdo da memória no endereço em HL (dado2) de A
+INX H                ; HL <- HL + 1        // Incrementa HL para apontar para o endereço de dado3
+ADD M                ; A <- A + MEM[HL]    // Adiciona o conteúdo da memória no endereço em HL (dado3) a A
+STA dado4            ; MEM[dado4] <- A     // Armazena o conteúdo de A na memória no endereço dado4
+HLT                  ; halt                // Interrompe a execução

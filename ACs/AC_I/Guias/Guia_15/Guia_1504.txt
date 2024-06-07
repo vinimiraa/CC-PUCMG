@@ -1,0 +1,29 @@
+// Guia_1504.txt
+// 812839 - Vinicius Miranda de Araujo 
+//
+// Implementar um programa (Guia_1504.txt) para o processador 8085 para 
+// calcular o resultado da expressão aritmética abaixo, 
+// usando dados com 8 bits. 
+// DICA: Para o dobro, somar o acumulador com ele mesmo. 
+//  
+// dado03 = 4 * (dado01 - 2 * dado02)
+
+// Area de código   ; Significado          // Comentario 
+LXI H, dado1        ; HL <- addr(dado1)    // 
+MOV A, M            ; A  <- MEM [HL]       // 
+INX H               ; HL <- HL+1           // 
+MOV B, M            ; B  <- MEM [HL]       // 
+
+MOV C, B            ; C  <- B              // 
+ADD B               ; A  <- A + B          // 
+MOV B, A            ; B  <- A              //
+MOV A, C            ; A  <- C              // 
+SUB B               ; A  <- A - B          // 
+
+MOV B, A            ; B  <- A              // 
+ADD A               ; A  <- A + A          //
+ADD A               ; A  <- A + A          //
+
+LXI H, dado3        ; HL <- addr(dado3)    //
+STA dado3           ; MEM [HL] <- A        //
+HLT                 ; HALT                 //

@@ -1,0 +1,48 @@
+// Guia_1502.txt
+// 812839 - Vinicius Miranda de Araujo
+//
+// Implementar um programa (Guia_1502.txt) para o processador 8085 para 
+// calcular o resultado da expressão aritmética abaixo, 
+// usando dados com 16 bits (sinal+amplitude). 
+// Sugestão: Usar complemento de 2 para a subtração. 
+//  
+// dado04 = dado01 + dado02 - dado03
+
+// Area de código    ; Significado           // Comentario 
+LXI H, dado1         ; HL <- addr(dado1)     // endereco do dado1
+MOV B, M             ; B  <- MEM [dado1]     // primeiros 8 bits de dado1
+INX H                ; HL <- HL+1            //
+MOV A, M             ; A  <- MEM [dado1]     // ultimos 8 bits de dado1
+INX H                ; HL <- HL+1            //
+MOV D, M             ; D  <- MEM [dado2]     // primeiros 8 bits de dado2
+INX H                ; HL <- HL+1            //
+MOV C, M             ; C  <- MEM [dado2]     // ultimos 8 bits de dado2
+INX H                ; HL <- HL+1            // 
+MOV E, B             ; E <- B                //
+ADD D                ; E <- B + D            // 
+MOV B, A             ; B <- A                // 
+MOV E, A             ; E <- A                // 
+ADC C                ; E <- A + C + Carry    //
+MOV A, E             ; A <- E                // 
+MOV D, M             ; D  <- MEM [HL]        // 
+INX H                ; HL <- HL+1            //
+MOV C, M             ; C  <- MEM [HL]        // 
+MOV E, D             ; E <- D                // 
+CMA                  ;                       // Complemento de 1   
+ADI 1                ;                       // Adiciona 1     
+MOV D, E             ; D <- E                // 
+MOV E, C             ; E <- C                // 
+CMA                  ;                       // Complemento de 1 
+ACI 0                ;                       // Adiciona 1 com carry 
+MOV C, E             ; C <- E                // 
+MOV E, B             ; E <- B                // 
+ADD D                ; E <- B + D            //
+MOV B, E             ; B <- E                // 
+MOV E, A             ; E <- A                // 
+ADC C                ; E <- A + C + Carry    //
+MOV A, E             ; A <- E                // 
+LXI H, dado4         ;                       // endereco do dado4  
+MOV M, B             ; MEM [dado4] <- B      //
+INX H                ; HL <- HL+1            //
+STA dado4            ; MEM [dado4] <- A      //
+HLT                  ; HALT                  //

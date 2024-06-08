@@ -5,7 +5,7 @@
 // calcular o resultado da expressão aritmética abaixo, 
 // usando dados com 8 bits. 
 //  
-// dado04 = dado01 - dado02 + dado03
+// dado04 = dado01 - dado02 + dado03 
 
 // Area de código    ; Significado         // Comentario 
 LXI H, dado1         ; HL <- addr(dado1)   // Carrega o endereço de dado1 nos registradores HL

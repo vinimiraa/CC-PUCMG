@@ -6,7 +6,7 @@
 // usando dados com 16 bits (sinal+amplitude). 
 // Sugestão: Usar complemento de 2 para a subtração. 
 //  
-// dado04 = dado01 + dado02 - dado03
+// dado04 = dado01 + dado02 - dado03 
 
 // Area de código    ; Significado           // Comentario 
 LXI H, dado1         ; HL <- addr(dado1)     // endereco do dado1

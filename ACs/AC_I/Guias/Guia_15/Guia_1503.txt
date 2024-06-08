@@ -6,7 +6,7 @@
 // usando dados com 8 bits codificados em BCD. 
 // DICA: Se passar de 9, precisará ajustar o próximo bit para converter a saída.
 // 
-// dado04 = dado01 + dado02 + dado03
+// dado04 = dado01 + dado02 + dado03 
 
 // Area de código    ; Significado         // Comentario 
 LXI H, dado01        ; HL <- addr(dado1)   //

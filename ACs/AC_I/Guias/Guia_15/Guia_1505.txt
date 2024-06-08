@@ -7,7 +7,7 @@
 // DICA: Usar deslocamentos/rotações para multiplicar e dividir. 
 //            Levar em consideração o bit do sinal. 
 //  
-// dado03 = dado01 * 4 + dado02 / 2
+// dado03 = dado01 * 4 + dado02 / 2 
 
 // Area de código    ; Significado           // Comentario 
 LXI H, dado1         ; HL <- addr(dado1)     //

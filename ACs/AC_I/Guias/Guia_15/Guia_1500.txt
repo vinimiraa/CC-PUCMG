@@ -4,7 +4,7 @@
 // Somar dois numeros de 8 bits 
 // Armazenar o primeiro dado em 0100, por exemplo e atualizar as instrucoes 
 // Armazenar o segundo dado em 0101 
-// Armazenar o resultado em 0103 
+// Armazenar o resultado em 0103
  
 // Area de código    ; Significado         // Comentario 
         LXI H,dado1  ; HL <- addr(dado1)   // endereco do dado1 

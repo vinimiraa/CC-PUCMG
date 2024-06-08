@@ -1,0 +1,38 @@
+// Guia_1600a.txt 
+// 812839 - Vinicius Miranda de Araujo
+// 
+// Addition of two 8bit numbers calling add function 
+// Manually store 1st  number in the memory location 0050h 
+// Manually store 2nd number in the memory location 0051h 
+// Result is stored in 0052h 
+// 
+// F_ADD - Function ADD     // A = add (B, C) 
+// @return   A 
+// @param  B 
+// @param  C 
+// 
+        JMP MAIN    // function area detour 
+                    // function ADD( ) { 
+F_ADD:  LDA A,00    //   A = 0  // return value 
+                    //   parameter passing 
+        MOV D,B     //   D = B  // local  variable 
+        MOV E,C     //   E = C  // local  variable 
+        MOV A,D     //   A = D 
+        ADD E       //   A = A+E 
+        RET         //   return // A 
+                    // } 
+                    // 
+                    // main ( ) { 
+MAIN:   LXI H,0050  //   HL = 0050h // dado1 
+        MOV B,M     //   B = MEM [HL] 
+        INX H       //   HL = HL+1  // dado2 
+        MOV C,M     //   C = MEM [HL] 
+C_ADD:  CALL F_ADD  //   A = F_ADD(B, C) 
+        STA 0052    //   MEM[0052] = A 
+        HLT         // } 
+END: 
+ 
+// Area de dados 
+// dado1:  02h  ; primeiro  dado em hexadecimal 
+// dado2:  03h  ; segundo dado em hexadecimal 
+// dado3:  00h  ; resultado         em hexadecimal

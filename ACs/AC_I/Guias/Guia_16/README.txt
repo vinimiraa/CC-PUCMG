@@ -1,0 +1,1 @@
+Eu consegui entender a lógica do problema e pensar em uma solução, mas estou com dificuldade de implementar em código.

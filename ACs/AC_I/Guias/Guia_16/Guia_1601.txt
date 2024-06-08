@@ -1,0 +1,47 @@
+// Guia_1601.txt
+// 812839 - Vinicius Miranda de Araujo
+//
+// Implementar um programa (Guia_1601.txt) para o processador 8085 para
+// calcular o produto (IMUL) de dois dados
+// com 8 bits cada.
+// DICA: Usar somas sucessivas.
+// 
+// dado03 = dado01 * dado02
+//
+// F_ADD - Function ADD // A = add (B, C)
+// @return A
+// @param B
+// @param C
+//
+
+    JMP MAIN        // function area detour
+                    // function ADD( ) {
+F_ADD: LDA A,00     // A = 0 // return value
+                    // parameter passing
+    MOV D,B         // D = B // local variable
+    MOV E,C         // E = C // local variable
+    MOV A,D         // A = D
+    ADD E           // A = A+E
+    RET             // return // A
+                    // }
+                    //
+                    // main ( ) {
+MAIN: LXI H,0050    // HL = 0050h // dado1
+    MOV B,M         // B = MEM [HL]
+    INX H           // HL = HL+1 // dado2
+    MOV C,M         // C = MEM [HL]
+    MVI A,00        // A = 0
+    MVI D,00        // D = 0
+    MVI I,00        // I = 0
+C_LOOP: CALL F_ADD  // A = F_ADD(B, C)
+    INX D           // D = D+1
+    CMP I           // if (D == I)
+    JNZ C_LOOP      // else JUMP to C_LOOP
+    STA 0052        // MEM[0052] = A
+    HLT             // }
+END:
+
+// Area de dados
+// dado1: 02h ; primeiro dado em hexadecimal
+// dado2: 03h ; segundo  dado em hexadecimal
+// dado3: 00h ; resultado     em hexadecimal

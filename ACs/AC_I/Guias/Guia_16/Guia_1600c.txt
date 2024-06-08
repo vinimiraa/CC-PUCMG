@@ -1,0 +1,39 @@
+// Guia_1600c.txt
+// 812839 - Vinicius Miranda de Araujo 
+//
+// Extract high nibble of an 8bit number calling function
+// Manually store 1st number in the memory location 0050h
+// Result is stored in 0052h
+//
+// F_HI - Function HI // A = hi(C)
+// @return A
+// @param C
+//
+    JMP MAIN        // function area detour
+                    // HI ( ) {
+F_HI: POP H         // HL = (save) return address
+                    // pop parameter from stack
+    POP B           // BC = parameter
+    MOV A,C         // A = C
+    ANI F0          // A = A & F0h
+    RAR             // A = A >> 1
+    RAR             // A = A >> 1
+    RAR             // A = A >> 1
+    RAR             // A = A >> 1
+    PUSH H          // HL = (restore) return address
+    RET             // return // A
+                    // }
+                    //
+                    // main ( ) {
+MAIN: LXI H,0050    // HL = 0050h // dado1
+    MVI B,00        // B = 0
+    MOV C,M         // C = MEM [HL]
+    PUSH B          // push parameter into stack
+C_HI: CALL F_HI     // A = F_HI (C)
+    STA 0052        // MEM[0052] = A
+    HLT             // }
+END:
+
+// Area de dados
+// dado1: 24h ; primeiro dado em hexadecimal
+// dado2: 00h ; resultado em hexadecimal

@@ -38,7 +38,7 @@ public class Generate extends MyLog
 
     public void fillRandom ( )
     {
-        Random random = new Random ( 4 ); 
+        Random random = new Random ( 0 ); 
         for( int i = 0; i < this.length; i++ )
         {
             array[i] = random.nextInt() % 101;

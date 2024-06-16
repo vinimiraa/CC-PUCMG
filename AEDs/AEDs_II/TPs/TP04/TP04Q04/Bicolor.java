@@ -120,7 +120,7 @@ class Alvinegra
         } else if (raiz.esq == null) {
             if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
                 raiz.esq = new NoAN(elemento);
-            } else if (elemento.getName().compareTo(raiz.dir.elemento.getName()) < 0) {
+            } else if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
                 raiz.esq = new NoAN(raiz.elemento);
                 raiz.elemento = elemento;
             } else {
@@ -133,7 +133,7 @@ class Alvinegra
         } else if (raiz.dir == null) {
             if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
                 raiz.dir = new NoAN(elemento);
-            } else if (elemento.getName().compareTo(raiz.esq.elemento.getName()) < 0) {
+            } else if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
                 raiz.dir = new NoAN(raiz.elemento);
                 raiz.elemento = elemento;
             } else {
@@ -144,7 +144,7 @@ class Alvinegra
             raiz.esq.cor = raiz.dir.cor = false;     
             // Senao, a arvore tem tres ou mais elementos
         } else {
-            System.out.println("Arvore com tres ou mais elementos...");
+            // System.out.println("Arvore com tres ou mais elementos...");
             inserir(elemento, null, null, null, raiz);
         } // end if
         raiz.cor = false;
@@ -156,7 +156,7 @@ class Alvinegra
         if (pai.cor == true) {
             // 4 tipos de reequilibrios e acoplamento
             if (pai.elemento.getName().compareTo(avo.elemento.getName()) > 0 ) { // rotacao a esquerda ou direita-esquerda
-                if (i.elemento.getName().compareTo(pai.elemento.getName()) < 0 ) {
+                if (i.elemento.getName().compareTo(pai.elemento.getName()) > 0 ) {
                     avo = rotacaoEsq(avo);
                 } else {
                     avo = rotacaoDirEsq(avo);

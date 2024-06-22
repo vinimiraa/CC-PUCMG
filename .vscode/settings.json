@@ -2,6 +2,7 @@
     "files.associations": {
         "sstream": "c",
         "typeinfo": "c",
-        "locale.h": "c"
+        "locale.h": "c",
+        "random": "c"
     }
 }

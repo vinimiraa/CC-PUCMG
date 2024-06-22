@@ -5,16 +5,16 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP04Q01 - 16 / 06 / 2024
+ *  TP04Q06 - 22 / 06 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
- *       Linux : javac Arvore.java
- *       Windows: javac Arvore.java
+ *       Linux : javac HashRehash.java
+ *       Windows: javac HashRehash.java
  *   
  *  Para executar em terminal (janela de comandos):
- *       Linux : java Arvore
- *       Windows: java Arvore
+ *       Linux : java HashRehash
+ *       Windows: java HashRehash
  *   
 */
 
@@ -25,92 +25,81 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.time.format.DateTimeFormatter;
 
-/**
- *  Classe No : Nó da Árvore Binária
- */
-class No 
-{
-    public Personagem elemento; // Conteudo do no.
-    public No esq, dir;  // Filhos da esq e dir.
-
-    public No (Personagem elemento) {
-        this(elemento, null, null);
-    } // end No ( )
-
-    public No (Personagem elemento, No esq, No dir) {
-        this.elemento = elemento;
-        this.esq = esq;
-        this.dir = dir;
-    } // end No ( )
-} // end class No
 
 /**
- *  Classe ArvoreBinaria : Arvore Binaria de Pesquisa
+ *  Classe Hash : Hash com Overflow
  */
-class ArvoreBinaria 
+class Hash 
 {
-	private No raiz; // Raiz da arvore.
+    Personagem tabela[];
+    int tamTabela;
 
-	public ArvoreBinaria ( ) {
-		raiz = null;
-	} // end ArvoreBinaria ( )
+    public Hash ( ) {
+        this( 25 );
+    } // end Hash ( )
 
-	public boolean pesquisar (String x, Log log) {
-        System.out.print( x + " => raiz " );
-		return ( pesquisar(x, raiz, log) );
-	} // end pesquisar ( )
+    public Hash ( int tam ) 
+    {
+        this.tamTabela = tam;
+        this.tabela = new Personagem[this.tamTabela];
+        for( int i = 0; i < tam; i = i + 1 ) {
+            tabela[i] = null;
+        } // end for
+    } // end Hash ( )
 
-	private boolean pesquisar (String x, No i, Log log) {
-        boolean resp;
-		if (i == null) {
-            log.incrementarComp( );
-            resp = false;
-        } else if (x.equals(i.elemento.getName())) {
-            log.incrementarComp( );
-            resp = true;
-        } else if (x.compareTo(i.elemento.getName()) < 0) {
-            log.incrementarComp( );
-            System.out.print( "esq " );
-            resp = pesquisar(x, i.esq, log);
-        } else {
-            System.out.print( "dir " );
-            resp = pesquisar(x, i.dir, log);
-        }
-        return ( resp );
-	} // end pesquisar ( )
+    public int h (Personagem elemento ) {
+        return ( Math.abs(elemento.getYearOfBirth( ) % tamTabela) );
+    } // end h ( )
 
-    public void caminharPre ( ) {
-		System.out.print("[ ");
-		caminharPre(raiz);
-		System.out.println("]");
-	} // end caminharPre ( )
+    public int reh (Personagem elemento) {
+        return ( Math.abs((elemento.getYearOfBirth( ) + 1) % tamTabela) );
+    } // end reh ( )
 
-	private void caminharPre (No i) {
-		if (i != null) {
-			i.elemento.imprimir( ); // Conteudo do no.
-			caminharPre(i.esq); // Elementos da esquerda.
-			caminharPre(i.dir); // Elementos da direita.
-		} // end if
-	} // end caminharPre ( )
-
-	public void inserir (Personagem x) throws Exception {
-		raiz = inserir(x, raiz);
-	} // end inserir ( )
-
-	private No inserir (Personagem x, No i) throws Exception {
-		if (i == null) {
-            i = new No(x);
-        } else if (x.getName().compareTo(i.elemento.getName()) < 0) {
-            i.esq = inserir(x, i.esq);
-        } else if (x.getName().compareTo(i.elemento.getName()) > 0) {
-            i.dir = inserir(x, i.dir);
-        } else {
-            throw new Exception("Erro ao inserir!");
+    public boolean inserir (Personagem elemento) 
+    {
+        boolean resp = false;
+        if( elemento != null ) 
+        {
+            int pos = h(elemento);
+            if( tabela[pos] == null ) 
+            {
+                tabela[pos] = elemento;
+                resp = true;
+            } 
+            else 
+            {
+                pos = reh(elemento);
+                if( tabela[pos] == null ) 
+                {
+                    tabela[pos] = elemento;
+                    resp = true;
+                } // end if
+            } // end if
         } // end if
-		return ( i );
-	} // end inserir ( )
+        return ( resp );
+    } // end inserir ( )
 
-} // end class ArvoreBinaria ( )
+    public int pesquisar ( Personagem elemento, Log log ) 
+    {
+        int resp = -1;
+        int pos = h(elemento);
+        if( tabela[pos] == elemento ) {
+            log.incrementarComp( );
+            resp = pos;
+        } 
+        else if( tabela[pos] != null ) 
+        {
+            log.incrementarComp( );
+            pos = reh(elemento);
+            if( tabela[pos] == elemento ) {
+                log.incrementarComp( );
+                resp = pos;
+            } // end if
+        } // end if
+        return ( resp );
+    } // end pesquisar ( )
+
+} // end class Hash ( )
 
 /**
  *  Classe Log : Analise de Complexidade
@@ -513,25 +502,41 @@ class Personagem
         return ( perso );
     } // end ler ( )
     
+    public static Personagem findPerso ( Personagem [ ] personagens, int tam, String nome )
+    {
+        Personagem found = new Personagem( );
+        for( int i = 0; i < tam; i = i +1 )
+        {
+            if( personagens[i].getName( ).equals(nome) ) {
+                // System.out.println( "p["+i+"] = " + personagens[i].getName() + " nome = " + nome );
+                found = personagens[i];
+                i = tam;
+            } // end if
+        } // end for
+        return ( found );
+    } // end findPerso ( )
 } // end class Personagem
 
 /**
- * Classe Arvore : Teste
+ * Classe HashRehash : Teste
  */
-public class Arvore extends Personagem
+public class HashRehash extends Personagem
 {
     public static void main ( String [] args ) throws Exception
     {
         Scanner scan = new Scanner( System.in );
-        
-        Log log = new Log( "812839_arvoreBinaria.txt" );
+        Personagem [ ] personagens = new Personagem[150];
+        Hash hash = new Hash( );
+        Log log = new Log( "812839_hashRehash.txt" );
         Personagem perso = new Personagem( );
-        ArvoreBinaria arvore = new ArvoreBinaria( );
 
         String input = scan.nextLine( );
+        int tam = 0;
         while( !isFim( input ) )
         {
-            arvore.inserir( perso.ler( input ) );
+            Personagem lido = perso.ler(input);
+            hash.inserir( lido );
+            personagens[tam++] = lido;
             input = scan.nextLine( );
         } // end while
 
@@ -539,11 +544,12 @@ public class Arvore extends Personagem
         String name = scan.nextLine( );
         while( !isFim( name ) )
         {
-            Boolean found = arvore.pesquisar( name, log );
-            if ( found ) {
-                System.out.println( "SIM" );
+            Personagem outro = findPerso( personagens, tam, name );
+            int pos = hash.pesquisar( outro, log );
+            if ( pos != -1 ) {
+                System.out.println( name + " (pos: "+pos+") SIM" );
             } else {
-                System.out.println( "NAO" );
+                System.out.println( name + " NAO" );
             } // end if
             name = scan.nextLine( );
         } // end while
@@ -555,4 +561,4 @@ public class Arvore extends Personagem
         scan.close( );
     } // end main ( )
 
-} // end class Arvore
+} // end class HashRehash

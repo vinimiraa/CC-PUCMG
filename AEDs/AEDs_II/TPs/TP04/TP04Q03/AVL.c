@@ -587,15 +587,17 @@ bool pesquisarRec ( No* i, char* nome, Log* log )
 {
     bool resp = false;
     if ( i == NULL ) {
+        log->comparacoes++;
         resp = false;
-        log->comparacoes++;
     } else if ( strcmp(nome, getName(i->elemento)) == 0 ) {
+        log->comparacoes++;
         resp = true;
-        log->comparacoes++;
     } else if ( strcmp(nome, getName(i->elemento)) < 0 ) {
-        resp = pesquisarRec(i->esq, nome, log);
         log->comparacoes++;
+        printf( "%s", "esq " );
+        resp = pesquisarRec(i->esq, nome, log);
     } else {
+        printf( "%s", "dir " );
         resp = pesquisarRec(i->dir, nome, log);
     } // end if
     return ( resp );
@@ -603,6 +605,7 @@ bool pesquisarRec ( No* i, char* nome, Log* log )
 
 bool pesquisar ( AVL* avl, char* nome, Log* log )
 {
+    printf( "%s%s", nome, " => raiz " );
     return ( pesquisarRec(avl->raiz, nome, log) );
 } // end pesquisar ( )
 
@@ -650,7 +653,7 @@ No* balancear ( No* no )
     if( no != NULL )
     {
         int fator = get_fator_No( no );
-        if ( fator <= 1 ) {
+        if ( abs(fator) <= 1 ) {
             set_nivel_No( no );
         } else if ( fator == 2 ) {
             int fatorFilhoDir = get_fator_No( no->dir );

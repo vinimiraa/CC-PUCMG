@@ -5,7 +5,7 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP04Q01 - 16 / 06 / 2024
+ *  TP04Q05 - 22 / 06 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
@@ -49,7 +49,7 @@ class Hash
             this.tamReserva = tamReserva;
             this.tamTotal = tamTabela + tamReserva;
             this.tabela = new Personagem[this.tamTotal];
-            for( int i = 0; i < this.tamTotal; i = i +1 ) {
+            for( int i = 0; i < this.tamTotal; i = i + 1 ) {
                 this.tabela[i] = null;
             } // end for
             this.numReserva = 0;
@@ -57,7 +57,7 @@ class Hash
     } // end Hash ( )
 
     public int h ( Personagem perso ) {
-        return ( perso.getYearOfBirth( ) % this.tamTabela );
+        return ( Math.abs(perso.getYearOfBirth( ) % this.tamTabela) );
     } // end h ( )
 
     public boolean inserir ( Personagem perso ) 
@@ -73,7 +73,7 @@ class Hash
             } 
             else if( numReserva < tamReserva )
             {
-                tabela[tamTabela+numReserva] = perso;
+                tabela[tamTabela + numReserva] = perso;
                 numReserva++;
                 resp = true;
             } // end if
@@ -85,25 +85,22 @@ class Hash
     {
         int resp = -1;
         int pos = h(perso);
-        if( pos != -1 )
+        if( tabela[pos].getYearOfBirth() == perso.getYearOfBirth() ) {
+            resp = pos;
+            log.incrementarComp();
+        } 
+        else if( tabela[pos] != null )
         {
-            if( tabela[pos] == perso ) {
-                resp = pos;
-                log.incrementarComp();
-            } 
-            else if( tabela[pos] != null )
+            log.incrementarComp();
+            for( int i = 0; i < numReserva; i = i + 1 ) 
             {
-                log.incrementarComp();
-                for( int i = 0; i < numReserva; i = i + 1 ) 
+                if( tabela[tamTabela+i].getYearOfBirth() == perso.getYearOfBirth() ) 
                 {
-                    if( tabela[tamTabela+i] == perso ) 
-                    {
-                        resp = tamTabela+i;
-                        i = numReserva;
-                        log.incrementarComp();
-                    } // end if
-                } // end for
-            } // end if
+                    resp = tamTabela+i;
+                    i = numReserva;
+                    log.incrementarComp();
+                } // end if
+            } // end for
         } // end if
         return ( resp );
     } // end pesquisar ( )
@@ -474,7 +471,7 @@ class Personagem
     {
         Personagem perso = new Personagem( );
         String path = "/tmp/characters.csv";
-        path = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP04\\characters.csv";
+        // path = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP04\\characters.csv";
         try 
         { 
             File file = new File( path );
@@ -516,7 +513,8 @@ class Personagem
         Personagem found = new Personagem( );
         for( int i = 0; i < tam; i = i +1 )
         {
-            if( personagens[i].getName().equals(nome) ) {
+            if( personagens[i].getName( ).equals(nome) ) {
+                // System.out.println( "p["+i+"] = " + personagens[i].getName() + " nome = " + nome );
                 found = personagens[i];
                 i = tam;
             } // end if
@@ -553,13 +551,11 @@ public class HashReserva extends Personagem
         while( !isFim( name ) )
         {
             Personagem outro = findPerso( personagens, tam, name );
-
             int pos = hash.pesquisar( outro, log );
-
             if ( pos != -1 ) {
-                System.out.println( pos );
+                System.out.println( name + " (Posicao: "+pos+") SIM" );
             } else {
-                System.out.println( "NAO" );
+                System.out.println( name + " NAO" );
             } // end if
             name = scan.nextLine( );
         } // end while

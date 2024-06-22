@@ -67,6 +67,7 @@ class Alvinegra
     } // end Alvinegra ( )
 
     public boolean pesquisar (String elemento, Log log) {
+        System.out.print( elemento + " => raiz ");
         return pesquisar(elemento, raiz, log);
     } // end pesquisar ( )   
 
@@ -74,15 +75,17 @@ class Alvinegra
     {
         boolean resp;
         if (i == null) {
+            log.incrementarComp();
             resp = false;
-            log.incrementarComp();
         } else if (elemento.compareTo(i.elemento.getName()) == 0) {
+            log.incrementarComp();
             resp = true;
-            log.incrementarComp();
         } else if (elemento.compareTo(i.elemento.getName()) < 0) {
-            resp = pesquisar(elemento, i.esq, log);
             log.incrementarComp();
+            System.out.print( "esq " );
+            resp = pesquisar(elemento, i.esq, log);
         } else {
+            System.out.print( "dir " );
             resp = pesquisar(elemento, i.dir, log);
         } // end if
         return ( resp );
@@ -120,7 +123,7 @@ class Alvinegra
         } else if (raiz.esq == null) {
             if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
                 raiz.esq = new NoAN(elemento);
-            } else if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
+            } else if (elemento.getName().compareTo(raiz.dir.elemento.getName()) < 0) {
                 raiz.esq = new NoAN(raiz.elemento);
                 raiz.elemento = elemento;
             } else {
@@ -131,9 +134,9 @@ class Alvinegra
             raiz.esq.cor = raiz.dir.cor = false;     
             // Senao, se a arvore tiver dois elementos (raiz e esq)
         } else if (raiz.dir == null) {
-            if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
+            if (elemento.getName().compareTo(raiz.elemento.getName()) > 0) {
                 raiz.dir = new NoAN(elemento);
-            } else if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
+            } else if (elemento.getName().compareTo(raiz.esq.elemento.getName()) > 0) {
                 raiz.dir = new NoAN(raiz.elemento);
                 raiz.elemento = elemento;
             } else {
@@ -611,7 +614,7 @@ class Personagem
     {
         Personagem perso = new Personagem( );
         String path = "/tmp/characters.csv";
-        path = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP04\\characters.csv";
+        // path = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP04\\characters.csv";
         try 
         { 
             File file = new File( path );

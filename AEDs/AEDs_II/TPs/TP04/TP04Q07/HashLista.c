@@ -27,6 +27,19 @@
 #include <time.h>
 #include <wchar.h>   
 #include <locale.h>
+#include <stdarg.h>
+
+// ---------------------------------- Tratamento de Erro
+
+void errx ( int eval, const char *fmt, ... )
+{
+    va_list args;
+    va_start( args, fmt );
+    vfprintf( stderr, fmt, args );
+    va_end( args );
+    fprintf( stderr, "\n" );
+    exit( eval );
+} // end errx ( )
 
 // ---------------------------------- Struct Pesonagem
 
@@ -484,6 +497,20 @@ Personagem* ler( char* filename, char* id_procurado )
     return ( perso );
 } // end ler ( )
 
+Personagem* findPerso ( Personagem** array, int tam, char* nome )
+{
+    Personagem* found = NULL;
+    for( int i = 0; i < tam; i = i + 1 )
+    {
+        if( strcmp( getName(array[i]), nome ) == 0 )
+        {
+            found = array[i];
+            i = tam;
+        } // end if
+    } // end for
+    return ( found );
+} // end findPerso ( )
+
 // ---------------------------------- Funções - Timer
 
 Timer new_Timer( void )
@@ -566,13 +593,10 @@ void delete_Lista ( Lista* lista )
 
 void inserir_inicio_Lista ( Lista* lista, Personagem* perso )
 {
-    Celula* tmp = new_Celula( NULL );
-    tmp->prox = lista->primeiro->prox;
-    lista->primeiro->prox = tmp;
-    if( lista->primeiro == lista->ultimo ) {                    
-        lista->ultimo = tmp;
-    } // end if
-    tmp = NULL;
+    Celula *temp = new_Celula( NULL );
+    temp->prox = lista->primeiro;
+    lista->primeiro->elemento = perso;    
+    lista->primeiro = temp;
     lista->tamanho++;
 } // end inserir_inicio_Lista ( )
 
@@ -605,7 +629,7 @@ Personagem* remover_fim_Lista ( Lista* lista )
     } // end if
     Celula* i = NULL;
     for( i = lista->primeiro; i->prox != lista->ultimo; i = i->prox );
-    int resp = lista->ultimo->elemento;
+    Personagem* resp = lista->ultimo->elemento;
     lista->ultimo = i;
     free(lista->ultimo->prox);
     i = lista->ultimo->prox = NULL;
@@ -642,9 +666,9 @@ Personagem* remover_Lista ( Lista* lista, int index )
     } else if ( index < 0 || index >= tam ) {
         errx(1, "Erro ao remover posicao (%d/ tamanho = %d) invalida!", index, tam);
     } else if ( index == 0 ) {
-        resp = removerInicio();
+        resp = remover_inicio_Lista( lista );
     } else if ( index == tam - 1 ) {
-        resp = removerFim( );
+        resp = remover_fim_Lista( lista );
     } else {
         Celula* i = lista->primeiro;
         int j = 0;
@@ -659,19 +683,35 @@ Personagem* remover_Lista ( Lista* lista, int index )
     return ( resp );
 } // end remover_Lista ( )
 
-bool pesquisar_Lista ( Lista* lista, Personagem* perso )
+int pesquisar_Lista ( Lista* lista, Personagem* perso, Log* log )
 {
-    bool result = false;
-    for( Celula* i = lista->primeiro->prox; i != NULL; i = i->prox )
+    int result = -1;
+    int index = 0;
+    if( lista != NULL && exist_Personagem(perso) )
     {
-        if( strcmp( getName(i->elemento), getName(perso) ) == 0 )
+        for( Celula* i = lista->primeiro->prox; i != NULL; i = i->prox )
         {
-            result = true;
-            i = NULL;
-        } // end if
-    } // end for
+            if( i->elemento != NULL && strcmp( i->elemento->name, perso->name ) == 0 )
+            {
+                log->comparacoes++;
+                i = lista->ultimo;
+            } // end if
+            index++;
+        } // end for
+        result = index;
+    }
     return ( result );
 } // end pesquisar_Lista ( )
+
+void print_lista(Lista *l){
+    Celula *i;
+    printf("[");
+    for (i = l->primeiro->prox; i != NULL; i = i->prox)
+    {
+        printf("%s, ", i->elemento->name);
+    }
+    printf("] \n");
+}
 
 // ---------------------------------- Funções - Hash
 
@@ -681,28 +721,63 @@ Hash* new_Hash ( int tamanho )
     if( nova != NULL && tamanho > 0 )
     {
         nova->tamanho = tamanho;
-        for( int i = 0; i < nova->tamanho; i = i + 1 ) {
-            nova->tabela[i] = new_Lista( );
-        } // end for
+        nova->tabela = (Lista**) malloc ( tamanho * sizeof(Lista*) );
+        if( nova->tabela != NULL )
+        {
+            for( int i = 0; i < nova->tamanho; i = i + 1 ) {
+                nova->tabela[i] = new_Lista( );
+            } // end for
+        } // end if
     } // end if
     return ( nova );
 } // end new_Hash ( )
 
+void delete_Hash ( Hash* hash )
+{
+    if( hash != NULL )
+    {
+        for( int i = 0; i < hash->tamanho; i = i + 1 ) {
+            delete_Lista( hash->tabela[i] );
+        } // end for
+        free( hash->tabela ); hash->tabela = NULL;
+        free( hash ); hash = NULL;
+    } // end if
+} // end delete_Hash ( )
+
 int h_Hash ( Hash* hash, Personagem* perso )
 {
-    return ( getYearOfBirth( perso ) % hash->tamanho );
+    int valor = 0;
+    int tam = strlen( perso->name );
+    for( int i = 0; i < tam; i = i + 1 ) {
+        valor += (int) perso->name[i];
+    } // end for
+    return ( valor % hash->tamanho );
 } // end h ( )
 
-bool pesquisar_Hash ( Hash* hash , Personagem* perso, Log* log )
+int pesquisar_Hash ( Hash* hash , Personagem* perso, Log* log )
 {
-    int pos = h( hash, perso );
-    return ( pesquisar_Lista(hash->tabela[pos], perso) );
+    int result = -1;
+    int index = -1;
+    if( hash != NULL && exist_Personagem(perso) )
+    {
+        index = h_Hash( hash, perso );
+        result = pesquisar_Lista(hash->tabela[index], perso, log);
+    } // end if
+    return ( result );
 } // end pesquisar_Hash ( )
 
 bool inserir_Hash ( Hash* hash , Personagem* perso )
 {
-    int pos = h( hash, perso );
-    inserir_fim_Lista(hash->tabela[pos], perso);
+    bool result = false;
+    if( hash != NULL && exist_Personagem(perso) )
+    {
+        int index = h_Hash( hash, perso );
+        inserir_inicio_Lista( hash->tabela[index], perso );
+        // printf ( "tab[%2d] = %s\n", index, perso->name );
+        result = true; 
+        // print_lista( hash->tabela[index] );
+    } // end if
+    return ( result );
 } // end pesquisar ( )
 
 // ---------------------------------- Main
@@ -723,6 +798,7 @@ int main ( void )
 {
     setlocale( LC_CTYPE, "UTF-8" ); // setCharset
 
+    Personagem* array[30] = { NULL };
     Hash* hash  = new_Hash  ( 25 );
     Timer timer = new_Timer ( );
     Log   log   = new_Log   ( );
@@ -733,9 +809,13 @@ int main ( void )
     // filename = "C:\\Users\\vinic\\Desktop\\CC-PUCMG\\AEDs\\AEDs_II\\TPs\\TP04\\characters.csv";
 
     readLine( id, 81 );
+    int tam = 0;
     while( strcmp( id,"FIM" ) != 0 )
     {
-        inserir( hash, ler( filename, id ) );
+        Personagem* lido = ler( filename, id );
+        inserir_Hash( hash, lido );
+        array[tam] = lido;
+        tam++;
         readLine( id, 81 );
     } // end while
 
@@ -743,19 +823,20 @@ int main ( void )
     readLine( nome, 81 );
     while ( strcmp( nome, "FIM" ) != 0 )
     {
-        bool resp = pesquisar_Hash( hash, nome, &log );
-        if( resp == true ) {
-            printf( "%s\n", "SIM" );
+        Personagem* outro = findPerso( array, tam, nome );
+        int resp = pesquisar_Hash( hash, outro, &log );
+        if( resp != -1 ) {
+            printf( "%s (pos: %d) SIM\n", nome, resp );
         }
         else {
-            printf( "%s\n", "NAO" );
+            printf( "%s%s\n", nome, " NAO" );
         } // end if
         readLine( nome, 81 );
     } // end while
     end_Timer( &timer );
     registro( "812839_hashIndireta.txt", &timer, &log );
-    
-    delete_AVL( hash );
+
+    delete_Hash ( hash );
 
     return ( 0 );
 } // end main ( )

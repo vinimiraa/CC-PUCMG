@@ -3,6 +3,13 @@
         "sstream": "c",
         "typeinfo": "c",
         "locale.h": "c",
-        "random": "c"
+        "random": "c",
+        "stdlib.h": "c",
+        "string": "c",
+        "vector": "c",
+        "memory": "c",
+        "optional": "c",
+        "string_view": "c",
+        "system_error": "c"
     }
 }

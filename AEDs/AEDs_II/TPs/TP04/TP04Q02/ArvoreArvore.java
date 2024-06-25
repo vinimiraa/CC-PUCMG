@@ -5,7 +5,7 @@
  *  Curso de Ciencia da Computacao
  *  Algoritmos e Estruturas de Dados II
  *   
- *  TP04Q01 - 16 / 06 / 2024
+ *  TP04Q02 - 23 / 06 / 2024
  *  Author: Vinicius Miranda de Araujo
  *   
  *  Para compilar em terminal (janela de comandos):
@@ -30,19 +30,37 @@ import java.time.format.DateTimeFormatter;
  */
 class No 
 {
-    public Personagem elemento; // Conteudo do no.
+    public int year; // Conteudo do no.
     public No esq, dir;  // Filhos da esq e dir.
+    public No2 outro; // referencia para outra arvore
 
-    public No (Personagem elemento) {
-        this(elemento, null, null);
+    public No (int year) {
+        this(year, null, null, null);
     } // end No ( )
 
-    public No (Personagem elemento, No esq, No dir) {
-        this.elemento = elemento;
+    public No (int year, No esq, No dir, No2 outro) {
+        this.year = year;
         this.esq = esq;
         this.dir = dir;
+        this.outro = outro;
     } // end No ( )
 } // end class No
+
+class No2
+{
+    public String name;
+    public No2 esq, dir;
+
+    public No2 (String name) {
+        this(name, null, null);
+    } // end No2 ( )
+
+    public No2 (String name, No2 esq, No2 dir) {
+        this.name = name;
+        this.esq = esq;
+        this.dir = dir;
+    } // end No2 ( )
+} // end class No2 
 
 /**
  *  Classe ArvoreBinaria : ArvoreArvore Binaria de Pesquisa
@@ -53,59 +71,120 @@ class ArvoreBinaria
 
 	public ArvoreBinaria ( ) {
 		raiz = null;
+        try {
+            inserir(7);
+            inserir(3);
+            inserir(11);
+            inserir(1);
+            inserir(5);
+            inserir(9);
+            inserir(13);
+            inserir(0);
+            inserir(2);
+            inserir(4);
+            inserir(6);
+            inserir(8);
+            inserir(10);
+            inserir(12);
+            inserir(14);
+        } catch (Exception e) {
+            System.err.println( e.getMessage( ) );
+        }
 	} // end ArvoreBinaria ( )
 
-	public boolean pesquisar (String x, Log log) {
-		return ( pesquisar(x, raiz, log) );
-	} // end pesquisar ( )
-
-	private boolean pesquisar (String x, No i, Log log) {
-        boolean resp;
-		if (i == null) {
-            resp = false;
-            log.incrementarComp( );
-        } else if (x.equals(i.elemento.getName())) {
-            resp = true;
-            log.incrementarComp( );
-        } else if (x.compareTo(i.elemento.getName()) < 0) {
-            resp = pesquisar(x, i.esq, log);
-            log.incrementarComp( );
-        } else {
-            resp = pesquisar(x, i.dir, log);
-        }
-        return ( resp );
-	} // end pesquisar ( )
-
-    public void caminharPre ( ) {
-		System.out.print("[ ");
-		caminharPre(raiz);
-		System.out.println("]");
-	} // end caminharPre ( )
-
-	private void caminharPre (No i) {
-		if (i != null) {
-			System.out.print(i.elemento + " "); // Conteudo do no.
-			caminharPre(i.esq); // Elementos da esquerda.
-			caminharPre(i.dir); // Elementos da direita.
-		} // end if
-	} // end caminharPre ( )
-
-	public void inserir (Personagem x) throws Exception {
+    /* INSERIR OS NUMEROS NA PRIMEIRA ARVORE */
+    private void inserir (int x) throws Exception {
 		raiz = inserir(x, raiz);
 	} // end inserir ( )
 
-	private No inserir (Personagem x, No i) throws Exception {
+	private No inserir (int x, No i) throws Exception {
 		if (i == null) {
             i = new No(x);
-        } else if (x.getName().compareTo(i.elemento.getName()) < 0) {
+        } else if (x < i.year) {
             i.esq = inserir(x, i.esq);
-        } else if (x.getName().compareTo(i.elemento.getName()) > 0) {
+        } else if (x > i.year) {
             i.dir = inserir(x, i.dir);
         } else {
             throw new Exception("Erro ao inserir!");
         } // end if
 		return ( i );
 	} // end inserir ( )
+
+    /* INSERIR OS PERSONAGENS NA ARVORE */
+    public void inserir (Personagem x) throws Exception {
+        raiz = inserir(x, raiz);
+    } // end inserir ( )
+
+    private No inserir (Personagem x, No i) throws Exception {
+        int ano = x.getYearOfBirth() % 15;
+        if( i == null ) {
+            System.err.println("erro inserir perso");
+        } else if( ano < i.year ) {
+            i.esq = inserir(x, i.esq);
+        } else if( ano > i.year ) {
+            i.dir = inserir(x, i.dir);
+        } else {
+            i.outro = inserir(x.getName(), i.outro);
+        } // end if
+        return ( i );
+    } // end inserir ( )
+
+	private No2 inserir (String x, No2 i) throws Exception {
+		if (i == null) {
+            i = new No2(x);
+        } else if (x.compareTo(i.name) < 0) {
+            i.esq = inserir(x, i.esq);
+        } else if (x.compareTo(i.name) > 0) {
+            i.dir = inserir(x, i.dir);
+        } else {
+            throw new Exception("Erro ao inserir na segunda arvore!");
+        } // end if
+		return ( i );
+	} // end inserir ( )
+
+	public boolean pesquisar (Personagem x, Log log) {
+        System.out.print( " => raiz ");
+		return ( pesquisar(x, raiz, log) );
+	} // end pesquisar ( )
+
+	private boolean pesquisar (Personagem x, No i, Log log) {
+        boolean resp;
+        int ano = x.getYearOfBirth() % 15;
+		if (i == null) {
+            resp = false;
+            log.incrementarComp( );
+        } else if ( ano == i.year ) {
+            log.incrementarComp( );
+            resp = pesquisar( x.getName(), i.outro, log);
+        } else if ( ano < i.year ) {
+            log.incrementarComp( );
+            System.out.print( "ESQ " );
+            resp = pesquisar(x, i.esq, log);
+        } else {
+            System.out.print( "DIR " );
+            resp = pesquisar(x, i.dir, log);
+        } // end if
+        return ( resp );
+	} // end pesquisar ( )
+
+    private boolean pesquisar (String x, No2 i, Log log) {
+        boolean resp;
+        if (i == null) {
+            log.incrementarComp();
+            resp = false;
+        } else if (x.equals(i.name)) {
+            log.incrementarComp();
+            resp = true;
+        } else if (x.compareTo(i.name) < 0) {
+            log.incrementarComp();
+            System.out.print( "->esq " );
+            resp = pesquisar( x, i.esq, log);
+        } else {
+            System.out.print( "->dir " );
+            resp = pesquisar( x, i.esq, log);
+        } // end if
+        return ( resp );
+    } // end pesquisar ( )
 
 } // end class ArvoreBinaria ( )
 
@@ -509,6 +588,20 @@ class Personagem
         } // end catch
         return ( perso );
     } // end ler ( )
+
+    public static Personagem findPerso ( Personagem [ ] personagens, int tam, String nome )
+    {
+        Personagem found = new Personagem( );
+        for( int i = 0; i < tam; i = i +1 )
+        {
+            if( personagens[i].getName( ).equals(nome) ) {
+                // System.out.println( "p["+i+"] = " + personagens[i].getName() + " nome = " + nome );
+                found = personagens[i];
+                i = tam;
+            } // end if
+        } // end for
+        return ( found );
+    } // end findPerso ( )
     
 } // end class Personagem
 
@@ -521,14 +614,18 @@ public class ArvoreArvore extends Personagem
     {
         Scanner scan = new Scanner( System.in );
         
-        Log log = new Log( "812839_arvoreBinaria.txt" );
+        Personagem [] array = new Personagem[100];
+        Log log = new Log( "812839_arvoreArvore.txt" );
         Personagem perso = new Personagem( );
         ArvoreBinaria arvore = new ArvoreBinaria( );
 
         String input = scan.nextLine( );
+        int tam = 0;
         while( !isFim( input ) )
         {
-            arvore.inserir( perso.ler( input ) );
+            Personagem lido = perso.ler( input );
+            arvore.inserir( lido );
+            array[tam++] = lido;
             input = scan.nextLine( );
         } // end while
 
@@ -536,7 +633,9 @@ public class ArvoreArvore extends Personagem
         String name = scan.nextLine( );
         while( !isFim( name ) )
         {
-            Boolean found = arvore.pesquisar( name, log );
+            Personagem outro = findPerso( array, tam, name );
+            System.out.print( name );
+            Boolean found = arvore.pesquisar( outro, log );
             if ( found ) {
                 System.out.println( "SIM" );
             } else {

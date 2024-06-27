@@ -683,10 +683,10 @@ Personagem* remover_Lista ( Lista* lista, int index )
     return ( resp );
 } // end remover_Lista ( )
 
-int pesquisar_Lista ( Lista* lista, Personagem* perso, Log* log )
+bool pesquisar_Lista ( Lista* lista, Personagem* perso, Log* log )
 {
-    int result = -1;
-    int index = 0;
+    int result = false;
+    // int index = 0;
     if( lista != NULL && exist_Personagem(perso) )
     {
         for( Celula* i = lista->primeiro->prox; i != NULL; i = i->prox )
@@ -694,23 +694,23 @@ int pesquisar_Lista ( Lista* lista, Personagem* perso, Log* log )
             if( i->elemento != NULL && strcmp( i->elemento->name, perso->name ) == 0 )
             {
                 log->comparacoes++;
+                result = true;
                 i = lista->ultimo;
             } // end if
-            index++;
+            // index++;
         } // end for
-        result = index;
     }
     return ( result );
 } // end pesquisar_Lista ( )
 
-void print_lista(Lista *l){
-    Celula *i;
-    printf("[");
-    for (i = l->primeiro->prox; i != NULL; i = i->prox)
-    {
-        printf("%s, ", i->elemento->name);
+void print_Lista ( Lista *lista )
+{
+    printf( "[ " );
+    for( Celula *i = lista->primeiro->prox; i != NULL; i = i->prox ) {
+        printf("%s -> ", i->elemento->name);
     }
-    printf("] \n");
+
+    printf( "\\ ]\n" );
 }
 
 // ---------------------------------- Funções - Hash
@@ -744,14 +744,15 @@ void delete_Hash ( Hash* hash )
     } // end if
 } // end delete_Hash ( )
 
-int h_Hash ( Hash* hash, Personagem* perso )
+int h_Hash ( Hash* hash, char* name )
 {
     int valor = 0;
-    int tam = strlen( perso->name );
+    int tam = strlen( name );
     for( int i = 0; i < tam; i = i + 1 ) {
-        valor += (int) perso->name[i];
+        valor += name[i];
     } // end for
-    return ( valor % hash->tamanho );
+    valor = valor % hash->tamanho;
+    return ( valor );
 } // end h ( )
 
 int pesquisar_Hash ( Hash* hash , Personagem* perso, Log* log )
@@ -760,8 +761,10 @@ int pesquisar_Hash ( Hash* hash , Personagem* perso, Log* log )
     int index = -1;
     if( hash != NULL && exist_Personagem(perso) )
     {
-        index = h_Hash( hash, perso );
-        result = pesquisar_Lista(hash->tabela[index], perso, log);
+        index = h_Hash( hash, getName( perso ) );
+        if( pesquisar_Lista(hash->tabela[index], perso, log) == true ) {
+            result = index;
+        } // end if
     } // end if
     return ( result );
 } // end pesquisar_Hash ( )
@@ -771,14 +774,21 @@ bool inserir_Hash ( Hash* hash , Personagem* perso )
     bool result = false;
     if( hash != NULL && exist_Personagem(perso) )
     {
-        int index = h_Hash( hash, perso );
-        inserir_inicio_Lista( hash->tabela[index], perso );
-        // printf ( "tab[%2d] = %s\n", index, perso->name );
+        int index = h_Hash( hash, getName( perso ) );
+        inserir_fim_Lista( hash->tabela[index], perso );
         result = true; 
-        // print_lista( hash->tabela[index] );
     } // end if
     return ( result );
-} // end pesquisar ( )
+} // end inserir_Hash ( )
+
+void print_Hash ( Hash* hash ) 
+{
+    for( int i = 0; i < hash->tamanho; i++ ) 
+    {
+        printf( "%2d -> ", i );
+        print_Lista( hash->tabela[i] );
+    } // end for
+} // end print_Hash ( )
 
 // ---------------------------------- Main
 
@@ -799,7 +809,7 @@ int main ( void )
     setlocale( LC_CTYPE, "UTF-8" ); // setCharset
 
     Personagem* array[30] = { NULL };
-    Hash* hash  = new_Hash  ( 25 );
+    Hash* hash  = new_Hash  ( 21 );
     Timer timer = new_Timer ( );
     Log   log   = new_Log   ( );
 
@@ -819,11 +829,14 @@ int main ( void )
         readLine( id, 81 );
     } // end while
 
+    // print_Hash( hash );
     start_Timer( &timer );
+
     readLine( nome, 81 );
     while ( strcmp( nome, "FIM" ) != 0 )
     {
         Personagem* outro = findPerso( array, tam, nome );
+
         int resp = pesquisar_Hash( hash, outro, &log );
         if( resp != -1 ) {
             printf( "%s (pos: %d) SIM\n", nome, resp );
@@ -831,9 +844,12 @@ int main ( void )
         else {
             printf( "%s%s\n", nome, " NAO" );
         } // end if
+
         readLine( nome, 81 );
     } // end while
+
     end_Timer( &timer );
+
     registro( "812839_hashIndireta.txt", &timer, &log );
 
     delete_Hash ( hash );

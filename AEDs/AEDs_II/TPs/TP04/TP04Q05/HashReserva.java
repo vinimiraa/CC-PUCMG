@@ -56,8 +56,15 @@ class Hash
         } // end if
     } // end Hash ( )
 
-    public int h ( Personagem perso ) {
-        return ( Math.abs(perso.getYearOfBirth( ) % this.tamTabela) );
+    public int h ( Personagem perso ) 
+    {
+        int resp = 0;
+        String name = perso.getName( );
+        for( int i = 0; i < name.length( ); i = i + 1 ) {
+            resp += (int)name.charAt( i ); 
+        } // end for
+        resp = resp % this.tamTabela;
+        return ( resp );
     } // end h ( )
 
     public boolean inserir ( Personagem perso ) 
@@ -85,20 +92,20 @@ class Hash
     {
         int resp = -1;
         int pos = h(perso);
-        if( tabela[pos].getYearOfBirth() == perso.getYearOfBirth() ) {
-            resp = pos;
+        if( tabela[pos] == perso ) {
             log.incrementarComp();
+            resp = pos;
         } 
         else if( tabela[pos] != null )
         {
             log.incrementarComp();
             for( int i = 0; i < numReserva; i = i + 1 ) 
             {
-                if( tabela[tamTabela+i].getYearOfBirth() == perso.getYearOfBirth() ) 
+                if( tabela[tamTabela+i] == perso ) 
                 {
+                    log.incrementarComp();
                     resp = tamTabela+i;
                     i = numReserva;
-                    log.incrementarComp();
                 } // end if
             } // end for
         } // end if
@@ -530,13 +537,14 @@ public class HashReserva extends Personagem
 {
     public static void main ( String [] args ) throws Exception
     {
-        Scanner scan = new Scanner( System.in );
+        Scanner        scan        = new Scanner( System.in );
         Personagem [ ] personagens = new Personagem[100];
-        Hash hash = new Hash( );
-        Log log = new Log( "812839_hashReserva.txt" );
-        Personagem perso = new Personagem( );
+        Hash           hash        = new Hash( );
+        Log            log         = new Log( "812839_hashReserva.txt" );
+        Personagem     perso       = new Personagem( );
 
         String input = scan.nextLine( );
+
         int tam = 0;
         while( !isFim( input ) )
         {
@@ -547,6 +555,7 @@ public class HashReserva extends Personagem
         } // end while
 
         long startTime = System.nanoTime();
+
         String name = scan.nextLine( );
         while( !isFim( name ) )
         {
@@ -559,11 +568,14 @@ public class HashReserva extends Personagem
             } // end if
             name = scan.nextLine( );
         } // end while
+
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
         double time = totalTime / 1_000_000.0;
         log.setTime( time );
+        
         log.registro( );
+
         scan.close( );
     } // end main ( )
 

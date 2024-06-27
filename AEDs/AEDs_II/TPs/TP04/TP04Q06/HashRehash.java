@@ -35,7 +35,7 @@ class Hash
     int tamTabela;
 
     public Hash ( ) {
-        this( 25 );
+        this( 21 );
     } // end Hash ( )
 
     public Hash ( int tam ) 
@@ -47,12 +47,25 @@ class Hash
         } // end for
     } // end Hash ( )
 
-    public int h (Personagem elemento ) {
-        return ( Math.abs(elemento.getYearOfBirth( ) % tamTabela) );
+    public int h ( String name ) 
+    {
+        int resp = 0;
+        for( int i = 0; i < name.length( ); i = i + 1 ) {
+            resp += (int)name.charAt( i ); 
+        } // end for
+        resp = resp % this.tamTabela;
+        return ( resp );
     } // end h ( )
 
-    public int reh (Personagem elemento) {
-        return ( Math.abs((elemento.getYearOfBirth( ) + 1) % tamTabela) );
+    public int reh ( String name ) 
+    {
+        int resp = 0;
+        for( int i = 0; i < name.length( ); i = i + 1 ) {
+            resp += (int)name.charAt( i ); 
+        } // end for
+        resp++;
+        resp = resp % this.tamTabela;
+        return ( resp );
     } // end reh ( )
 
     public boolean inserir (Personagem elemento) 
@@ -60,7 +73,7 @@ class Hash
         boolean resp = false;
         if( elemento != null ) 
         {
-            int pos = h(elemento);
+            int pos = h(elemento.getName());
             if( tabela[pos] == null ) 
             {
                 tabela[pos] = elemento;
@@ -68,7 +81,7 @@ class Hash
             } 
             else 
             {
-                pos = reh(elemento);
+                pos = reh(elemento.getName());
                 if( tabela[pos] == null ) 
                 {
                     tabela[pos] = elemento;
@@ -82,7 +95,7 @@ class Hash
     public int pesquisar ( Personagem elemento, Log log ) 
     {
         int resp = -1;
-        int pos = h(elemento);
+        int pos = h(elemento.getName());
         if( tabela[pos] == elemento ) {
             log.incrementarComp( );
             resp = pos;
@@ -90,7 +103,7 @@ class Hash
         else if( tabela[pos] != null ) 
         {
             log.incrementarComp( );
-            pos = reh(elemento);
+            pos = reh(elemento.getName());
             if( tabela[pos] == elemento ) {
                 log.incrementarComp( );
                 resp = pos;
@@ -524,13 +537,14 @@ public class HashRehash extends Personagem
 {
     public static void main ( String [] args ) throws Exception
     {
-        Scanner scan = new Scanner( System.in );
-        Personagem [ ] personagens = new Personagem[150];
-        Hash hash = new Hash( );
-        Log log = new Log( "812839_hashRehash.txt" );
-        Personagem perso = new Personagem( );
+        Scanner       scan        = new Scanner( System.in );
+        Personagem [] personagens = new Personagem[100];
+        Hash          hash        = new Hash( );
+        Log           log         = new Log( "812839_hashReserva.txt" );
+        Personagem    perso       = new Personagem( );
 
         String input = scan.nextLine( );
+
         int tam = 0;
         while( !isFim( input ) )
         {
@@ -541,6 +555,7 @@ public class HashRehash extends Personagem
         } // end while
 
         long startTime = System.nanoTime();
+
         String name = scan.nextLine( );
         while( !isFim( name ) )
         {
@@ -556,8 +571,10 @@ public class HashRehash extends Personagem
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
         double time = totalTime / 1_000_000.0;
+
         log.setTime( time );
         log.registro( );
+
         scan.close( );
     } // end main ( )
 

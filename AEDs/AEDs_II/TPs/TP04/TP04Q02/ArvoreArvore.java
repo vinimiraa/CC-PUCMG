@@ -181,7 +181,7 @@ class ArvoreBinaria
             resp = pesquisar( x, i.esq, log);
         } else {
             System.out.print( "->dir " );
-            resp = pesquisar( x, i.esq, log);
+            resp = pesquisar( x, i.dir, log);
         } // end if
         return ( resp );
     } // end pesquisar ( )

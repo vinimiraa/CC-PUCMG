@@ -112,23 +112,21 @@ class ArvoreBinaria
 
     /* INSERIR OS PERSONAGENS NA ARVORE */
     public void inserir (Personagem x) throws Exception {
-        raiz = inserir(x, raiz);
+        inserir(x, raiz);
     } // end inserir ( )
-
-    private No inserir (Personagem x, No i) throws Exception {
-        int ano = x.getYearOfBirth() % 15;
+    /* CAMINHAR NA PRIMEIRA ARVORE */
+    private void inserir (Personagem x, No i) throws Exception {
         if( i == null ) {
             System.err.println("erro inserir perso");
-        } else if( ano < i.year ) {
-            i.esq = inserir(x, i.esq);
-        } else if( ano > i.year ) {
-            i.dir = inserir(x, i.dir);
+        } else if( (x.getYearOfBirth() % 15) < i.year ) {
+            inserir(x, i.esq);
+        } else if( (x.getYearOfBirth() % 15) > i.year ) {
+            inserir(x, i.dir);
         } else {
             i.outro = inserir(x.getName(), i.outro);
         } // end if
-        return ( i );
     } // end inserir ( )
-
+    /* INSERIR NA SEGUNDA ARVORE */
 	private No2 inserir (String x, No2 i) throws Exception {
 		if (i == null) {
             i = new No2(x);
@@ -142,46 +140,46 @@ class ArvoreBinaria
 		return ( i );
 	} // end inserir ( )
 
-	public boolean pesquisar (Personagem x, Log log) {
-        System.out.print( " => raiz ");
-		return ( pesquisar(x, raiz, log) );
+	public boolean pesquisar (String x, Log log) {
+        System.out.print( x + " => raiz");
+		return ( pesquisar(raiz, x, log) );
 	} // end pesquisar ( )
 
-	private boolean pesquisar (Personagem x, No i, Log log) {
-        boolean resp;
-        int ano = x.getYearOfBirth() % 15;
-		if (i == null) {
-            resp = false;
-            log.incrementarComp( );
-        } else if ( ano == i.year ) {
-            log.incrementarComp( );
-            resp = pesquisar( x.getName(), i.outro, log);
-        } else if ( ano < i.year ) {
-            log.incrementarComp( );
-            System.out.print( "ESQ " );
-            resp = pesquisar(x, i.esq, log);
-        } else {
-            System.out.print( "DIR " );
-            resp = pesquisar(x, i.dir, log);
+    private boolean pesquisar (No i, String x, Log log) {
+        boolean resp = false;
+        if (i != null) {
+            log.incrementarComp();
+            resp = pesquisar(i.outro, x, log);    
+            if(!resp) {
+                log.incrementarComp();
+                System.out.print(" ESQ");
+                resp = pesquisar(i.esq, x, log);
+            } // end if
+            if(!resp) {
+                log.incrementarComp();
+                System.out.print(" DIR");
+                resp = pesquisar(i.dir, x, log);
+            } // end if
         } // end if
         return ( resp );
-	} // end pesquisar ( )
+    } // end pesquisar ( )
 
-    private boolean pesquisar (String x, No2 i, Log log) {
-        boolean resp;
-        if (i == null) {
+    private boolean pesquisar (No2 i, String x, Log log) {
+        boolean resp = false;
+        if (i != null) {
             log.incrementarComp();
-            resp = false;
-        } else if (x.equals(i.name)) {
-            log.incrementarComp();
-            resp = true;
-        } else if (x.compareTo(i.name) < 0) {
-            log.incrementarComp();
-            System.out.print( "->esq " );
-            resp = pesquisar( x, i.esq, log);
-        } else {
-            System.out.print( "->dir " );
-            resp = pesquisar( x, i.dir, log);
+            if (i.name.equals(x)) {
+                resp = true;
+            } else {
+                if (x.compareTo(i.name) < 0) {
+                    log.incrementarComp();
+                    System.out.print("->esq");
+                    resp = pesquisar(i.esq, x, log);
+                } else {
+                    System.out.print("->dir");
+                    resp = pesquisar(i.dir, x, log);
+                } // end if
+            } // end if
         } // end if
         return ( resp );
     } // end pesquisar ( )
@@ -589,20 +587,6 @@ class Personagem
         return ( perso );
     } // end ler ( )
 
-    public static Personagem findPerso ( Personagem [ ] personagens, int tam, String nome )
-    {
-        Personagem found = new Personagem( );
-        for( int i = 0; i < tam; i = i +1 )
-        {
-            if( personagens[i].getName( ).equals(nome) ) {
-                // System.out.println( "p["+i+"] = " + personagens[i].getName() + " nome = " + nome );
-                found = personagens[i];
-                i = tam;
-            } // end if
-        } // end for
-        return ( found );
-    } // end findPerso ( )
-    
 } // end class Personagem
 
 /**
@@ -614,40 +598,39 @@ public class ArvoreArvore extends Personagem
     {
         Scanner scan = new Scanner( System.in );
         
-        Personagem [] array = new Personagem[100];
-        Log log = new Log( "812839_arvoreArvore.txt" );
-        Personagem perso = new Personagem( );
+        Log           log    = new Log( "812839_arvoreArvore.txt" );
+        Personagem    perso  = new Personagem( );
         ArvoreBinaria arvore = new ArvoreBinaria( );
 
         String input = scan.nextLine( );
-        int tam = 0;
+        
         while( !isFim( input ) )
         {
-            Personagem lido = perso.ler( input );
-            arvore.inserir( lido );
-            array[tam++] = lido;
+            arvore.inserir( perso.ler( input ) );
             input = scan.nextLine( );
         } // end while
 
         long startTime = System.nanoTime();
+
         String name = scan.nextLine( );
         while( !isFim( name ) )
         {
-            Personagem outro = findPerso( array, tam, name );
-            System.out.print( name );
-            Boolean found = arvore.pesquisar( outro, log );
+            Boolean found = arvore.pesquisar( name, log );
             if ( found ) {
-                System.out.println( "SIM" );
+                System.out.println( " SIM" );
             } else {
-                System.out.println( "NAO" );
+                System.out.println( " NAO" );
             } // end if
             name = scan.nextLine( );
         } // end while
+
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
         double time = totalTime / 1_000_000.0;
         log.setTime( time );
+
         log.registro( );
+
         scan.close( );
     } // end main ( )
 

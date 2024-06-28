@@ -1,0 +1,30 @@
+Protocolo TCP/IP
+
+* Descrição
+
+O Protocolo TCP/IP (Transmission Control Protocol – Protocolo de Controle de Transmissão / Internet Protocol – Protocolo 
+de Internet) é um conjunto de protocolos de comunicação em uma rede de computadores para transmissão de pacotes na rede. 
+O TCP é um mecanismo de transporte “confiável” por fornecer um byte do host de destino (computador ou dispositivo com 
+acesso à rede) ao host de origem confirmando que o pacote foi recebido com sucesso. A transferência é feita dividindo os 
+dados em pacotes e enviando um pacote de cada vez. Outra característica importante do protocolo TCP é que como os pacotes 
+podem ser enviados por caminhos diferentes, os pacotes podem chegar ao host de destino fora de ordem. Sendo assim, o TCP 
+ordena os pacotes no host de destino de forma que a aplicação seja visualizada organizadamente no monitor.
+
+Supondo que você está criando o protocolo TCP, desenvolva o algoritmo que a partir da chegada dos pacotes enviados, seja 
+apresentado no monitor do host de destino os mesmos pacotes, porém de forma ordenada. Assuma que seja enviado o bit “1” 
+para iniciar a transferência e o bit “0” para finalizar a transferência dos pacotes.
+
+
+* Entrada
+
+A entrada é composta por vários casos de teste. A primeira linha contém um número inteiro “1” (sem aspas) que indica o 
+início da transferência. A segunda e próximas linhas contêm a palavra “Package ” concatenada com um número inteiro P 
+(001 <= P <= 999) de 3 dígitos, o qual identifica o pacote. Existem pacotes com identificadores repetidos! A leitura dos 
+pacotes do caso de teste é finalizada com a última linha do caso de teste que contém um número inteiro “0”. A entrada 
+termina com fim de arquivo.
+
+
+* Saída
+
+Para cada caso de teste da entrada do seu programa, você deve imprimir todos os pacotes enviados de forma ordenada 
+seguidos de uma linha em branco.

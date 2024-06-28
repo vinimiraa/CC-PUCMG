@@ -1,0 +1,40 @@
+A Noiva do Trevo
+
+* Descrição
+
+Existe uma famosa história na cidade de Muzambinho de uma noiva que aparece no trevo da entrada da cidade sempre próximo 
+a meia noite.
+
+Muitos moradores da cidade já relataram que viram a noiva, porém não existe um consenso de qual é o horário certo que 
+ela aparece, principalmente porque todos dizem que viram "próximo a meia noite".
+
+Toguro, um grande estudioso de eventos sobrenaturais, está tentando organizar os relatos dos moradores e verificar se 
+houveram relatos verdadeiros.
+
+Como um horário "próximo a meia noite" pode ser tanto alguns minutos antes quanto alguns minutos depois, Toguro pediu a 
+sua ajuda para criar um algoritmo que dado o valor M de minutos para ser considerado antes e depois da meia noite, o nome 
+do morador e o horário do suposto avistamento, mostrasse de forma ordenada pelo horário os avistamentos que podem ser 
+catalogados como relatos verdadeiros.
+
+
+* Entrada
+
+A primeira linha da entrada contém um inteiro P representando o valor próximo da meia noite para mais e para menos e um 
+inteiro Q representando a quantidade de pessoas que relataram o avistamento.
+
+Nas próximas Q linhas serão lidos duas strings H e N, indicando o horário do relato e o nome do morador, respectivamente.
+
+Limites:
+1 <= P <= 59;
+1 <= Q <= 1000;
+23:01 <= H <= 00:59
+1 <= |N| <= 100;
+
+
+* Saída
+
+A saída deverá ser o nome dos moradores que tiveram o relato como verdadeiro ordenados pelo horário que viram.
+
+Obs: avistamentos antes da meia noite ocorreram primeiro que os avistamentos depois da meia noite. Em caso de avistamentos 
+no mesmo horário a ordem de registro do avistamento deve ser considerada, ou seja, o avistamento que foi registrado 
+primeiro deve aparecer primeiro, assim sucessivamente.

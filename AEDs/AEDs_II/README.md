@@ -10,7 +10,6 @@ Max Machado e Felipe Domingo.
 - [TPs](/AEDs/AEDs_II/TPs/) : Trabalhos Práticos.
 - [Aquecimentos](/AEDs/AEDs_II/Aquecimentos/) : Atividades de Aquecimento.
 - [Estudos](/AEDs/AEDs_II/Estudos/) : Códigos desenvolvidos para estudo.
-- [Provas](/AEDs/AEDs_II/Provas/) : Resolução das Provas Práticas.
 
 ## 📚 Material
 

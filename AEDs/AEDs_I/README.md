@@ -9,7 +9,6 @@ Theldo Cruz Franqueira
 
 - [Estudos Dirigidos(EDs)](/AEDs/AEDs_I/EDs/) : Atividade semanais.
 - [Guias](/AEDs/AEDs_I/Guias/) : Atividade com o Robô Karel.
-- [Bibliotecas](/AEDs/AEDs_I/Bibliotecas/) : Biblioteca desenvolvida para estudos.
 - [Material](/AEDs/AEDs_I/Material/) : Material disponibilizado pelo professor.
 
 ## 👨‍💻 Autor

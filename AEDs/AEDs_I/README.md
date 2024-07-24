@@ -9,6 +9,7 @@ Theldo Cruz Franqueira
 
 - [Estudos Dirigidos(EDs)](/AEDs/AEDs_I/EDs/) : Atividade semanais.
 - [Guias](/AEDs/AEDs_I/Guias/) : Atividade com o Robô Karel.
+- [Trabalho Prático](/ACs/AC_I/Trabalho_01/) : Trabalho sobre Artigo Científico.
 - [Material](/AEDs/AEDs_I/Material/) : Material disponibilizado pelo professor.
 
 ## 👨‍💻 Autor

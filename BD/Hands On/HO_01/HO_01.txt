@@ -1,0 +1,84 @@
+/**
+ *  Banco de Dados
+ *  812839 - Vinícius Miranda de Araújo
+ * 
+ *  Hands On 01 - Resposta das Perguntas. 
+ */
+
+1. Um Sistema de Banco de Dados (SDB) é um conjunto de dados relacionados e suas respectivas formas de acesso e 
+organização.
+
+2. Um SDB é composto por uma Coleção de Dados Organizados, um Estrutura Lógica determinando a forma como os dados são 
+armazenados, organizados e manipulados, e um Software que provê acesso aos dados a usuários e aplicações. 
+
+3. Usuários e aplicações interagem com o sistema submetendo Consultas.
+
+4. Um Banco de Dados (BD) é uma coleção de dados organizados. Um exemplo de BD é o PostgreeSQL, segue o link para ele: 
+https://www.postgresql.org/ .
+
+5. Um BD possui as seguintes propriedades:
+    -> Finalidade: construído com um propósito específico;
+    -> Realidade : representa o "mundo real";
+       |_ Mundo Real: minimundo, universo de discurso.
+    -> Coerência : mantém a coerência lógica da coleção;
+    -> Compartilhamento : provêm Compartilhamento de dados.
+
+6.  As estapas de um projeto de BD são:
+    -> Modelo : representação de entes e eventos reais;
+    -> Etapas de implementação:
+       |_ 1. Especificação : descrição do minimundo;
+       |_ 2. Análise de Requisitos : restrição de operações;
+       |_ 3. Projeto Conceitual : estruturas e restrições conceituais;
+       |_ 3. Projeto Lógico : estruturas e restrições lógicas;
+       |_ 4. Projeto Físico : estruturas e restrições físicas;
+    -> Revisão contínua.
+
+7. Um SGBD é uma coleção de programas (Software) que permitem ao usuário criar e manter BDs. Onde é possível, definir,
+construir, manipular e compartilhar BDs.
+
+8. As propriedades de um SGBD são: controle de redundância, flexibilidade, múltiplas interfaces, economia de escala,
+garantia de padrões, restrição de acesso, Backup e recuperação, disponibilidade elevada, restrições de integridade,
+tempo de desenvolvimento e relacionamentos complexos. 
+
+9. Um SGBD se mostra inadequado em algumas situações, como, por exemplo:
+    -> quando é requerido acesso por múltiplos usuários; 
+    -> quando a aplicação é complexa, de tempo real, de alta escalabilidade e que demanda recursos além do oferecido pelo SGBD. 
+
+10. O Modelo de Dados é uma estrutura lógica que determina a forma como os dados são armazenados, organizados e manipulados.
+
+11. O Modelo de Dados pode ser dos seguintes tipos: 
+    -> Conceitual: alto nível de abstração
+    -> Representativo: nível intermediário de abstração
+    -> Físico: baixo nível de abstração
+
+12. Um Esquema de BD é uma descrição do banco de dados (metadados).
+
+13. Uma Instância de BD é um conjunto de dados armazenados em determinado momento.
+
+14. A arquitetura de três esquemas é uma abordagem que permite a visualização facilitada para o usuário com autodescrição, suporte a múltiplas visões e independência de aplicação.
+
+15. Na arquitetura de Três Esquemas existem 3 níveis:
+    -> Nível externo : 
+        |_ Esquema Externo;
+        |_ Descreve parte do DB em que o grupo está interessado;
+        |_ Implementado com modelos de dados representativo.
+    -> Nível conceitual :
+        |_ Esquema Conceitual;
+        |_ Descrição dos tipos de dados, entidades, relacionamentos, restrições e operações de usuário;
+        |_ Oculta detalhes de armazenamento físico.
+    -> Nível interno :
+        |_ Esquema Físico;
+        |_ Descrição de detalhes do armazenamento de dados e do caminho de acesso.
+
+16. O Mapeamento é a transformação de requisições e resultados entre níveis
+
+17. A independência de dados é a capacidade de se alterar o esquema de um nível sem alterar o esquema de um nível adjacente 
+    superior.
+
+18. A Linguagem de Consulta consiste em operações para recuperação de dados. 
+
+19. No SQL é incorporada as linguagens VDL, DDL, SDL e DML.
+
+/**
+ *  Fim
+ */

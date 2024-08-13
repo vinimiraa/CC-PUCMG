@@ -79,6 +79,4 @@ tempo de desenvolvimento e relacionamentos complexos.
 
 19. No SQL é incorporada as linguagens VDL, DDL, SDL e DML.
 
-/**
- *  Fim
- */ 
+// FIM

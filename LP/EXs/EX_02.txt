@@ -1,0 +1,51 @@
+* Exercício 02
+
+Considere os mecanismos de composição de tipos para as linguagens de programação. Escolha um, defina-o e mostre como o 
+mesmo é implementado em um pequeno trecho de código de uma LP de sua preferência.
+
+Sua resposta deve conter 4 componentes:
+
+1) Mecanismo de composição escolhido;
+
+2) Definição do mecanismo;
+
+3) LP escolhida;
+
+4) Trecho de código na LP escolhida.
+
+* Minha Resposta:
+
+/**
+ *  Linguagens de Programação
+ *  812839 - Vinícius Miranda de Araújo
+ *  Exercício 02
+ */
+
+1. A composição de objetos.
+
+2. A composição de objetos permite que um objeto seja composto dentro de outro objeto, utilizando instância de uma classe 
+dentro de outra classe.
+
+3. Linguagem Haskell. Esta permite que a composição de objetos seja implementada através da combinação de registros de 
+dados (data records).
+
+4. Trecho do código em Haskell:
+
+...
+-- Classe que representa um Endereço
+data Endereco = Endereco {
+    rua :: String,
+    numero :: Int,
+    bairro :: String,
+    cep :: String
+}
+
+-- Classe pessoa, que compõe um Endereço
+data Pessoa = Pessoa {
+    nome :: String,
+    idade :: Int,
+    endereco :: Endereco
+} 
+...
+
+// FIM

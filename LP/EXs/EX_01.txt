@@ -1,0 +1,25 @@
+* Exercício 01
+
+Escolha uma Linguagem de Programação, criada entre 1950 e 2020, apontando sua característica marcante, preferencialmente 
+que seja inovadora à época de seu "lançamento".
+
+Sua resposta deve conter 2 componentes:
+
+1) A Linguagem de Programação;
+
+2) Característica [inovadora] marcante.
+
+* Minha Resposta:
+
+/**
+ *  Linguagens de Programação
+ *  Vinícius Miranda de Araújo - 812839
+ */
+
+1. Prolog, uma linguagem desenvolvida em 1972 por Alain Colmerauer e Philippe Roussel.
+
+2. Característica Marcante: Programação lógica - Prolog introduziu a programação lógica como um paradigma, permitindo a 
+especificação de relações e regras, e a inferência de novos dados a partir dessas regras. Isso influenciou o desenvolvimento 
+de sistemas de inteligência artificial e processamento de linguagem natural. 
+
+// FIM

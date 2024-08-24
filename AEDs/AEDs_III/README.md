@@ -9,7 +9,7 @@ Marcos Andre Silveira Kutova.
 
 - [EFs](/AEDs/AEDs_III/EFs/) : Exercícios de Fixação.
 - [TPs](/AEDs/AEDs_III/TPs/) : Trabalhos Práticos.
-- [Code](/AEDs/AEDs_III/Code/) : Código feitos durante as aulas pelo professor.
+- [Code](/AEDs/AEDs_III/Code/) : Código feitos durante as aulas pelo professor. Organizado como Mês-Dia.
 
 ## 👨‍💻 Autor
 

@@ -1,0 +1,38 @@
+/**
+ *  Banco de Dados
+ *  812839 - Vinícius Miranda de Araújo
+ *  Hands On 04 - https://dbis-uibk.github.io/relax/calc/gist/41cf5ce652756d9331eec7562644e074/imdbsample/0
+ */
+
+1. -- Projetar o primeiro nome e o último nome dos atores de sexo feminino;
+   π first_name, last_name σ gender ='F' (actors)
+
+2. -- Projetar o nome dos filmes com ano superior à 1999;
+   π name σ year > 1999 (movies)
+
+3. -- Projetar o nome do filme e o nome do diretor de cada filme;
+   X = π name, director_id σ id = movie_id (movies ⨝ movies_directors)
+   π name, first_name, last_name σ id = director_id (X ⨝ directors)
+
+4. -- Projetar o nome do filme, nome do ator e o papel que cada ator teve no filme para filmes com ranking acima da nota 6;
+   π movies.name, actors.first_name, actors.last_name, roles.role ( ((σ movies.rank > 6 (movies)) ⨝ movies.id = roles.movie_id (roles)) ⨝ roles.actor_id = actors.id (actors) )
+
+5. -- Projetar o nome do diretor e o número de filmes que cada diretor dirigiu;
+   X = γ director_id; count(movie_id)-> soma (movies_directors)
+   π first_name, last_name, soma σ id=director_id (X ⨝ directors)
+
+6. -- Projetar o gênero e o número de filmes de cada gênero; 
+   γ genre; count(movie_id)-> n_total_filmes (movies_genres)
+
+7. -- Projetar o gênero, o ranking (nota) médio, mínimo e máximo dos filmes do gênero.
+   X = π name, rank, genre σ id = movie_id (movies ⨝ movies_genres)
+
+   Y = γ genre; avg(rank)-> average (X)
+
+   Z = γ genre; max(rank)-> max (X)
+
+   K = γ genre; min(rank)-> min (X)
+
+   π genre, average, min, max (Y ⨝ Z ⨝ K)
+
+// FIM

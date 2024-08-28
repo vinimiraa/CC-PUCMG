@@ -1,0 +1,33 @@
+* Exercício 03
+
+Considerando o assunto "Armazenamento", defina comando e apresente um comando de repetição escrito em sua "LP favorita".
+
+Sua resposta deve conter 3 componentes:
+
+1) definição de comando;
+
+2) "LP favorita";
+
+3) trecho de código com comando de repetição na sua "LP favorita".
+
+* Minha Resposta
+
+/**
+ *  Linguagens de Programação
+ *  812839 - Vinícius Miranda de Araújo
+ *  Exercício 03
+ */
+
+1. Os comandos, ao serem executados, têm a finalidade de modificar ou atualizar o valor das variáveis.
+
+2. Linguagem C.
+
+3.  ....
+    int x = 0;
+    while ( x < 10 ) {
+        printf( "%d\n", x );
+        x = x + 1;
+    } // end while
+    ....
+
+// FIM

@@ -4,19 +4,19 @@
  *  Hands On 05 - https://dbis-uibk.github.io/relax/calc/gist/41cf5ce652756d9331eec7562644e074/imdbsample/0
  */
 
-1. π first_name, last_name ( actors ) ∩ π first_name, last_name ( directors )
+1. π first_name, last_name (actors) ∩ π first_name, last_name (directors)
 
-2. π first_name, last_name ( actors ) - π first_name, last_name ( directors )
+2. π first_name, last_name (actors) - π first_name, last_name (directors)
 
-3. π first_name, last_name ( actors ) ∪ π first_name, last_name ( directors )
+3. π first_name, last_name (actors) ∪ π first_name, last_name (directors)
 
-4. π name ( movies ) - π name ( ( directors ⨝ (id = movie_id) movies_directors ) ⨝ (movies_directors.movie_id = movies.id) movies )
+4. π name (movies) - π name ( (directors ⨝ (id = movie_id) movies_directors) ⨝ (movies_directors.movie_id = movies.id) movies )
 
-5. π first_name, last_name ( π actor_id σ n < 2 γ actor_id; COUNT(movie_id)→n ( roles ) ⨝ actor_id = id actors )
+5. π first_name, last_name ( π actor_id σ (n < 2) γ actor_id; COUNT(movie_id) → n (roles) ⨝ actor_id = id actors )
 
-6. A = π movie_id, n σ n<2 γ movie_id; count(actor_id) → n roles
-   B = π name, year, genre σ id=movie_id (movies ⨝ A ⨝ movies_genres)
-   C = γ genre, year; count(genre) → n B
+6. A = π movie_id, n σ (n < 2) γ movie_id; count(actor_id) → n (roles)
+   B = π name, year, genre σ (id = movie_id) (movies ⨝ A ⨝ movies_genres)
+   C = γ genre, year; count(genre) → n (B)
    π genre, year, average γ genre,year; avg(n) → average C
 
 // FIM

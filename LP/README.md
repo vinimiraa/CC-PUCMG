@@ -6,7 +6,7 @@ Exercícios e estudos desenvolvidos durante o semestre da matéria de Linguagens
 
 ## 📑 Estrutura do Repositório
 
-- [EXs](/ACs/AC_II/EPs/) : Atividade Semanais.
+- [EXs](/LP/EXs/) : Atividade Semanais.
 
 ## 👨‍💻 Autor
 

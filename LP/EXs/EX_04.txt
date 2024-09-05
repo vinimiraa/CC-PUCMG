@@ -1,0 +1,58 @@
+* Exercício 04
+
+Considerando o assunto "Amarração" (Binding), apresente seu conceito e um trecho de código, em sua "LP favorita", com 
+algum tipo de declaração.
+
+Sua resposta deve conter 3 componentes:
+
+1) definição de amarração;
+
+2) "LP favorita";
+
+3) trecho de código com algum tipo de declaração, em sua "LP favorita".
+
+* Minha Resposta:
+
+/**
+ *  Linguagens de Programação
+ *  812839 - Vinícius Miranda de Araújo
+ *  Exercício 04
+ */
+
+1. Entende-se por amarração a associação entre um identificador (nome, escopo, tempo de vida, valor, tipo) e a entidade 
+que ele representa. Essa associação pode ser estabelecida antes da execução (amarração estática) ou durante a execução 
+do programa (amarração dinâmica).
+
+2. Linguagem C.
+
+3. 
+...
+int global_var = 10;
+
+void staticBinding ( void ) 
+{
+    int local_var = 20;
+    printf( "global_var = %d\n", global_var );
+    printf( "local_var  = %d\n", local_var  );
+} // end staticBinding ( )
+
+void dynamicBinding (int value ) 
+{
+    global_var = value;
+    printf( "global_var = %d\n", global_var );
+} // end dynamicBinding ( )
+
+int main ( void ) 
+{
+    printf( "Amarracao Estatica:\n" );
+    staticBinding( );
+
+    printf( "\nAmarracao Dinamica:\n" );
+    dynamicBinding( 30 );
+    staticBinding( );
+
+    return ( 0 );
+} // end main ( )
+...
+
+// FIM

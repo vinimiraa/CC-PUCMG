@@ -1,0 +1,57 @@
+/**
+ *  Banco de Dados
+ *  812839 - Vinícius Miranda de Araújo
+ *  Hands On 07 - https://dbis-uibk.github.io/relax/calc/gist/41cf5ce652756d9331eec7562644e074/imdbsample/0
+ */
+
+1. 
+
+SELECT first_name, last_name 
+FROM actors 
+WHERE gender = 'F'
+
+2. 
+
+SELECT name 
+FROM movies 
+WHERE year > 1999
+
+3.
+
+SELECT movies.name, directors.first_name, directors.last_name 
+FROM movies 
+JOIN movies_directors ON movies.id = movies_directors.movie_id
+JOIN directors ON movies_directors.director_id = directors.id
+
+4.
+
+SELECT movies.name, actors.first_name, roles.role 
+FROM actors 
+JOIN roles ON actors.id = roles.actor_id
+JOIN movies ON roles.movie_id = movies.id
+WHERE roles.rank > 6
+
+5.
+
+SELECT directors.first_name, directors.last_name, movie_counts.n 
+FROM (
+	SELECT director_id, COUNT(movie_id) as n
+	FROM movies_directors 
+	GROUP BY director_id
+) AS movie_counts
+JOIN directors ON movie_counts.director_id = directors.id
+
+6.
+
+SELECT genre, COUNT(movie_id) as n 
+FROM movies_genres
+GROUP BY genre
+
+7.
+
+SELECT movies_genres.genre, AVG(movies.rank) as a, MIN(movies.rank) as mn, MAX(movies.rank) as ma 
+FROM movies_genres 
+JOIN movies ON movies_genres.movie_id = movies.id
+GROUP BY movies_genres.genre
+
+// FIM

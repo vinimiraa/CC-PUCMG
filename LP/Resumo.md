@@ -5,11 +5,9 @@
 - [Conceitos Básicos](#conceitos-básicos)
 - [Introdução](#introdução)
 - [Valores](#valores)
+- [Armazenamento](#armazenamento)
 
 ## Conceitos Básicos
-
-A Teoria de Linguagens aborda conceitos fundamentais relacionados à forma como as linguagens, especialmente as linguagens 
-de programação, são estruturadas e entendidas. 
 
 1. **Alfabetos e Palavras**: Um alfabeto é um conjunto finito de símbolos (como letras e números). Uma palavra é uma sequência 
 finita desses símbolos. Por exemplo, se o alfabeto é {a, b}, "ab" é uma palavra.
@@ -29,9 +27,6 @@ composta por:
 4. **Sistemas de Estados Finitos**: Esses sistemas modelam processos com um número limitado de estados (como o andar de um 
 elevador) e são usados para entender como certas ações levam a diferentes resultados com base em entradas específicas.
 
-Esses conceitos são essenciais para o desenvolvimento de linguagens de programação, reconhecimento de padrões e construção 
-de compiladores, ajudando a formalizar e entender as estruturas das linguagens usadas em computação.
-
 ### Simbologia
 
 1. **Alfabeto** (Σ): Conjunto finito de símbolos usados para formar palavras. Exemplo: Σ = {a, b}.
@@ -49,8 +44,6 @@ de compiladores, ajudando a formalizar e entender as estruturas das linguagens u
     - **S**: Símbolo inicial, de onde começam as derivações.
 
 ## Introdução
-
-As Linguagens de Programação (LPs) são ferramentas essenciais em computação que permitem a criação de programas de computador. Aqui está um resumo simplificado para qualquer pessoa entender:
 
 1. O que é uma Linguagem de Programação?
 
@@ -164,5 +157,46 @@ As Linguagens de Programação (LPs) são ferramentas essenciais em computação
     4. **Condicional**: Avalia uma subexpressão baseada em uma condição (ex: if a > b then a else b).
 
     5. **Acesso a Variáveis e Constantes**: Produz valores das variáveis ou constantes indicadas.
+
+## Armazenamento
+
+1. **Variáveis**:  
+    São objetos que contêm valores e modelam estados no mundo real. Variáveis podem ser atualizadas durante a execução de um
+    programa. Elas têm um **tempo de vida** que vai da sua criação até a destruição, e ocupam memória apenas enquanto estão "vivas".
+
+2. **Variáveis Compostas**: 
+
+    Essas variáveis são formadas por múltiplos componentes, como arrays (arranjos) ou registros, e permitem que partes delas 
+    sejam atualizadas seletivamente.
+
+3. **Arranjos**:  
+
+    Podem ser **estáticos** (tamanho definido na compilação), **dinâmicos** (tamanho definido na criação), ou **flexíveis** 
+    (tamanho pode mudar durante a execução).
+
+4. **Tempo de Vida**:
+
+    - **Variáveis Locais**: Existem apenas dentro do bloco em que são declaradas.
+    - **Variáveis Globais**: Podem ser usadas em diferentes blocos de código.
+    - **Variáveis de Heap**: Podem ser criadas e destruídas a qualquer momento e são acessadas indiretamente via apontadores (ponteiros).
+    - **Variáveis Persistentes**: Continuam existindo além da execução do programa que as criou, como em arquivos.
+
+5. **Referências Penduradas (Dangling Pointers)**:  
+
+    Ocorrem quando um ponteiro aponta para uma área de memória que foi desalocada, o que pode causar erros graves.
+
+6. **Comandos**
+:
+   - **Saltos**: São instruções que não realizam nenhuma ação, como o comando `skip`.
+   - **Atribuições**: Atualizam variáveis com novos valores, como `V := E`, e podem ser feitas de várias formas (múltiplas, simultâneas, combinadas).
+   - **Chamadas de Procedimento**: Executam funções ou procedimentos com base em argumentos fornecidos.
+   - **Comandos Sequencias**: São executados em uma ordem definida.
+   - **Comandos Colaterais**: São executados sem ordem definida, não-determísticos.
+   - **Comandos Iterativos**: Repetem uma operação várias vezes, como loops `while` ou `for`.
+   - **Comandos Condicionais**: Possui vários subcomandos dentre os quais apenas um é escolhido para ser executado, como o comando `if` ou `if ... else ...` ou `switch-case`.
+
+7. **Efeitos Colaterais**:  
+
+   Expressões que, ao serem avaliadas, atualizam o valor de variáveis, o que pode complicar o fluxo do programa.
 
 ## [FIM](#resumo-de-linguagens-de-programação)

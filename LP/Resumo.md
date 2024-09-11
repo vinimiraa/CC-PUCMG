@@ -81,13 +81,23 @@ elevador) e são usados para entender como certas ações levam a diferentes res
 
 1. O que é um valor?  
 
-    Um valor é qualquer coisa que existe enquanto um programa está rodando, como números, textos ou resultados de cálculos. 
+    Um valor é qualquer coisa que existe enquanto um programa está exutando, como números, textos ou resultados de cálculos. 
     Valores podem ser guardados, usados em operações e passados para funções.
 
 2. Tipos de Valores:
 
     - **Tipos Primitivos**: São os valores básicos que a maioria das linguagens de programação já trazem prontos, como 
     números inteiros (1, 2, 3), números decimais (1.5, 2.0), letras ('a', 'b'), e valores lógicos (verdadeiro ou falso).
+
+        ```
+        int
+        float
+        double
+        char
+        bool
+        string (em OO), "mais ou menos"
+        enum
+        ```
 
     - **Tipos Compostos**: São combinações de valores simples. Por exemplo, uma lista de números ou um registro que guarda 
     várias informações como nome, idade e altura de uma pessoa.
@@ -96,6 +106,14 @@ elevador) e são usados para entender como certas ações levam a diferentes res
         
             Um **produto cartesiano** combina elementos de diferentes conjuntos para formar uma tupla. Cada tupla é uma 
             sequência ordenada de elementos, como um registro que agrupa diferentes tipos de dados (exemplo: nome, idade, altura).
+
+            ```
+            struct s_Pessoa {
+                char  nome[20];
+                int   idade;
+                float altura;
+            };
+            ```
 
         2. **União Discriminada**:
 
@@ -129,9 +147,9 @@ elevador) e são usados para entender como certas ações levam a diferentes res
 
 4. Tipagem Estática vs Dinâmica:
 
-    - **Tipagem Estática**: O tipo de cada valor é definido antes do programa rodar, e isso ajuda a evitar erros.
+    - **Tipagem Estática**: O tipo de cada valor é definido antes do programa executar, e isso ajuda a evitar erros.
 
-    - **Tipagem Dinâmica**: O tipo dos valores pode mudar enquanto o programa roda, o que dá mais flexibilidade, mas pode 
+    - **Tipagem Dinâmica**: O tipo dos valores pode mudar enquanto o programa executa, o que dá mais flexibilidade, mas pode 
     causar erros se não for bem controlado.
 
         - Equivalência de Tipos:
@@ -145,7 +163,7 @@ elevador) e são usados para entender como certas ações levam a diferentes res
 
 5. Expressões:
 
-    São combinações de valores e operações que o programa resolve para chegar a um novo valor. Por exemplo, a expressão 
+    São combinações de valores e operações que são avaliadas e geram valor. Por exemplo, a expressão 
     "2 + 3" resulta no valor 5.
 
     1. **Literais**: Valores fixos (ex: 1234, 'a').
@@ -176,6 +194,9 @@ elevador) e são usados para entender como certas ações levam a diferentes res
 
 4. **Tempo de Vida**:
 
+    É o intervalo de tempo entre a criação e a destruição de uma variável. Uma variável só precisa ocupar memória se estiver
+    "viva".01010101
+
     - **Variáveis Locais**: Existem apenas dentro do bloco em que são declaradas.
     - **Variáveis Globais**: Podem ser usadas em diferentes blocos de código.
     - **Variáveis de Heap**: Podem ser criadas e destruídas a qualquer momento e são acessadas indiretamente via apontadores (ponteiros).
@@ -193,10 +214,42 @@ elevador) e são usados para entender como certas ações levam a diferentes res
    - **Comandos Sequencias**: São executados em uma ordem definida.
    - **Comandos Colaterais**: São executados sem ordem definida, não-determísticos.
    - **Comandos Iterativos**: Repetem uma operação várias vezes, como loops `while` ou `for`.
-   - **Comandos Condicionais**: Possui vários subcomandos dentre os quais apenas um é escolhido para ser executado, como o comando `if` ou `if ... else ...` ou `switch-case`.
+   - **Comandos Condicionais**: Possui vários subcomandos dentre os quais apenas um é escolhido para ser executado, como 
+    o comando `if` ou `if ... else ...` ou `switch-case`.
 
 7. **Efeitos Colaterais**:  
 
    Expressões que, ao serem avaliadas, atualizam o valor de variáveis, o que pode complicar o fluxo do programa.
+0101
+## Amarração
+
+1. **Amarrações (Bindings)**:  
+
+    Amarração é o processo de associar valores a variáveis, funções ou outras entidades em um programa. Isso ocorre em 
+    diferentes momentos, como na compilação, no carregamento ou na execução do programa.
+
+2. **Tipos de Amarração**:
+
+    - **Estática**: Acontece em tempo de compilação. As variáveis têm um valor fixo durante toda a execução do programa.
+    - **Dinâmica**: Acontece em tempo de execução, permitindo que variáveis mudem seus valores ao longo do tempo.
+
+3. **Escopo**:
+
+    - **Escopo Estático**: Determinado em tempo de compilação, onde a variável pode ser usada no código.
+    - **Escopo Dinâmico**: Determinado durante a execução, de acordo com a ordem em que as funções são chamadas.
+
+4. **Tempo de Vida de Variáveis**:  
+
+    O tempo de vida de uma variável está relacionado à sua amarração. Uma variável existe enquanto sua amarração estiver 
+    ativa. Variáveis locais têm um tempo de vida curto, enquanto variáveis globais ou persistentes podem viver por mais tempo.
+
+5. **Ambientes de Execução**: 
+
+    O ambiente de execução é o contexto no qual um programa é executado. Ele define onde e como as amarrações ocorrem e 
+    quais recursos estão disponíveis para o programa.
+
+6. **Closures**:  
+
+    São funções que "lembram" o ambiente em que foram criadas, permitindo acessar variáveis mesmo após o término de uma função.
 
 ## [FIM](#resumo-de-linguagens-de-programação)

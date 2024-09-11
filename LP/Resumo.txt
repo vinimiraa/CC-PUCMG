@@ -193,7 +193,8 @@ elevador) e são usados para entender como certas ações levam a diferentes res
    - Comandos Sequencias: São executados em uma ordem definida.
    - Comandos Colaterais: São executados sem ordem definida, não-determísticos.
    - Comandos Iterativos: Repetem uma operação várias vezes, como loops `while` ou `for`.
-   - Comandos Condicionais: Possui vários subcomandos dentre os quais apenas um é escolhido para ser executado, como o comando `if` ou `if ... else ...` ou `switch-case`.
+   - Comandos Condicionais: Possui vários subcomandos dentre os quais apenas um é escolhido para ser executado, como o 
+     comando `if` ou `if ... else ...` ou `switch-case`.
 
 7. Efeitos Colaterais:  
 

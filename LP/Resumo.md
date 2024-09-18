@@ -178,7 +178,8 @@ elevador) e são usados para entender como certas ações levam a diferentes res
 
 ## Armazenamento
 
-1. **Variáveis**:  
+1. **Variáveis**:
+  
     São objetos que contêm valores e modelam estados no mundo real. Variáveis podem ser atualizadas durante a execução de um
     programa. Elas têm um **tempo de vida** que vai da sua criação até a destruição, e ocupam memória apenas enquanto estão "vivas".
 
@@ -220,7 +221,7 @@ elevador) e são usados para entender como certas ações levam a diferentes res
 7. **Efeitos Colaterais**:  
 
    Expressões que, ao serem avaliadas, atualizam o valor de variáveis, o que pode complicar o fluxo do programa.
-0101
+
 ## Amarração
 
 1. **Amarrações (Bindings)**:  

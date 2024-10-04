@@ -1,5 +1,0 @@
-inicio:
-X=8;
-Y=4;
-W=AeB;
-fim.

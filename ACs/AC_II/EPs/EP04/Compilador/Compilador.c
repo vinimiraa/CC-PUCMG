@@ -8,13 +8,13 @@
  *       |    |    |
  * 	( <Fator> | <Fator> )
  *  
- * 	<Exp>   ::= <Fator> & <Fator>
- * 	
- * 	<Fator> ::= X | Y | W 
- *            | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F
- * 			  | umL | AonB | copiaA | nAxnB | AeBn | nA | AenB 
- *            | nAonB | AxB | zeroL | copiaB | AeB | nB | nAeBn | AoB | nAeB
- * 	
+ * 	<Exp>     ::= <Fator> & <Fator>
+ *	
+ * 	<Fator>   ::= X | Y | W 
+ *              | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F
+ * 			    | umL | AonB | copiaA | nAxnB | AeBn | nA | AenB 
+ *              | nAonB | AxB | zeroL | copiaB | AeB | nB | nAeBn | AoB | nAeB
+ * 	          
  * 	<Comando> ::= <Fator> <Operador> <Fator> <Terminador>
  */
 

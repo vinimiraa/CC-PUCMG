@@ -7,6 +7,16 @@
 #include <stdbool.h>
 #include <string.h>
 
+bool is_start( char* input )
+{
+	return ( strcmp(input, "inicio:") == 0);
+} // end is_start ( )
+
+bool is_end( char* input )
+{
+	return ( strcmp(input, "fim." ) == 0 );
+} // end is_end ( )
+
 char find_instruction( char* input )
 {
 	char res = 0;
@@ -63,8 +73,9 @@ bool is_factor( char* input )
 		|| strcmp(input, "AxB"   ) == 0 || strcmp(input, "zeroL" ) == 0 || strcmp(input, "copiaB") == 0 
 		|| strcmp(input, "AeB"   ) == 0 || strcmp(input, "nB"    ) == 0 || strcmp(input, "nAeBn" ) == 0 
 		|| strcmp(input, "AoB"   ) == 0 
-		|| strcmp(input, "nAeB"  ) == 0 ) {
-			res = true;
+		|| strcmp(input, "nAeB"  ) == 0 ) 
+	{
+		res = true;
 	} else {
 		printf( "\n%s\n", "[ERRO] Invalid factor!" );
 	} // if
@@ -93,23 +104,5 @@ bool is_command( char* input )
 	}// if
     return ( res );
 } // end is_command ( )
-
-bool is_start( char* input )
-{
-	bool res = false;
-	if( strcmp(input, "inicio:") == 0 ) {
-		res = true;
-	} // if
-	return ( res );
-} // end is_start ( )
-
-bool is_end( char* input )
-{
-	bool res = false;
-	if( strcmp(input, "fim." ) == 0 ) {
-		res = true;
-	} // if
-	return ( res );
-} // end is_end ( )
 
 #endif // __EP04_H__

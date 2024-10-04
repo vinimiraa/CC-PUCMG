@@ -15,40 +15,44 @@
  * 			  | umL | AonB | copiaA | nAxnB | AeBn | nA | AenB 
  *            | nAonB | AxB | zeroL | copiaB | AeB | nB | nAeBn | AoB | nAeB
  * 	
+ * 	<Comando> ::= <Fator> <Operador> <Fator> <Terminador>
  */
 
 void read_write_file( char* in_filepath, char* out_filepath )
 {
-	char X = '\0';
-	char Y = '\0';
-	char W[8]    ;
-	FILE* finput = fopen( in_filepath, "rt" );
-	FILE* foutput = fopen( out_filepath, "wt" );
-	char _input[8];
+	char X = '\0';   // X -> Primeira variável
+	char Y = '\0';   // Y -> Segunda variável
+	char W[8];       // W -> Operação
+	char _input[8];  // _input -> Linha a ser lida
+	FILE* finput  = fopen( in_filepath, "rt"  );  // finput -> Arquivo de entrada
+	FILE* foutput = fopen( out_filepath, "wt" );  // foutput -> Arquivo de saída
 	
+	// verificar se o arquivo de entrada existe
 	if( finput == NULL ) {
 		printf( "\n%s\n", "[ERRO] Unable to open input file!" );
 	} 
 	else 
 	{
-		// ler cabecalho
+		// ler comando incial
 		fscanf( finput, "%s", _input );
 		
+		// verificar se e' o comando 'inicio:'
 		if( is_start( _input ) == false ) {
 			printf( "\n%s\n", "[ERRO] Start not found!" );
-		} else {
-			// ler instrucao
+		} 
+		else 
+		{
+			// ler linha de comando
 			fscanf( finput, "%s", _input );
 		
-			// enquanto nao encontrar o fim
+			// enquanto nao encontrar o comando 'fim.'
 			while( is_end( _input ) == false ) 
 			{
 				// verificar se e' um comando valido
-				int len = strlen( _input );
 				if( is_command( _input ) == true ) 
 				{
-					// printf( "%s\n", _input );
 					// pegar o valor de cada atribuicao
+					int len = strlen( _input );
 					if( _input[0] == 'X' ) {
 						X = _input[len-2];
 					} else if( _input[0] == 'Y' ) {

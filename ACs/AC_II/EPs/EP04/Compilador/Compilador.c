@@ -87,7 +87,7 @@ void read_write_file( char* in_filepath, char* out_filepath )
 						strncpy(W, &_input[2], len - 3);
 						W[len-3] = '\0';
 						char exp = find_instruction( W );
-						fprintf( foutput, "%c%c%c\n", X, exp, Y );
+						fprintf( foutput, "%c%c%c\n", X, Y, exp );
 					} // if
 				} // if
 				fscanf( finput, "%s", _input );

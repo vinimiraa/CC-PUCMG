@@ -3,6 +3,7 @@ int led_red    = 13;  // pin led red
 int led_yellow = 12;  // pin led yellow
 int led_green  = 11;  // pin led green
 int led_blue   = 10;  // pin led blue
+
 // variaveis
 String memory[100];   // memory
 String input = "" ;   // input
@@ -13,16 +14,16 @@ char W  = 0;          // OP
 char X  = 0;          // A
 char Y  = 0;          // B 
 
-// declarations
-void   load_memory ( void );
-void   load_instruction_to_memory ( String input );
-void   execute_instruction ( void );
-String do_instruction ( String instruction );
-int    hexchar_to_int ( char hexc );
-void   update_leds ( char result );
+// declaracoes
+void load_memory ( void );
+void load_instruction_to_memory ( String input );
+void execute_instruction ( void );
+String do_instruction ( char X, char Y, char W );
+int hexchar_to_int ( char hexc );
+void update_leds ( char result );
 String dec_to_bin ( int value );
-void   print_memory ( int adress );
-void   print_memory ( void );
+void print_memory ( int adress );
+void print_memory ( void );
 
 void setup ( void ) 
 {
@@ -93,6 +94,7 @@ void execute_instruction ( void )
 
         PC = PC + 1;
     } // while
+  	Serial.println( "End of instructions!" );
 } // end execute_instruction ( )
 
 String do_instruction( char X, char Y, char W )
@@ -200,7 +202,7 @@ void print_memory ( int adress )
 {
     int size = ds+ic;
     for( int i = 0; i < size; i = i + 1 ) {
-        if( i >= 4 && i == adress-1 ) {
+        if( i >= 4 && i == adress ) {
             Serial.print( "->" );
         } // if
         Serial.print( memory[i] );
@@ -218,3 +220,24 @@ void print_memory ( void )
     } // for
     Serial.println( "" );
 } // end print_memory ( )
+
+/**
+Casos de Testes:
+
+FFC
+1E3
+026
+009
+FBD
+AB5
+538
+706
+7F7
+C53
+AAA
+FBB
+FF0
+DF1
+0EE
+FF2
+*/

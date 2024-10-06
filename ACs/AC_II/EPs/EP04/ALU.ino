@@ -3,6 +3,7 @@ int led_red    = 13;  // pin led red
 int led_yellow = 12;  // pin led yellow
 int led_green  = 11;  // pin led green
 int led_blue   = 10;  // pin led blue
+
 // variaveis
 String memory[100];   // memory
 String input = "" ;   // input
@@ -13,16 +14,68 @@ char W  = 0;          // OP
 char X  = 0;          // A
 char Y  = 0;          // B 
 
-// declarations
-void   load_memory ( void );
-void   load_instruction_to_memory ( String input );
-void   execute_instruction ( void );
-String do_instruction ( String instruction );
-int    hexchar_to_int ( char hexc );
-void   update_leds ( char result );
+// declaracoes
+/**
+ *  Loads the memory with the initial values.
+ */
+void load_memory ( void );
+
+/**
+ *  Loads the instructions into the memory.
+ *  
+ *  @param input The input string.
+ */
+void load_instruction_to_memory ( String input );
+
+/**
+ *  Executes the instructions in the memory.
+ */
+void execute_instruction ( void );
+
+/**
+ *  Executes the instruction.
+ *  
+ *  @param X The first operand.
+ *  @param Y The second operand.
+ *  @param W The operation.
+ *  @return The result of the operation.
+ */
+String do_instruction ( char X, char Y, char W );
+
+/**
+ *  Converts a hexadecimal character to an integer.
+ *  
+ *  @param hexc The hexadecimal character.
+ *  @return The integer value.
+ */
+int hexchar_to_int ( char hexc );
+
+/**
+ *  Updates the LEDs based on the result.
+ *  
+ *  @param result The result of the operation.
+ */
+void update_leds ( char result );
+
+/**
+ *  Converts a decimal value to a binary string.
+ *  
+ *  @param value The decimal value.
+ *  @return The binary string.
+ */
 String dec_to_bin ( int value );
-void   print_memory ( int adress );
-void   print_memory ( void );
+
+/**
+ *  Prints the memory.
+ *  
+ *  @param adress The address to highlight.
+ */
+void print_memory ( int adress );
+
+/**
+ *  Prints the memory.
+ */
+void print_memory ( void );
 
 void setup ( void ) 
 {
@@ -36,9 +89,13 @@ void setup ( void )
 
 void loop ( void ) 
 {
+    // verifica se há dados disponíveis para leitura
     if( Serial.available( ) > 0 ) {
+        // lê os dados disponíveis
         input = Serial.readString( );
+        // carrega as instruções na memória
         load_instruction_to_memory( input );
+        // executa as instruções
         execute_instruction( );
     } // if 
 } // end loop ( )

@@ -23,16 +23,89 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-int   str_indexOf      ( const char *_Str, const char _Char );
-char* str_substring    ( const char *_Str, size_t _Start, size_t _End );
-bool  str_contains     ( const char* _Str, const char* _Src );
-bool  is_start         ( char* input );
-bool  is_end           ( char* input );
-bool  is_factor        ( char* input );
-bool  is_expression    ( char* input );
-bool  is_command       ( char* input );
-char  find_instruction ( char* input );
-void  read_write_file  ( char* in_filepath, char* out_filepath );
+/**
+ * 	Finds the index of the first occurrence of a character in a string.
+ * 	
+ * 	@param _Str The string to search in.
+ * 	@param _Char The character to find.
+ * 	@return The index of the first occurrence of the character, or -1 if not found.
+ */
+int str_indexOf ( const char *_Str, const char _Char );
+
+/**
+ * 	Extracts a substring from a given string.
+ * 	
+ * 	@param _Str The original string.
+ * 	@param _Start The starting index of the substring.
+ * 	@param _End The ending index of the substring.
+ * 	@return A pointer to the substring.
+ */
+char* str_substring ( const char *_Str, size_t _Start, size_t _End );
+
+/**
+ * 	Checks if a string contains another string.
+ * 
+ * 	@param _Str The string to search in.
+ * 	@param _Src The string to find.
+ * 	@return True if _Src is found in _Str, otherwise false.
+ */
+bool str_contains ( const char* _Str, const char* _Src );
+
+/**
+ * 	Checks if the input string represents the start of a sequence.
+ * 
+ * 	@param input The input string.
+ * 	@return True if the input is a start sequence, otherwise false.
+ */
+bool is_start ( char* input );
+
+/**
+ * 	Checks if the input string represents the end of a sequence.
+ * 
+ * 	@param input The input string.
+ * 	@return True if the input is an end sequence, otherwise false.
+ */
+bool is_end ( char* input );
+
+/**
+ * 	Checks if the input string represents a factor.
+ * 
+ * 	@param input The input string.
+ * 	@return True if the input is a factor, otherwise false.
+ */
+bool is_factor ( char* input );
+
+/**
+ * 	Checks if the input string represents an expression.
+ * 
+ * 	@param input The input string.
+ * 	@return True if the input is an expression, otherwise false.
+ */
+bool is_expression( char* input );
+
+/**
+ * 	Checks if the input string represents a command.
+ * 
+ * 	@param input The input string.
+ * 	@return True if the input is a command, otherwise false.
+ */
+bool is_command( char* input );
+
+/**
+ * 	Finds the instruction corresponding to the input string.
+ * 
+ * 	@param input The input string.
+ * 	@return The character representing the instruction.
+ */
+charfind_instruction ( char* input );
+
+/**
+ * 	Reads from an input file and writes to an output file.
+ * 	
+ * 	@param in_filepath The path to the input file.
+ * 	@param out_filepath The path to the output file.
+ */
+void read_write_file ( char* in_filepath, char* out_filepath );
 
 int main ( void )
 {
@@ -87,9 +160,11 @@ void read_write_file( char* in_filepath, char* out_filepath )
 						strncpy(W, &_input[2], len - 3);
 						W[len-3] = '\0';
 						char exp = find_instruction( W );
+						// escrever no arquivo de saída
 						fprintf( foutput, "%c%c%c\n", X, Y, exp );
 					} // if
 				} // if
+				// ler proxima linha
 				fscanf( finput, "%s", _input );
 			} // while
 		} // if

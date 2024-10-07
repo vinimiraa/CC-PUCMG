@@ -97,7 +97,7 @@ bool is_command( char* input );
  * 	@param input The input string.
  * 	@return The character representing the instruction.
  */
-charfind_instruction ( char* input );
+char find_instruction ( char* input );
 
 /**
  * 	Reads from an input file and writes to an output file.

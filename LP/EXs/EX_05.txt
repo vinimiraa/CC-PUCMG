@@ -1,0 +1,26 @@
+/**
+ *  Linguagens de Programação
+ *  812839 - Vinícius Miranda de Araújo
+ *  Exercício 05
+ */
+ 
+1. Item escolhido: Abstração de Função.
+
+2. Justificativa: A abstração de função é um conceito fundamental na programação, utilizado em diversas linguagens 
+permitindo encapsular a lógica em um bloco reutilizável, melhorando a modularidade e a clareza do código. 
+É um bom ponto de partida para entender como a abstração pode simplificar o desenvolvimento de programas complexos.
+
+3. Escrita sobre abstração de função: A abstração de função refere-se à ideia de encapsular uma operação ou expressão 
+dentro de uma entidade chamada função. Essa função quando chamada, avalia a expressão que contém e retorna um resultado. 
+Em linguagens de programação, essa abstração oferece duas visões: a visão do usuário e a visão do programador. 
+
+ - Usuário: recebe os argumentos fornecidos e retorna um valor. 
+ - Programador: avaliação do seu corpo, amarrando os parâmetros formais aos argumentos reais fornecidos durante a chamada.
+ 
+# Python
+def soma( a, b );
+	return a + b
+	
+resposta = soma( 2, 3 )
+ 
+ // FIM

@@ -1,0 +1,131 @@
+/**
+ *  Banco de Dados
+ *  812839 - Vinícius Miranda de Araújo
+ *  Hands On 10
+ */
+ 
+Informações:
+
+	Fator de Bloco    -> F
+	Número de Blocos  -> B
+	Espaço não usado  -> U
+	Consumo de Espaço -> C
+	Acessos a blocos  -> A
+
+	Tam. Bloco = 2KB = 2048 B
+
+1. Atores (10.000 registros) → Codigo (16B), Nome (160B)
+
+	-- Índice Primário ( Codigo )
+	F = 64
+	B = 157 blocos
+	U = 768 B
+	C = 314 KB
+	A = 2 acessos
+
+2. Clientes (100.000 registros) → CPF (11B), Nome (160B), Endereco (200B), Telefone (16B), DataNascimento (12B), Sexo (1B)
+
+	-- Índice Primário ( CPF )
+	F = 75
+	B = 1334 blocos
+	U = 1373 B
+	C = 2,61 MB
+	A = 3 acessos
+
+3. Filmes (2.000.000 registros) → Codigo (16B), Nome (160B), Genero (80B)
+
+	-- Índice Primário ( Codigo )
+	F = 64
+	B = 31.250 blocos
+	U = 1024 B
+	C = 61 MB
+	A = 3 acessos
+
+4. Funcionarios (3.500 registros) → CPF (11B), Nome (160B)
+
+	-- Índice Primário ( CPF )
+	F = 75
+	B = 47 blocos
+	U = 698 B
+	C = 94 KB
+	A = 2 acessos
+
+	-- Índice Secundário ( CPF_Supervisor )
+	F = 75
+	B = 47 blocos
+	U = 698 B
+	C = 94 KB
+	A = 2 acessos
+	
+5. Midias (10.000.000 registros) → Identificador (24B), Tipo (8B), PrecoDiaria (24B)
+
+	-- Índice Primário ( Identificador )
+	F = 51 
+	B = 196.078 blocos
+	U = 328 B
+	C = 383 MB
+	A = 3 acessos
+	
+	-- Índice Secundário ( CodFilme )
+	F = 64
+	B = 156.250 blocos
+	U = 64 B
+	C = 305 MB
+	A = 3 acessos
+
+6. Aluguel (20.000.000 registros)  → DataLocacao (12B), DataDevolucao (10B), ValorPagar (24B)
+
+	-- Índice Primário ( DataLocacao )
+	F = 73
+	B = 273.973 blocos
+	U = 1740 B
+	C = 535 MB
+	A = 4 acessos
+	
+	-- Índice Secundário ( CPF_Cliente )
+	F = 75
+	B = 266.667 blocos
+	U = 1373 B
+	C = 520 MB
+	A = 4 acessos
+	
+	-- Índice Secundário ( ID_Midia )
+	F = 51
+	B = 329.157 blocos
+	U = 328 B
+	C = 766 MB
+	A = 5 acessos
+
+7. Pagamentos (50.000.000 registros) → Codigo (48B), Data (12B), Valor (24B)
+
+	-- Índice Primário ( Codigo )
+	F = 32
+	B = 1.562.500 blocos
+	U = 1024 B
+	C = 3 GB
+	A = 4 acessos
+	
+	-- Índice Secundário ( CPF_Cliente )
+	F = 75
+	B = 666.667 blocos
+	U = 239 B
+	C = 1,27 GB
+	A = 4 acessos
+	
+	-- Índice Secundário ( ID_Midia )
+	F = 51
+	B = 980.392 blocos
+	U = 448 B
+	C = 1,87 GB
+	A = 5 acessos
+
+8. AtoresEmFilmes (1.000.000 registros)
+
+	-- Índice Primário ( CodFilme, CodAto )
+	F = 64
+	B = 15.625 blocos
+	U = 1536 B
+	C = 30 MB
+	A = 2 acessos
+	
+FIM

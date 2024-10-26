@@ -1,0 +1,82 @@
+/**
+ *  Banco de Dados
+ *  812839 - Vinícius Miranda de Araújo
+ *  Hands On 09
+ */
+ 
+Informações:
+
+    Tamanho Registro  -> T
+	Fator de Bloco    -> F
+	Número de Blocos  -> B
+	Espaço não usado  -> U
+	Consumo de Espaço -> C
+	Acessos a blocos  -> A
+
+	Tam. Bloco = 2KB = 2048 B
+
+1. Atores (10.000 registros) → Codigo (16B), Nome (160B)
+
+    T = 175B
+    F = 2KB/175B = 2*1024B/175B = 11
+    B = 10.000/11 = 910
+    U = 2*1024 – 11*175 = 123
+    C = 1.863.640B
+
+2. Clientes (100.000 registros) → CPF (11B), Nome (160B), Endereco (200B), Telefone (16B), DataNascimento (12B), Sexo (1B)
+
+    T = 400B
+    F = 2KB/400B = 2*1024/400 = 5
+    B = 100.000/5 = 20.000
+    U = 2*1024 – 5*400 = 48
+    C = 40.960.000B
+
+3. Filmes (2.000.000 registros) → Codigo (16B), Nome (160B), Genero (80B)
+
+    T = 256B
+    F = 2KB/256B = 8
+    B = 2.000.000/8 = 250.000
+    U = 2048 – 8*256 = 0
+    C = 512.000.000B
+
+4. Funcionarios (3.500 registros) → CPF (11B), Nome (160B)
+
+    T = 182B
+    F = 2KB/182 = 11
+    B = 3.500/11 = 319
+    U = 2048 – 11*182 = 46
+    C = 653.312B
+
+5. Midias (10.000.000 registros) → Identificador (24B), Tipo (8B), PrecoDiaria (24B)
+
+    T = 72B
+    F = 2KB/72B = 28
+    B = 10.000.000/28 = 357.143
+    U = 2048-28*72 = 32
+    C = 731.428.864B
+
+6. Aluguel (20.000.000 registros)  → DataLocacao (12B), DataDevolucao (10B), ValorPagar (24B)
+
+    T = 90B
+    F = 2KB/90B = 22
+    B = 20.000.000/22 = 909.091
+    U = 2048-22*90 = 68
+    C = 1.861.818.368B
+
+7. Pagamentos (50.000.000 registros) → Codigo (48B), Data (12B), Valor (24B)
+
+    T = 131
+    F = 2KB/131B = 15
+    B = 50.000.000/15 = 3.333.334
+    U = 2048-15*131 = 83
+    C = 6.826.668.032B
+
+8. AtoresEmFilmes (1.000.000 registros)
+
+    T = 32
+    F = 2KB/32 = 64
+    B = 1.000.000/64 = 15.625
+    U = 2048-64*32 = = 0
+    C = 32.000.000B
+
+FIM

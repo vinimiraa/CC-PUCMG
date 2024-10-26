@@ -1,0 +1,66 @@
+/**
+ *  Banco de Dados
+ *  812839 - Vinícius Miranda de Araújo
+ *  Hands On 08 - https://dbis-uibk.github.io/relax/calc/gist/41cf5ce652756d9331eec7562644e074/imdbsample/0
+ */
+
+1. 
+
+SELECT actors.first_name, actors.last_name
+FROM actors INNER JOIN directors ON (actors.first_name = directors.first_name AND actors.last_name = directors.last_name)
+
+2.
+
+SELECT actors.first_name, actors.last_name
+FROM actors LEFT JOIN directors ON (actors.first_name = directors.first_name AND actors.last_name = directors.last_name)
+WHERE (directors.first_name IS NULL AND directors.first_name IS NULL)
+
+OU
+
+(SELECT actors.first_name, actors.last_name
+FROM actors)
+
+EXCEPT
+
+(SELECT actors.first_name, actors.last_name
+FROM actors INNER JOIN directors ON (actors.first_name = directors.first_name AND actors.last_name = directors.last_name))
+
+3.
+
+(SELECT actors.first_name, actors.last_name
+FROM actors) 
+UNION 
+(SELECT directors.first_name, directors.last_name
+FROM directors)
+
+4.
+
+SELECT name
+FROM movies LEFT JOIN movies_directors ON (movies.id = movies_directors.movie_id) INNER JOIN directors ON (directors.id = movies_directors.director_id)
+WHERE directors.id IS NULL
+
+OU
+
+(SELECT movies.name
+FROM movies)
+
+EXCEPT
+
+(SELECT movies.name
+FROM movies INNER JOIN movies_directors ON (movies.id = movies_directors.movie_id) INNER JOIN directors ON (movies_directors.director_id = directors.id))
+
+5.
+
+SELECT actors.first_name, actors.last_name, COUNT(roles.actor_id) AS Total
+FROM actors INNER JOIN roles ON (actors.id = roles.actor_id)
+GROUP BY actors.first_name,  actors.last_name
+HAVING Total < 2
+
+6.
+
+SELECT movies_genres.genre, movies.year, COUNT(roles.actor_id) as total, AVG(movies.id) as media
+FROM movies INNER JOIN movies_genres ON (movies.id = movies_genres.movie_id) INNER JOIN roles ON (roles.movie_id = movies.id) INNER JOIN actors ON (actors.id = roles.actor_id)
+GROUP BY movies_genres.genre, movies.year
+HAVING total < 2
+
+FIM

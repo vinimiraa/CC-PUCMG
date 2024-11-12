@@ -1,0 +1,32 @@
+/**
+ *  Banco de Dados
+ *  812839 - Vinícius Miranda de Araújo
+ *  Hands On 13
+ */
+
+1. 
+
+    SELECT A.CPF, A.Nome
+    FROM Funcionarios A
+    JOIN Funcionarios B ON A.CPF = B.CPF_Supervisor
+    LEFT JOIN Clientes C ON A.CPF = C.CPF
+    WHERE C.CPF IS NULL;
+
+2.
+
+    SELECT A.CodFilme, B.Nome
+    FROM Midias A
+    JOIN Filmes B ON A.CodFilme = B.Codigo
+    WHERE A.Tipo IN ('DVD', 'VHS');
+
+3.
+
+    SELECT A.CPF_Cliente, A.ID_Midia, A.DataLocacao
+    FROM Aluguel A
+    JOIN Clientes B ON A.CPF_Cliente = B.CPF
+    JOIN Pagamentos C ON C.CPF_Cliente = A.CPF_Cliente
+        AND C.ID_Midia = A.ID_Midia
+        AND C.DataLocacao = A.DataLocacao
+    WHERE B.Sexo != 'F';
+
+FIM

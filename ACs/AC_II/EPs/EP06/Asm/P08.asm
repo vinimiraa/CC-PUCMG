@@ -1,7 +1,8 @@
 # Inicialmente escreva um programa que faça:
 #     $8 = 0x12345678.
-# A partir do registrador $8 acima, usando apenas instruções lógicas (or, ori, and, andi, xor, xori) e instruções de 
-# deslocamento (sll, srl e sra), você deverá obter os seguintes valores nos respectivos registradores:
+# A partir do registrador $8 acima, usando apenas instruções lógicas (or, ori, and, andi, xor, xori) 
+# e instruções de deslocamento (sll, srl e sra), você deverá obter os seguintes valores nos respectivos 
+# registradores:
 #     $9  = 0x12
 #     $10 = 0x34
 #     $11 = 0x56

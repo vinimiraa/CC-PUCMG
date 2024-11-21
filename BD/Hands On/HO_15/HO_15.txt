@@ -1,0 +1,69 @@
+/**
+ *  Banco de Dados
+ *  812839 - Vinícius Miranda de Araújo
+ *  Hands On 15
+ */
+
+1.
+
+Utilizando o bloqueio binário (que possui apenas as operações de bloqueio e desbloqueio) e o protocolo 2PL estrito (em 
+que todas as operações de bloqueio devem ocorrer antes de qualquer desbloqueio, e o desbloqueio acontece apenas ao 
+final, antes do commit implícito), o escalonamento Sa apresenta deadlock. Segundo a técnica de resolução de 
+deadlock, elimina-se a transação mais recente no ciclo de espera.
+
+Escalonamento Resultante Sa:
+
+	Sa' = r3(y), r3(z), w3(y), r3(x)
+
+No escalonamento Sa, temos um ciclo de deadlock onde:
+
+- T2 espera por T1
+- T3 espera por T2
+- T1 espera por T3
+
+Este ciclo configura um deadlock entre T1, T2 e T3.
+
+---
+
+2.
+
+Usando o bloqueio compartilhado (ternário) com o protocolo 2PL estrito e commit implícito, também há um deadlock em Sa. 
+A técnica de resolução de deadlock recomenda eliminar a transação mais recente no ciclo de espera.
+
+Escalonamento Resultante Sa:
+
+	Sa' = r3(y), r1(x), r3(z), r1(y), w1(x), r1(z), w3(y), r3(x)
+
+Nesse caso, o deadlock ocorre pois:
+
+- T3 espera por T2
+- T2 espera por T3
+
+Isso resulta em um ciclo de deadlock entre T2 e T3.
+
+---
+
+3.
+
+Usando o controle de concorrência por timestamps, atribuímos timestamps para ordenar as transações:
+
+- TS(T1) = 3
+- TS(T2) = 2
+- TS(T3) = 1
+
+A tabela de timestamps dos itens fica assim:
+
+	| Item | rTS | wTS |
+	|------|-----|-----|
+	| x    | 3   | 3   |
+	| y    | 3   | 0   |
+	| z    | 3   | 2   |
+
+Escalonamento Resultante Sa:
+
+	Sa' = r2(z), r1(x), r2(x), r2(y), r1(y), w2(z), w1(x), r1(z)
+
+Aqui, o escalonamento segue a ordem dos timestamps, com transações mais antigas executando primeiro, de modo a evitar 
+conflitos e manter a serializabilidade.
+
+// FIM

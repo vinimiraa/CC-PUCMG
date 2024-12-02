@@ -1,0 +1,39 @@
+/**
+ *  Algoritmos e Estruturas de Dados 3
+ *  812839 - Vinícius Miranda de Araújo
+ *  Artigo Científico 
+ */
+
+1. Extendible Hashing for Concurrent Operations and Distributed Data
+
+2. Os autores identificaram o problema da concorrência em operações de manipulação de arquivos hash extensíveis, especialmente 
+em ambientes distribuídos. Eles notaram que, em um sistema centralizado, a necessidade de manter a consistência e a disponibilidade 
+dos dados durante operações simultâneas de inserção, exclusão e busca poderia levar a bloqueios e ineficiências. Além disso, 
+a adaptação dessas estruturas para um ambiente distribuído apresenta desafios adicionais, como a replicação de diretórios e 
+a comunicação entre processos que não compartilham armazenamento. Esses problemas motivaram a pesquisa em busca de soluções 
+que permitissem operações concorrentes eficientes e a distribuição de dados sem comprometer a integridade e a performance 
+do sistema
+
+3. O trabalho elaborado pelos autores, Carla Schlatter Ellis, apresenta a soluções para permitir operações concorrentes 
+em arquivos hash extensíveis, que são uma alternativa dinâmica às árvores B para indexação de bancos de dados. O estudo aborda 
+a implementação de protocolos de bloqueio e modificações menores na estrutura de dados para facilitar o acesso simultâneo. 
+Além disso, os autores exploram a adaptação dessas estruturas para ambientes de banco de dados distribuídos, destacando a 
+importância da replicação de diretórios e da consistência dos dados.
+
+O trabalho também discute os desafios associados à distribuição de dados, como a comunicação entre processos e a necessidade 
+de evitar deadlocks. Os autores propõem que as soluções para a concorrência em um sistema centralizado podem servir como base 
+para o desenvolvimento de versões distribuídas, sugerindo uma metodologia que trata a introdução de concorrência e a distribuição 
+da computação como questões distintas. Em resumo, o trabalho oferece uma contribuição significativa para a compreensão e a 
+implementação de arquivos hash extensíveis em contextos de alta concorrência e distribuição de dados.
+
+4.  Os principais resultados encontrados pelos autores são:
+
+a) Soluções para Concorrência: Os autores apresentaram duas abordagens para permitir operações concorrentes em arquivos hash 
+extensíveis, utilizando protocolos de bloqueio e modificações na estrutura de dados. Essas soluções visam garantir que operações 
+de busca, inserção e exclusão possam ocorrer simultaneamente sem comprometer a integridade dos dados.
+
+b) Adaptação para Ambientes Distribuídos: O trabalho explorou como as estruturas de arquivos hash extensíveis podem ser adaptadas 
+para funcionar em um ambiente de banco de dados distribuído. Os autores discutiram a replicação de diretórios e a necessidade 
+de manter a consistência entre as cópias, além de abordar a comunicação entre processos que não compartilham armazenamento.
+
+ 

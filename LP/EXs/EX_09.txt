@@ -1,0 +1,41 @@
+/**
+ *  Linguagens de Programação
+ *  812839 - Vinícius Miranda de Araújo
+ *  Exercício 09
+ */
+
+1. Linguagem de Programação: Java
+
+2. Justificativa objetiva: Java é uma linguagem de programação de alto nível, orientada a objetos, que oferece robustez, 
+segurança e portabilidade, sendo amplamente utilizada para o desenvolvimento de aplicativos empresariais. Sua principal 
+vantagem é a plataforma Java Virtual Machine (JVM), que permite a execução do código em diferentes sistemas operacionais 
+sem necessidade de modificação.
+
+3. Justificativa subjetiva: Java me atrai pela segurança que oferece através do gerenciamento automático de memória 
+(garbage collection). A sua forte orientação a objetos facilita o desenvolvimento de programas complexos de forma 
+estruturada. Além disso, a grande quantidade de bibliotecas e a ampla comunidade de desenvolvedores tornam o ambiente 
+Java muito produtivo.
+
+4. Código:
+
+...
+import java.util.HashMap;
+
+public class Main 
+{
+    public static void main( String[] args ) 
+	{
+        HashMap<String, Integer> values = new HashMap<>();
+        
+        values.put("x", 10);
+        values.put("y", 20);
+        
+        System.out.println("Antes da modificação: x = " + values.get("x") + ", y = " + values.get("y"));
+        
+        values.put("x", 30);
+        values.put("y", 40);
+        
+        System.out.println("Depois da modificação: x = " + values.get("x") + ", y = " + values.get("y"));
+    } // main ( )
+} // Main
+...

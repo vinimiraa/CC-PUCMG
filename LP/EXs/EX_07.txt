@@ -1,0 +1,17 @@
+/**
+ *  Linguagens de Programação
+ *  812839 - Vinícius Miranda de Araújo
+ *  Exercício 07
+ */
+ 
+1. Sobrecarga
+
+2. Sobrecarga oferece uma ponte entre o monomorfismo e o polimorfismo, permitindo ao programador reutilizar 
+identificadores para múltiplas operações, desde que o contexto seja claro.
+
+3. Sobrecarga, ou polimorfismo ad-hoc, ocorre quando um único identificador ou operador se refere a várias 
+operações. Por exemplo, a sobrecarga do operador + permite que ele seja usado para somar tanto inteiros quanto números 
+reais. Essa técnica só é viável quando o contexto resolve ambiguidades – por exemplo, com tipos de argumentos diferentes 
+ou tipos de retorno distintos.
+
+// FIM

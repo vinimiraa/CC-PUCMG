@@ -1,0 +1,45 @@
+/**
+ *  Linguagens de Programação
+ *  812839 - Vinícius Miranda de Araújo
+ *  Exercício 10
+ */
+ 
+Escolher qual linguagem de programação utilizar depende de vários fatores, como objetivos, custo-benefício, infraestrutura,
+necessidades do projeto, desempenho, entre outras coisas.
+
+1. Python
+
+2. Python é uma linguagem de alto nível, muito popular por sua sintaxe simples e legibilidade, o que facilita a escrita 
+e manutenção de código. É altamente versátil e pode ser utilizada em diversas áreas, como desenvolvimento web 
+(Django, Flask), automação, ciência de dados (com bibliotecas como Pandas e NumPy), aprendizado de máquina 
+(TensorFlow, PyTorch), e mais. Sua vasta comunidade e a quantidade de bibliotecas e frameworks disponíveis tornam Python
+uma escolha sólida para uma ampla gama de projetos. Além disso, seu desempenho pode ser otimizado com a integração de 
+outras linguagens quando necessário.
+
+3. Outras Linguagens:
+
+- JavaScript: Ideal para desenvolvimento web, tanto no front-end (React, Angular, Vue) quanto no back-end (Node.js). Sua 
+capacidade de ser executado em qualquer navegador o torna indispensável para aplicações web interativas.
+
+- TypeScript: Um superset de JavaScript que adiciona tipagem estática, permitindo detecção de erros em tempo de compilação, 
+o que ajuda a criar aplicações web mais robustas e escaláveis.
+
+- PHP: Muito usado no desenvolvimento de sites e aplicações web dinâmicas. Frameworks como Laravel e Symfony tornam a 
+criação de sistemas web mais eficiente.
+
+- Java: Usada para construir aplicações corporativas, sistemas de grande escala e mobile (Android). Seu desempenho robusto 
+e a forte tipagem a tornam confiável para sistemas críticos.
+
+- Go (Golang): Uma linguagem moderna criada pelo Google, excelente para construir sistemas de alto desempenho, como 
+servidores web e aplicações em nuvem, devido à sua simplicidade e alta concorrência.
+
+- C++: Principalmente usada no desenvolvimento de sistemas de software de alto desempenho, como jogos, motores gráficos e 
+aplicações de tempo real, devido à sua proximidade com o hardware e controle de memória.
+
+- C#: Ideal para desenvolvimento de jogos com Unity, aplicações desktop e sistemas corporativos. Seu ecossistema robusto e 
+integração com a plataforma .NET a tornam uma escolha versátil.
+
+- R: Focada em análise estatística e ciência de dados, com uma grande quantidade de pacotes para visualização e modelagem 
+de dados. Ideal para quem trabalha com grandes volumes de dados e análises complexas.
+
+// FIM

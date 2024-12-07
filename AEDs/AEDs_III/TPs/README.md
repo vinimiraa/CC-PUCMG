@@ -4,6 +4,6 @@ Os TPs foram feitos em um [repositório separado](https://github.com/giusfds/TP-
 O objetivo era fazer um ToDo CRUD, utilizando índices em arquivos.
 
 - [TP01](https://github.com/giusfds/TP-AEDS-III/tree/TP01)
-- [TP01](https://github.com/giusfds/TP-AEDS-III/tree/TP02)
-- [TP01](https://github.com/giusfds/TP-AEDS-III/tree/TP03)
-- [TP01](https://github.com/giusfds/TP-AEDS-III/tree/TP04)
+- [TP02](https://github.com/giusfds/TP-AEDS-III/tree/TP02)
+- [TP03](https://github.com/giusfds/TP-AEDS-III/tree/TP03)
+- [TP04](https://github.com/giusfds/TP-AEDS-III/tree/TP04)

@@ -7,8 +7,9 @@ Marcos Andre Silveira Kutova.
 
 ## 📑 Estrutura do Repositório
 
-- [EFs](/AEDs/AEDs_III/EFs/) : Exercícios de Fixação.
 - [TPs](/AEDs/AEDs_III/TPs/) : Trabalhos Práticos.
+- [EFs](/AEDs/AEDs_III/EFs/) : Exercícios de Fixação.
+- [Artigo](/AEDs/AEDs_III/Artigo/) : Artigo Científico.
 - [Code](/AEDs/AEDs_III/Code/) : Código feitos durante as aulas pelo professor. Organizado como Mês-Dia.
 
 ## 👨‍💻 Autor

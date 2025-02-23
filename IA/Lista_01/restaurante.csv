@@ -1,0 +1,13 @@
+Alternativo,Bar,SexSab,Fome,Cliente,Preco,Chuva,Res,Tipo,Tempo,Conclusao
+Sim,Nao,Nao,Sim,Alguns,RRR,Nao,Sim,Frances,0-10,Sim
+Sim,Nao,Nao,Sim,Cheio,R,Nao,Nao,Tailandes,30-60,Nao
+Nao,Sim,Nao,Nao,Alguns,R,Nao,Nao,Hamburger,0-10,Sim
+Sim,Nao,Sim,Sim,Cheio,R,Sim,Nao,Tailandes,10-30,Sim
+Sim,Nao,Sim,Nao,Cheio,RRR,Nao,Sim,Frances,>60,Nao
+Nao,Sim,Nao,Sim,Alguns,RR,Sim,Sim,Italiano,0-10,Sim
+Nao,Sim,Nao,Nao,Nenhum,R,Sim,Nao,Hamburger,0-10,Nao
+Nao,Nao,Nao,Sim,Alguns,RR,Sim,Sim,Tailandes,0-10,Sim
+Nao,Sim,Sim,Nao,Cheio,R,Sim,Nao,Hamburger,>60,Nao
+Sim,Sim,Sim,Sim,Cheio,RRR,Nao,Sim,Italiano,10-30,Nao
+Nao,Nao,Nao,Nao,Nenhum,R,Nao,Nao,Tailandes,0-10,Nao
+Sim,Sim,Sim,Sim,Cheio,R,Nao,Nao,Hamburger,30-60,Sim

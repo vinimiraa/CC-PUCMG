@@ -6,8 +6,9 @@ Exercícios e estudos desenvolvidos durante o semestre da matéria de Banco de D
 
 ## 📑 Estrutura do Repositório
 
-- [ASs](/ACs/AC_II/EPs/) : Atividade Semanais da sexta-feira.
-- [Hands On](/ACs/AC_II/Listas/) : Atividades Semanais pré terça-feira.
+- [ASs](/BD/ASs/) : Atividade Semanais da sexta-feira.
+- [Hands On](/BD/Hands%20On/) : Atividades Semanais pré terça-feira.
+- [Extensionista](/BD/Extensionista/) : Trabalho Final Extensionista.
 
 ## 👨‍💻 Autor
 

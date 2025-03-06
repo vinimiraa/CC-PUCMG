@@ -7,7 +7,7 @@ Neri Nobre.
 
 ## 📑 Estrutura do Repositório
 
-- 🦗 cri...cri...cri...
+- [Listas](/IA/Listas/) : Lista de Exercícios semanais.
 
 ## Criação de Virtual Environment (VirtualEnv/venv)
 

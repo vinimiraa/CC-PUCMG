@@ -11,7 +11,7 @@ Neri Nobre.
 
 ## Criação de Virtual Environment (VirtualEnv/venv)
 
-Uma variável de ambiente é um valor nomeado que pode alterar o comportamento de processos em execução num computador. São parte do ambiente em que um processo se executa.
+É uma ferramenta integrada ao Python que permite criar ambientes virtuais isolados. Esses ambientes são importantes porque permitem que cada projeto tenha suas próprias dependências, sem interferir em outros projetos.
 
 ```bash
 python -m venv venv

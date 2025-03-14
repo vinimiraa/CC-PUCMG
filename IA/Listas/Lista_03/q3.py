@@ -1,78 +1,81 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 from sklearn.tree import DecisionTreeClassifier
 from skopt import BayesSearchCV
 
-# Carregar os dados
-data = pd.read_csv("titanic.csv")
+# Ler o arquivo de treino
+training_data = pd.read_csv( 'titanic/train.csv' )
 
-# Remover colunas irrelevantes
-data.drop(columns=['Cabin', 'Ticket', 'Name', 'PassengerId'], inplace=True)
+# ------------------------------------
+# --- Pre-processamentos de Dados
+# ------------------------------------
 
-# Preenchendo valores ausentes
-data['Age'].fillna(data['Age'].median(), inplace=True)
-data['Embarked'].fillna(data['Embarked'].mode()[0], inplace=True)
+# Remover colunas irrelevantes ou com muitos valores ausentes
+columns_to_drop = ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']
 
 # Transformação de dados categóricos
-cols_label_encode = ['Sex', 'Embarked']
-data[cols_label_encode] = data[cols_label_encode].apply(LabelEncoder().fit_transform)
+encoder = LabelEncoder()
+training_data['Sex'] = encoder.fit_transform( training_data['Sex'] )
+
+# Preenchendo valores ausentes
+training_data['Age'] = training_data['Age'].fillna( training_data['Age'].median( ) )
+
+training_data['Fare'] = training_data['Fare'].fillna( training_data['Fare'].median( ) )
 
 # Separar variáveis independentes e dependentes
-X = data.drop(columns=['Survived'])
-y = data['Survived']
+X_treino = training_data.drop( columns = columns_to_drop + ['Survived'], axis = 1 ) # X_treino = colunas de treino
+y_treino = training_data['Survived']                                                # y_treino = coluna de resposta
 
-# Dividir os dados em treino e teste
-X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.20, random_state=42)
+# ------------------------------------
+# --- Otimização de Hiperparâmetros
+# ------------------------------------
 
-# Definir hiperparâmetros
+# Definição de hiperparâmetros para Otimizador de HIPERPARÂMETROS
 params = {
-    'criterion': ['gini', 'entropy'],
-    'max_depth': [None, 2, 4, 6, 8, 10],
-    'min_samples_split': [2, 5, 10],
-    'min_samples_leaf': [1, 2, 4],
-    'max_features': [None, 'sqrt', 'log2']
+    'criterion'        : ['gini', 'entropy'],
+    'max_depth'        : [None, 2, 4, 6, 8, 10],
+    'max_features'     : [None, 'sqrt', 'log2', 0.2, 0.4, 0.6, 0.8],
+    'min_samples_split': [2, 5, 10, 20],
+    'min_samples_leaf' : [1, 5, 10, 20],
+    'max_leaf_nodes'   : [None, 5, 10, 20, 50]
 }
 
-# GridSearchCV
+# GridSearchCV para otimização
 grid_search = GridSearchCV(
-    DecisionTreeClassifier(), 
-    param_grid=params, 
-    cv=5, 
-    n_jobs=-1, 
-    verbose=1
+    estimator  = DecisionTreeClassifier( ),  # Modelo de Classificação
+    param_grid = params,                     # Dicionário de Hiperparâmetros
+    cv         = 10,                         # Cross-Validation (número de divisões para validação cruzada)
+    n_jobs     = 1,                          # Número de Processos Paralelos
+    verbose    = 1                           # Exibir detalhes da execução
 )
-grid_search.fit(X_treino, y_treino)
+grid_search.fit( X_treino, y_treino )
 
-print("Melhores parâmetros (GridSearchCV):", grid_search.best_params_)
-print("Acurácia (GridSearchCV):", grid_search.best_score_)
+print( "Melhores parâmetros (GridSearchCV)......:", grid_search.best_params_ )
+print( "Acurácia (GridSearchCV).................:", grid_search.best_score_ )
 
 # RandomizedSearchCV
 random_search = RandomizedSearchCV(
-    DecisionTreeClassifier(), 
-    param_distributions=params, 
-    n_iter=10, 
-    cv=5, 
-    n_jobs=-1, 
-    verbose=1, 
-    random_state=42
+    DecisionTreeClassifier( ),     # Modelo de Classificação
+    param_distributions = params,  # Dicionário de Hiperparâmetros
+    cv                  = 10,      # Cross-Validation (número de divisões para validação cruzada)
+    n_jobs              = 1,       # Número de Processos Paralelos
+    verbose             = 1        # Exibir detalhes da execução
 )
-random_search.fit(X_treino, y_treino)
+random_search.fit( X_treino, y_treino )
 
-print("Melhores parâmetros (RandomizedSearchCV):", random_search.best_params_)
-print("Acurácia (RandomizedSearchCV):", random_search.best_score_)
+print( "Melhores parâmetros (RandomizedSearchCV):", random_search.best_params_ )
+print( "Acurácia (RandomizedSearchCV)...........:", random_search.best_score_ )
 
 # BayesSearchCV
 bayes_search = BayesSearchCV(
-    DecisionTreeClassifier(), 
-    search_spaces=params, 
-    cv=5, 
-    n_iter=10, 
-    n_jobs=-1, 
-    verbose=1, 
-    random_state=42
+    DecisionTreeClassifier( ),   # Modelo de Classificação
+    search_spaces= params,       # Dicionário de Hiperparâmetros
+    cv           = 5,            # Cross-Validation (número de divisões para validação cruzada)
+    n_jobs       = 1,            # Número de Processos Paralelos 
+    verbose      = 1             # Exibir detalhes da execução
 )
-bayes_search.fit(X_treino, y_treino)
+bayes_search.fit( X_treino, y_treino )
 
-print("Melhores parâmetros (BayesSearchCV):", bayes_search.best_params_)
-print("Acurácia (BayesSearchCV):", bayes_search.best_score_)
+print( "Melhores parâmetros (BayesSearchCV).....:", bayes_search.best_params_ )
+print( "Acurácia (BayesSearchCV)................:", bayes_search.best_score_ )

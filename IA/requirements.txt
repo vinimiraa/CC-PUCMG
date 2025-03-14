@@ -10,10 +10,13 @@ packaging==24.2
 pandas==2.2.3
 pillow==11.1.0
 plotly==6.0.0
+pyaml==25.1.0
 pyparsing==3.2.1
 python-dateutil==2.9.0.post0
 pytz==2025.1
+PyYAML==6.0.2
 scikit-learn==1.6.1
+scikit-optimize==0.10.2
 scipy==1.15.2
 seaborn==0.13.2
 setuptools==75.8.2

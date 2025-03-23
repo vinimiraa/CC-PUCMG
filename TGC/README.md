@@ -7,8 +7,9 @@ Silvio Jamil Ferzoli Guimarães.
 
 ## 📑 Estrutura do Repositório
 
-- [Material](/TGC/Material/) : PDFs disponibilizados pelo professor.
-
+- [Material](/TGC/Material/) : PDFs disponibilizados pelo professor, na internet ou de amigos.
+    - Inclui resumos da [Sophia Carrazza](https://github.com/sophiacarrazza/4semestre-CC-PUCMinas-SophiaCarrazza/tree/main/Grafos)
+    
 ## 👨‍💻 Autor
 
 `Vinícius Miranda de Araujo`

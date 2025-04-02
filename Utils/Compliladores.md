@@ -66,26 +66,26 @@
 3. Clique em **OK** para finalizar.
 
 ```sh
-Menu Iniciar
-|_ Configurações
-   |_ Procurar: variáveis de ambiente
-	  |_ Escolher: Variáveis de ambiente do sistema
-		 |_ Apertar o botão: Variáveis de ambiente
-			|_ Procurar: Path
-			   |_ Apertar o botão: Editar
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\MinGW
-				  |  |_ OK
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\MinGW\bin
-				  |  |_ OK
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\MinGW\include
-				  |  |_ OK
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\MinGW\lib
-				  |  |_ OK
-				  |_ OK
+ Menu Iniciar
+    |_ Configurações
+       |_ Procurar: variáveis de ambiente 
+          |_ Escolher: Variáveis de ambiente do sistema
+             |_ Apertar o botão: Variáveis de ambiente
+                |_ Procurar: Path
+                   |_ Apertar o botão: Editar
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\MinGW
+                      |  |_ OK
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\MinGW\bin
+                      |  |_ OK
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\MinGW\include
+                      |  |_ OK
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\MinGW\lib
+                      |  |_ OK
+                      |_ OK
 ```
 
 #### Testar a instalação
@@ -96,9 +96,9 @@ Menu Iniciar
 	
 3. No prompt de comando, digite:
 	
-```cmd
-gcc -v
-```
+  ```sh
+  gcc -v
+  ```
 	
 4. Verifique se a resposta indica a versão 13.2.0.
 
@@ -110,29 +110,29 @@ gcc -v
 	
 - Pacotes essenciais:
 	
-```sh
-pacman -S --needed base-devel mingw-w64-x86_64-toolchain
+  ```sh
+  pacman -S --needed base-devel mingw-w64-x86_64-toolchain
 
-pacman -S editors
-```
+  pacman -S editors
+  ```
 
 ## Para Linux ou Windows 10 / WSL ou WSL2
 
 1. Atualize o sistema:
 	
-```sh
-sudo apt-get update
+  ```sh
+  sudo apt-get update
 
-sudo apt-get upgrade
+  sudo apt-get upgrade
 ```
 	
 2. Instale os pacotes essenciais:
 	
-```sh
-sudo apt-get install build-essential
+  ```sh
+  sudo apt-get install build-essential
 
-sudo apt-get install manpages-dev man-db manpages-posix-dev
-```
+  sudo apt-get install manpages-dev man-db manpages-posix-dev
+  ```
 	
 ---
 
@@ -181,22 +181,21 @@ sudo apt-get install manpages-dev man-db manpages-posix-dev
 9. Clique em **OK** para finalizar.
 	
 ```sh
-Menu Iniciar
-|_ Configurações
-   |_ Procurar: variáveis de ambiente
-	  |_ Escolher: Variáveis de ambiente do sistema
-		 |_ Apertar o botão: Variáveis de ambiente
-			|_ Procurar: Path
-			   |_ Apertar o botão: Editar
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\Program Files\Java\jdk-21
-				  |  |_ OK
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\Program Files\Java\jdk-21\bin
-				  |  |_ OK
-				  |_ OK
+ Menu Iniciar
+    |_ Configurações
+       |_ Procurar: variáveis de ambiente 
+          |_ Escolher: Variáveis de ambiente do sistema
+             |_ Apertar o botão: Variáveis de ambiente
+                |_ Procurar: Path
+                   |_ Apertar o botão: Editar
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\Program Files\Java\jdk-21
+                      |  |_ OK
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\Program Files\Java\jdk-21\bin
+                      |  |_ OK
+                      |_ OK
 ```
-	
 
 #### Testar a instalação
 
@@ -206,9 +205,9 @@ Menu Iniciar
 	
 3. No prompt de comando, digite:
 	
-```sh
-java -version
-```
+  ```sh
+  java -version
+  ```
 	
 4. Verifique se a resposta indica a versão instalada do JDK (por exemplo, `jdk-20`).
 
@@ -275,26 +274,25 @@ java -version
 8. Clique em **OK** para finalizar.
 	
 ```sh
-Menu Iniciar
-|_ Configurações
-   |_ Procurar: variáveis de ambiente
-	  |_ Escolher: Variáveis de ambiente do sistema
-		 |_ Apertar o botão: Variáveis de ambiente
-			|_ Procurar: Path
-			   |_ Apertar o botão: Editar
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\iverilog
-				  |  |_ OK
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\iverilog\bin
-				  |  |_ OK
-				  |_ Apertar o botão: Novo
-				  |  |_ Procurar o caminho: C:\iverilog\gtkwave\bin
-				  |  |_ OK
-				  |_ OK
+ Menu Iniciar
+    |_ Configurações
+       |_ Procurar: variáveis de ambiente 
+          |_ Escolher: Variáveis de ambiente do sistema
+             |_ Apertar o botão: Variáveis de ambiente
+                |_ Procurar: Path
+                   |_ Apertar o botão: Editar
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\iverilog
+                      |  |_ OK
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\iverilog\bin
+                      |  |_ OK
+                      |_ Apertar o botão: Novo
+                      |  |_ Procurar o caminho: C:\iverilog\gtkwave\bin
+                      |  |_ OK
+                      |_ OK
 ```
-	
-  
+
 #### Testar a instalação
 
 1. Abra o **Menu Iniciar**
@@ -313,23 +311,23 @@ iverilog -v
 
 1. Atualize o sistema:
 
-```sh
-sudo apt-get update
+  ```sh
+  sudo apt-get update
 
-sudo apt-get upgrade
-```
+  sudo apt-get upgrade
+  ```
 	
 2. Instale o Icarus Verilog:
-	
-```sh
-sudo apt-get install iverilog
-```
+  
+  ```sh
+  sudo apt-get install iverilog
+  ```
 	
 3. Verifique a instalação:
 	
-```sh
-iverilog -v
-```
+  ```sh
+  iverilog -v
+  ```
 	
 ---
 

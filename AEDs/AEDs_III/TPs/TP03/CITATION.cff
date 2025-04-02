@@ -1,0 +1,24 @@
+cff-version: 1.0.1
+title: TP-AEDS-III
+authors:
+  - family-names: Pires Santos
+    given-names: Breno
+  - family-names: Faria Diniz
+    given-names: Caio
+  - family-names: Sena Cordeiro
+    given-names: Giuseppe
+  - family-names: Miranda de Araújo
+    given-names: Vinícius
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Silveira Kutova
+    given-names: Marcos Andre
+keywords:
+  - CRUD
+  - Tarefa
+  - Operações com Arquivo
+  - Tipos Genéricos
+repository-code: https://github.com/giusfds/TP-AEDS-III
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2024-08-26

@@ -104,10 +104,10 @@ int eccentricity( const int start, const int num_vertices, int graph[][MAX_VERTI
 {
     int x = 0;                             // Excentricidade, valor a ser calculado
     Queue* q = new_Queue( num_vertices );  // Fila
-    int degree[MAX_VERTICES] = {0};        // Vetor com os graus de cada vértica
+    int distance[MAX_VERTICES] = {0};      // Vetor com as distâncias de cada vértica
     bool visited[MAX_VERTICES] = {false};  // Vetor indicando se o vértice foi visitado ou não
 
-    degree[start] = 0;                     // Inicia com o grau do vértice 'v' igual a 0
+    distance[start] = 0;                   // Inicia com a distância do vértice 'v' igual a 0
     enqueue( start, q );                   // Insere o vértice 'v' na fila
     visited[start] = true;                 // Marca o vértice 'v' como visitado
     
@@ -115,7 +115,7 @@ int eccentricity( const int start, const int num_vertices, int graph[][MAX_VERTI
     {
         if( debug ) 
         {
-            print_Array( "Grau", num_vertices, degree );
+            print_Array( "Grau", num_vertices, distance );
             print_Array( "Fila", q->size, q->items );
         }
 
@@ -125,19 +125,19 @@ int eccentricity( const int start, const int num_vertices, int graph[][MAX_VERTI
         {
             if( graph[v][u] && !visited[u] )           // Se o 'u' não foi visitada
             { 
-                degree[u] = degree[v] + 1;             // Incrementa o graud do vértice 'u' em 1 unidade
-                enqueue( u, q );                       // Insere 'u' na fila  
+                distance[u] = distance[v] + 1;         // Incrementa a distância do vértice 'u' em 1 unidade
+                enqueue( u, q );                       // Insere 'u' na fila
                 visited[u] = true;                     // Marca 'u' como visitado
             }
         }
     }
     free_Queue( q );
 
-    // Calculando a excentricidade: o maior valor de degree[v]
+    // Calculando a excentricidade: o maior valor de distance[v]
     for( int i = 0; i < num_vertices; i = i + 1 ) 
     {
-        if( degree[i] > x ) {
-            x = degree[i];
+        if( distance[i] > x ) {
+            x = distance[i];
         }
     }
 
@@ -171,7 +171,7 @@ int main( void )
     printf( "|V| = %d\n", num_vertices );
     printf( "|E| = %d\n\n", 8 );
 
-    printf( "Excentricidade (A) = %d\n", eccentricity( 0, num_vertices, graph, false ) );
+    printf( "Excentricidade (A) = %d\n", eccentricity( 0, num_vertices, graph, true ) );
     printf( "Excentricidade (B) = %d\n", eccentricity( 1, num_vertices, graph, false ) );
     printf( "Excentricidade (C) = %d\n", eccentricity( 2, num_vertices, graph, false ) );
     printf( "Excentricidade (D) = %d\n", eccentricity( 3, num_vertices, graph, false ) );

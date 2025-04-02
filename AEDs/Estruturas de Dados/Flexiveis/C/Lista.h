@@ -1,0 +1,242 @@
+#ifndef __LISTAFLEX_H__
+#define __LISTAFLEX_H__
+
+// ---------------------------- Dependências
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+// ---------------------------- Constante
+
+const int NULO = 0xFFFFF7;
+
+// ---------------------------- Struct - Célula
+
+typedef struct s_Celula
+{
+    int elemento;
+    struct s_Celula* prox;
+} Celula;
+
+// ---------------------------- Struct - Lista
+
+typedef struct s_Lista
+{
+    Celula* primeiro;
+    Celula* ultimo;
+    int tamanho;
+} Lista;
+
+// ---------------------------- Protótipos - Célula
+
+Celula* new_Celula ( int elemento );
+
+// ---------------------------- Protótipos - Lista
+
+Lista* new_Lista ( void );
+void delete_Lista ( Lista* lista );
+void inserir_inicio_Lista ( Lista* lista, int valor );
+void inserir_fim_Lista ( Lista* lista, int valor );
+void inserir_Lista ( Lista* lista, int valor, int index );
+int remover_inicio_Lista ( Lista* lista );
+int remover_fim_Lista ( Lista* lista );
+int remover_Lista( Lista* lista, int index );
+void mostrar_Lista ( Lista* lista );
+bool pesquisar_Lista ( Lista* lista, int valor );
+int tamanho_Lista ( Lista* lista );
+
+// ---------------------------- Definições - Célula
+
+Celula* new_Celula ( int elemento )
+{
+    Celula* celula = (Celula*) malloc ( sizeof(Celula) );
+    if( celula != NULL )
+    {
+        celula->elemento = elemento;
+        celula->prox = NULL;
+    } // end if
+    return ( celula );
+} // end new_Celula ( )
+
+// ---------------------------- Definições - Lista
+
+Lista* new_Lista ( void )
+{
+    Lista* lista = (Lista*) malloc ( sizeof(Lista) );
+    if( lista != NULL )
+    {
+        lista->ultimo = lista->primeiro = new_Celula( -1 );
+        lista->tamanho = 0;
+    } // end if
+    return ( lista );
+} // end new_Lista ( )
+
+void delete_Lista ( Lista* lista )
+{
+    if( lista != NULL )
+    {
+        free( lista ); lista = NULL;
+    } // end if
+} // end delete_Lista ( )
+
+void inserir_inicio_Lista ( Lista* lista, int valor )
+{
+    if( lista != NULL )
+    {
+        Celula* temp = new_Celula( valor );
+        temp->prox = lista->primeiro->prox;
+        lista->primeiro->prox = temp;
+        if( lista->primeiro == lista->ultimo ) {                    
+            lista->ultimo = temp;
+        } // end if
+        temp = NULL;
+        lista->tamanho++;
+    } // end if
+} // end inserir_inicio_Lista ( )
+
+void inserir_fim_Lista ( Lista* lista, int valor )
+{
+    if( lista != NULL )
+    {
+        lista->ultimo->prox = new_Celula( valor );
+        lista->ultimo = lista->ultimo->prox;
+        lista->tamanho++;
+    } // end if
+} // end inserir_fim_Lista ( )
+
+int remover_inicio_Lista ( Lista* lista ) 
+{
+    int resp = NULO;
+    if( lista != NULL )
+    {
+        if( lista->primeiro == lista->ultimo ) {
+            printf( "\n%s\n", "[REMOVER_INICIO] ERRO: Lista Vazia!" );
+        } 
+        else 
+        {
+            Celula* temp = lista->primeiro;
+            lista->primeiro = lista->primeiro->prox;
+            resp = lista->primeiro->elemento;
+            temp->prox = NULL;
+            free( temp );
+            temp = NULL;
+            lista->tamanho--;
+        } // end if
+    } // end if
+    return ( resp );
+} // end remover_inicio_Lista ( )
+
+int remover_fim_Lista ( Lista* lista ) 
+{
+    int resp = NULO;
+    if( lista != NULL )
+    {
+        if( lista->primeiro == lista->ultimo ) {
+            printf( "\n%s\n", "[REMOVER_FIM] ERRO: Lista Vazia!" );
+        } 
+        else 
+        {
+            Celula* i = NULL;
+            for( i = lista->primeiro; i->prox != lista->ultimo; i = i->prox)
+            resp = lista->ultimo->elemento;
+            lista->ultimo = i;
+            free( lista->ultimo->prox );
+            i = lista->ultimo->prox = NULL;
+            lista->tamanho--;
+        } // end if
+    } // end if
+    return ( resp );
+} // end remover_fim_Lista ( )
+
+void inserir_Lista ( Lista* lista, int valor, int index ) 
+{
+    if( lista != NULL )
+    {
+        if( index < 0 || lista->tamanho < index ) {
+            printf( "\n%s\n", "[INSERIR] ERRO: Posicao Invalida!" );
+        } else if( index == 0 ) {
+            inserir_inicio_Lista( lista, valor );
+        } else if( index == lista->tamanho ) {
+            inserir_fim_Lista( lista, valor );
+        } 
+        else 
+        {
+            Celula* i = lista->primeiro;
+            for( int j = 0; j < index; j = j + 1, i = i->prox );   
+            Celula* temp = new_Celula( valor );
+            temp->prox = i->prox;
+            i->prox = temp;
+            temp = i = NULL;
+            lista->tamanho++;
+        } // end if
+    } // end if
+} // end inserir_Lista ( )
+
+int remover_Lista( Lista* lista, int index ) 
+{
+    int resp = NULO;
+    if( lista != NULL )
+    {
+        if( lista->primeiro == lista->ultimo ) {
+            printf( "\n%s\n", "[REMOVER] ERRO: Lista Vazia!" );
+        } else if( index < 0 || index >= lista->tamanho ) {
+            printf( "\n%s\n", "[REMOVER] ERRO: Posicao Invalida!" );
+        } else if( index == 0 ) {
+            resp = remover_inicio_Lista( lista );
+        } else if( index == lista->tamanho - 1 ) {
+            resp = remover_fim_Lista( lista );
+        } 
+        else 
+        {
+            Celula* i = lista->primeiro;
+            for( int j = 0; j < index; j = j + 1, i = i->prox );
+            Celula* temp = i->prox;
+            resp = temp->elemento;
+            i->prox = temp->prox;
+            temp->prox = NULL;
+            free( temp );
+            i = temp = NULL;
+            lista->tamanho--;
+        } // end if
+    } // end if
+    return ( resp );
+} // end remover_Lista ( )
+
+void mostrar_Lista ( Lista* lista )
+{
+    printf( "[FIRST] ->" );
+    for( Celula* i = lista->primeiro->prox; i != NULL; i = i->prox ) 
+    {
+        printf( " (%d) ->", i->elemento );
+    } // end for
+    printf( " \\\n" );
+} // end mostrar_Lista ( )
+
+bool pesquisar_Lista ( Lista* lista, int valor )
+{
+    bool resp = false;
+    if( lista != NULL )
+    {
+        for( Celula* i = lista->primeiro->prox; i != NULL; i = i->prox )
+        {
+            if( i->elemento == valor ) 
+            {
+                resp = true;
+                i = NULL;
+            } // end if
+        } // end for
+    } // end if
+    return ( resp );
+} // end pesquisar_Lista ( )
+
+int tamanho_Lista ( Lista* lista ) 
+{
+    int resp = NULO;
+    if( lista != NULL ) {
+        resp = lista->tamanho;
+    } // end if
+    return ( resp );
+} // end tamanho_Lista ( )
+
+#endif // __LISTAFLEX_H__

@@ -10,6 +10,7 @@ Neri Nobre.
 - [Listas](/IA/Listas/) : Lista de Exercícios semanais.
 - [Notebooks](/IA/Notebooks/) : Notebooks disponibilizados como material auxiliar.
 - [Atividade Prática 1](/IA/Atividade_Pratica_1/) : Atividade prática sobre um dos temas.
+- [Provas](/IA/Provas/) : Provas realizadas.
 
 ## 👨‍💻 Autor
 

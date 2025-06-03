@@ -7,6 +7,7 @@ Repositório de algumas matérias do curso de Ciência da Computação.
 ## Primeiro Período - 1º
 
 - [Algoritmos e Estrutura de Dados 1 (AED1)](/AEDs/AEDs_I/)
+- [Cálculo 1 (C1)](/C1/)
 - [Introdução a Computação (IC)](/IC/)
 - [Desenvolvimento de Interfaces Web (DIW)](/DIW/)
 
@@ -14,6 +15,7 @@ Repositório de algumas matérias do curso de Ciência da Computação.
 
 - [Algoritmos e Estrutura de Dados 2 (AED2)](/AEDs/AEDs_II/)
 - [Arquitetura de Computadores 1 (AC1)](/ACs/AC_I/)
+- [Engenharia de Software 1 (ES1)](/ES1/)
 - [Trabalho Interdisciplinar 2: Back-End (TI2)](https://github.com/vinimiraa/TI-2.git)
 
 ## Terceiro Período - 3º

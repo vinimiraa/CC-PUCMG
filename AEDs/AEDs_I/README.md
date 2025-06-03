@@ -11,6 +11,7 @@ Theldo Cruz Franqueira
 - [Guias](/AEDs/AEDs_I/Guias/) : Atividade com o Robô Karel.
 - [Trabalho Prático](/ACs/AC_I/Trabalho_01/) : Trabalho sobre Artigo Científico.
 - [Material](/AEDs/AEDs_I/Material/) : Material disponibilizado pelo professor.
+- [Provas](/AEDs/AEDs_I/Provas/) : Provas realizadas.
 
 ## 👨‍💻 Autor
 

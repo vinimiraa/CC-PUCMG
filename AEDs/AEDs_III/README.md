@@ -11,6 +11,7 @@ Marcos Andre Silveira Kutova.
 - [EFs](/AEDs/AEDs_III/EFs/) : Exercícios de Fixação.
 - [Artigo](/AEDs/AEDs_III/Artigo/) : Artigo Científico.
 - [Code](/AEDs/AEDs_III/Code/) : Código feitos durante as aulas pelo professor. Organizado como Mês-Dia.
+- [Provas](/AEDs/AEDs_III/Provas/) : Provas realizadas.
 
 ## 👨‍💻 Autor
 

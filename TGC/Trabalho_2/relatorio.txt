@@ -1,0 +1,39 @@
+/**
+ *  Teoria dos Grafos e Computabilidade
+ *  812839 - Vinícius Miranda de Araújo
+ *  Trabalho 2
+ */
+
+
+Na palestra, o professor Loureiro destacou a importância de preservar a humanidade, especialmente no contexto da 
+inteligência artificial. Ele enfatizou que a IA deve ser vista como uma ferramenta a serviço do ser humano, e não como 
+um substituto da essência humana. Essa reflexão ética foi aprofundada com a menção à obra Brave New World (Admirável 
+Mundo Novo), de Aldous Huxley, que questiona o uso desmedido da tecnologia e os riscos da desumanização em uma sociedade 
+altamente controlada por sistemas técnicos.
+
+Ao trazer essa discussão para o âmbito da disciplina de Teoria dos Grafos e Computabilidade, é possível identificar 
+conexões significativas. A inteligência artificial, em suas diversas aplicações, como recomendação de rotas, 
+reconhecimento de padrões, redes neurais e sistemas de decisão, depende fortemente de representações gráficas e modelos 
+computacionais. Além disso, trata-se de uma tecnologia extremamente disruptiva, com o potencial de transformar 
+profundamente o mundo em que vivemos.
+
+Na Teoria dos Grafos, por exemplo, problemas complexos do mundo real podem ser modelados por estruturas como grafos 
+direcionados e ponderados, árvores de decisão e algoritmos de busca em largura e profundidade. Esses modelos são 
+fundamentais para representar relações, conexões e caminhos, seja em sistemas de transporte, redes sociais, circuitos 
+lógicos ou no raciocínio automatizado. No entanto, é fundamental garantir que tais modelos não perpetuem viéses 
+indesejados, especialmente em áreas sensíveis, onde decisões automatizadas podem ter implicações graves sobre indivíduos 
+e grupos sociais.
+
+No campo da Computabilidade, surgem também questões éticas relevantes ao se refletir sobre os limites do que pode, ou 
+mesmo do que deve, ser automatizado. A partir da formalização de problemas, compreendemos que nem todos são computáveis. 
+Esse reconhecimento reforça a ideia de que: existem aspectos da experiência humana, como emoções, valores morais e 
+julgamento ético, que não podem ser plenamente representados por algoritmos, mesmo em uma era de inteligência artificial 
+avançada. Assim, é essencial que a inteligência humana mantenha uma postura crítica diante do avanço tecnológico.
+
+Portanto, a palestra não apenas alerta para os riscos de uma dependência cega da tecnologia, como também nos convida a 
+refletir sobre os limites, aplicações e responsabilidades no desenvolvimento de sistemas computacionais que impactam 
+diretamente a vida em sociedade. Assim como em muitos aspectos da vida, é essencial mantermos uma postura crítica e isso 
+é válido, também, no uso da inteligência artificial. Como ressalta uma frase marcante da obra Admirável Mundo Novo: “um 
+melhor que, infelizmente, não passava de um menos mau”. Essa citação nos lembra que, embora a IA traga grandes 
+promessas, se mal empregada, poderá representar apenas uma versão tecnicamente avançada de um problema mal resolvido, 
+um "menos mal" disfarçado de progresso.

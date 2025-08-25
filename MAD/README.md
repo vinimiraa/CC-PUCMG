@@ -7,7 +7,9 @@ Exercícios e estudos desenvolvidos durante o semestre da matéria de Modelagem 
 ## 📑 Estrutura do Repositório
 
 - [Planejamento de Capacidade](/MAD/Planejamento_de_Capacidade/): Atividade de Planejamento de Capacidade de sistema.
+- [Planejamento do SLA para Cloud](/MAD/Planejamento_SLA_Cloud/): Atividade de Planejamento de SLA para um sistema em Nuvem.
 - [Seminário](/MAD/Seminario/): Seminário de artigo científico sobre o tema Avaliação de Desempenho de Sistemas Computacionais.
+- [Material](/MAD/Material/SOLVER_MAD.xlsx): Material disponibilizado pelo professor.
 
 ## 👨‍💻 Autor
 

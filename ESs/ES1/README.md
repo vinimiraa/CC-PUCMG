@@ -2,7 +2,7 @@
 
 ## 📑 Estrutura do Repositório
 
-- [Provas](/ES1/Provas/) : Provas realizadas.
+- [Provas](/ESs/ES1/Provas/) : Provas realizadas.
 
 ## 👨‍💻 Autor
 

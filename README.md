@@ -15,7 +15,7 @@ Repositório de algumas matérias do curso de Ciência da Computação.
 
 - [Algoritmos e Estrutura de Dados 2 (AED2)](/AEDs/AEDs_II/)
 - [Arquitetura de Computadores 1 (AC1)](/ACs/AC_I/)
-- [Engenharia de Software 1 (ES1)](/ES1/)
+- [Engenharia de Software 1 (ES1)](/ESs/ES1/)
 - [Trabalho Interdisciplinar 2: Back-End (TI2)](https://github.com/vinimiraa/TI-2.git)
 
 ## Terceiro Período - 3º
@@ -31,6 +31,11 @@ Repositório de algumas matérias do curso de Ciência da Computação.
 - [Inteligência Artificial (IA)](/IA/)
 - [Estatística e Probabilidade (EP)](/EP/)
 - [Laboratório de Dispositivos Móveis (LdDM)](https://github.com/vinimiraa/LDDM-ShowCoin.git)
+
+## Quinto Perído - 5º
+
+- [Sistemas Operacionais (SO)](/SO/)
+- [Engenharia de Software 2 (ES2)](/ESs/ES2/)
 
 ## 👨‍💻 Autor
 

@@ -40,3 +40,6 @@ Repositório de algumas matérias do curso de Ciência da Computação.
 ## 👨‍💻 Autor
 
 `Vinícius Miranda de Araujo`
+
+AKA: `vinimiraa`, `salame`, `goxtoso`, `esferico`, `vinimiranha`, `vinimiranha123`, `vinimiranha1234`
+

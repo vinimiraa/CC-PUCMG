@@ -6,7 +6,7 @@ Exercícios e estudos desenvolvidos durante o semestre da matéria de Sistemas O
 
 ## 📑 Estrutura do Repositório
 
-- [Lista 1](/SO/Lista_1/): Lista de exercícios para estudo.
+- [Listas](/5_Periodo/SO/Listas/): Lista de exercícios para estudo.
 
 ## 👨‍💻 Autor
 

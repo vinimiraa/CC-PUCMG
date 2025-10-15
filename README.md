@@ -48,7 +48,7 @@ Repositório de algumas matérias do curso de Ciência da Computação.
 | [Teoria dos Grafos e Computabilidade (TGC)](/4_Periodo/TGC/) | 2025/1       | Silvio Jamil      |
 | [Inteligência Artificial (IA)](/4_Periodo/IA/)               | 2025/1       | Critiane Nobre    |
 | [Estatística e Probabilidade (EP)](/4_Periodo/EP/)           | 2025/1       | Mayara Stradioto  |
-| [Laboratório de Dispositivos Móveis (LdDM)](https://github.com/vinimiraa/LDDM-ShowCoin.git) | 2025/2 | Ilo Rivero |
+| [Laboratório de Dispositivos Móveis (LdDM)](https://github.com/vinimiraa/LDDM-ShowCoin.git) | 2025/1 | Ilo Rivero |
 | [Trabalho Interdisciplinar 4: Jogos(TI4)](https://github.com/ICEI-PUC-Minas-CC-TI/plmg-cc-ti4-2025-1-g03-echoes-of-eldra.git) | 2024/1 | Vários |
 </details>
 
